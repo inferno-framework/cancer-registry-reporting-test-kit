@@ -1,0 +1,2 @@
+require_relative 'cancer_registry_reporting_test_kit/ehr_suite'
+require_relative 'cancer_registry_reporting_test_kit/hdea_suite'
