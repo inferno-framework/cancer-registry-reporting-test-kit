@@ -10,7 +10,7 @@ module CancerRegistryReportingTestKit
         [Report Composition](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/StructureDefinition-ccrr-composition.html).
       )
 
-      # extract each CCRR composition from the content bundle saved in scratch
+      # extract each CCRR composition from the content bundle
       # validate the composition
   end
 end

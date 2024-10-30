@@ -10,8 +10,6 @@ module CancerRegistryReportingTestKit
         [Content Bundle](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/StructureDefinition-ccrr-content-bundle.html).
       )
 
-      # input is passed as a single content bundle
-      # save to scratch
-      # validate the content bundle
+      # validate the input content bundle
   end
 end
