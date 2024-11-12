@@ -36,6 +36,15 @@ module CancerRegistryReportingTestKit
         url: 'https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/'
       }
     ]
+
+    # All FHIR validation requests will use this FHIR validator
+    fhir_resource_validator do
+      igs 'hl7.fhir.us.central-cancer-registry-reporting#1.0.0'
+
+      exclude_message do |message|
+        message.message.match?(/\A\S+: \S+: URL value '.*' does not resolve/)
+      end
+    end
     
     group from: :ccrr_hdea_report_creation
     group from: :ccrr_hdea_must_support
