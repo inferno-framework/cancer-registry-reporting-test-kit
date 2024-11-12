@@ -1,5 +1,4 @@
 require_relative 'report_creation_group/content_bundle_validation_test'
-require_relative 'report_creation_group/report_composition_validation_test'
 require_relative 'report_creation_group/report_resources_validation_test'
 
 
@@ -28,7 +27,6 @@ module CancerRegistryReportingTestKit
     description: 'A single Content Bundle'
 
     test from: :ccrr_hdea_content_bundle_validation_test
-    test from: :ccrr_hdea_report_composition_validation_test
     test from: :ccrr_hdea_report_resources_validation_test
 
   end
