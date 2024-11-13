@@ -1,0 +1,299 @@
+---
+:name: ccrr_plandefinition
+:class_name: CcrrPlandefinitionSequence
+:version: v1.0.0
+:reformatted_version: v100
+:resource: PlanDefinition
+:profile_url: http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-plandefinition
+:profile_name: Central Cancer Registry Reporting PlanDefinition
+:profile_version: 1.0.0
+:title: Central Cancer Registry Reporting PlanDefinition
+:short_description: Verify support for the server capabilities required by the Central
+  Cancer Registry Reporting PlanDefinition.
+:must_supports:
+  :extensions:
+  - :id: PlanDefinition.extension:receiverEndpoint
+    :path: extension
+    :url: http://hl7.org/fhir/us/medmorph/StructureDefinition/us-ph-receiver-endpoint
+  - :id: PlanDefinition.extension:asyncIndicator
+    :path: extension
+    :url: http://hl7.org/fhir/us/medmorph/StructureDefinition/us-ph-async-indicator
+  - :id: PlanDefinition.extension:contentEncrypted
+    :path: extension
+    :url: http://hl7.org/fhir/us/medmorph/StructureDefinition/us-ph-data-encrypted-extension
+  - :id: PlanDefinition.extension:jwksForContentEncryption
+    :path: extension
+    :url: http://hl7.org/fhir/us/medmorph/StructureDefinition/us-ph-receiver-jwks-url
+  - :id: PlanDefinition.extension:contentEncryptionAlgorithm
+    :path: extension
+    :url: http://hl7.org/fhir/us/medmorph/StructureDefinition/us-ph-data-encryption-algorithm
+  - :id: PlanDefinition.extension:expectedResponseDuration
+    :path: extension
+    :url: http://hl7.org/fhir/us/medmorph/StructureDefinition/us-ph-expected-responsetime
+  - :id: PlanDefinition.action.extension:trustServiceEndpoint
+    :path: action.extension
+    :url: http://hl7.org/fhir/us/medmorph/StructureDefinition/us-ph-trust-service-endpoint
+  - :id: PlanDefinition.action.trigger.extension:namedEventType
+    :path: action.trigger.extension
+    :url: http://hl7.org/fhir/us/medmorph/StructureDefinition/us-ph-named-eventtype
+  - :id: PlanDefinition.action.input.extension:defaultQuery
+    :path: action.input.extension
+    :url: http://hl7.org/fhir/us/medmorph/StructureDefinition/us-ph-fhirquerypattern-extension
+  - :id: PlanDefinition.action.input.extension:relatedDataId
+    :path: action.input.extension
+    :url: http://hl7.org/fhir/us/medmorph/StructureDefinition/us-ph-relateddata-extension
+  - :id: PlanDefinition.action:encounterClose.extension:trustServiceEndpoint
+    :path: action.extension
+    :url: http://hl7.org/fhir/us/medmorph/StructureDefinition/us-ph-trust-service-endpoint
+  - :id: PlanDefinition.action:encounterClose.trigger.extension:namedEventType
+    :path: action.trigger.extension
+    :url: http://hl7.org/fhir/us/medmorph/StructureDefinition/us-ph-named-eventtype
+  - :id: PlanDefinition.action:encounterClose.input.extension:defaultQuery
+    :path: action.input.extension
+    :url: http://hl7.org/fhir/us/medmorph/StructureDefinition/us-ph-fhirquerypattern-extension
+  - :id: PlanDefinition.action:encounterClose.input.extension:relatedDataId
+    :path: action.input.extension
+    :url: http://hl7.org/fhir/us/medmorph/StructureDefinition/us-ph-relateddata-extension
+  - :id: PlanDefinition.action:checkReportable.extension:trustServiceEndpoint
+    :path: action.extension
+    :url: http://hl7.org/fhir/us/medmorph/StructureDefinition/us-ph-trust-service-endpoint
+  - :id: PlanDefinition.action:checkReportable.trigger.extension:namedEventType
+    :path: action.trigger.extension
+    :url: http://hl7.org/fhir/us/medmorph/StructureDefinition/us-ph-named-eventtype
+  - :id: PlanDefinition.action:checkReportable.input.extension:defaultQuery
+    :path: action.input.extension
+    :url: http://hl7.org/fhir/us/medmorph/StructureDefinition/us-ph-fhirquerypattern-extension
+  - :id: PlanDefinition.action:checkReportable.input.extension:relatedDataId
+    :path: action.input.extension
+    :url: http://hl7.org/fhir/us/medmorph/StructureDefinition/us-ph-relateddata-extension
+  - :id: PlanDefinition.action:reportCancerData.extension:trustServiceEndpoint
+    :path: action.extension
+    :url: http://hl7.org/fhir/us/medmorph/StructureDefinition/us-ph-trust-service-endpoint
+  - :id: PlanDefinition.action:reportCancerData.trigger.extension:namedEventType
+    :path: action.trigger.extension
+    :url: http://hl7.org/fhir/us/medmorph/StructureDefinition/us-ph-named-eventtype
+  - :id: PlanDefinition.action:reportCancerData.input.extension:defaultQuery
+    :path: action.input.extension
+    :url: http://hl7.org/fhir/us/medmorph/StructureDefinition/us-ph-fhirquerypattern-extension
+  - :id: PlanDefinition.action:reportCancerData.input.extension:relatedDataId
+    :path: action.input.extension
+    :url: http://hl7.org/fhir/us/medmorph/StructureDefinition/us-ph-relateddata-extension
+  :slices:
+  - :slice_id: PlanDefinition.action.relatedAction.offset[x]:offsetDuration
+    :slice_name: offsetDuration
+    :path: action.relatedAction.offset[x]
+    :discriminator:
+      :type: type
+      :code: Duration
+  - :slice_id: PlanDefinition.action:encounterClose.relatedAction.offset[x]:offsetDuration
+    :slice_name: offsetDuration
+    :path: action.relatedAction.offset[x]
+    :discriminator:
+      :type: type
+      :code: Duration
+  - :slice_id: PlanDefinition.action:checkReportable.relatedAction.offset[x]:offsetDuration
+    :slice_name: offsetDuration
+    :path: action.relatedAction.offset[x]
+    :discriminator:
+      :type: type
+      :code: Duration
+  - :slice_id: PlanDefinition.action:reportCancerData.relatedAction.offset[x]:offsetDuration
+    :slice_name: offsetDuration
+    :path: action.relatedAction.offset[x]
+    :discriminator:
+      :type: type
+      :code: Duration
+  - :slice_id: PlanDefinition.action:encounterClose
+    :slice_name: encounterClose
+    :path: action
+    :discriminator:
+      :type: value
+      :values:
+      - :path: id
+        :value: 
+  - :slice_id: PlanDefinition.action:checkReportable
+    :slice_name: checkReportable
+    :path: action
+    :discriminator:
+      :type: value
+      :values:
+      - :path: id
+        :value: 
+  - :slice_id: PlanDefinition.action:reportCancerData
+    :slice_name: reportCancerData
+    :path: action
+    :discriminator:
+      :type: value
+      :values:
+      - :path: id
+        :value: 
+  :elements:
+  - :path: PlanDefinition
+  - :path: identifier
+  - :path: title
+  - :path: type.coding.code
+    :fixed_value: workflow-definition
+  - :path: subject[x]
+    :types:
+    - Reference
+  - :path: date
+  - :path: publisher
+  - :path: contact
+  - :path: useContext
+  - :path: jurisdiction
+  - :path: effectivePeriod
+  - :path: library
+  - :path: action
+  - :path: action.description
+  - :path: action.code
+  - :path: action.trigger
+  - :path: action.trigger.type
+    :fixed_value: named-event
+  - :path: action.condition
+  - :path: action.condition.kind
+    :fixed_value: applicability
+  - :path: action.condition.expression
+  - :path: action.condition.expression.language
+    :fixed_value: text/fhirpath
+  - :path: action.input
+  - :path: action.input.type
+  - :path: action.output
+  - :path: action.output.type
+  - :path: action.output.profile
+  - :path: action.relatedAction
+  - :path: action.relatedAction.actionId
+  - :path: action.relatedAction.relationship
+    :fixed_value: before-start
+  - :path: action.timing[x]
+  - :path: action.action
+  - :path: action:encounterClose.id
+  - :path: action:encounterClose.description
+  - :path: action:encounterClose.textEquivalent
+  - :path: action:encounterClose.code
+  - :path: action:encounterClose.trigger
+  - :path: action:encounterClose.trigger.type
+    :fixed_value: named-event
+  - :path: action:encounterClose.condition
+  - :path: action:encounterClose.condition.kind
+    :fixed_value: applicability
+  - :path: action:encounterClose.condition.expression
+  - :path: action:encounterClose.condition.expression.language
+    :fixed_value: text/fhirpath
+  - :path: action:encounterClose.input
+  - :path: action:encounterClose.input.type
+  - :path: action:encounterClose.output
+  - :path: action:encounterClose.output.type
+  - :path: action:encounterClose.output.profile
+  - :path: action:encounterClose.relatedAction
+  - :path: action:encounterClose.relatedAction.actionId
+  - :path: action:encounterClose.relatedAction.relationship
+    :fixed_value: before-start
+  - :path: action:encounterClose.timing[x]
+  - :path: action:encounterClose.action
+  - :path: action:checkReportable.id
+  - :path: action:checkReportable.description
+  - :path: action:checkReportable.code
+  - :path: action:checkReportable.trigger
+  - :path: action:checkReportable.trigger.type
+    :fixed_value: named-event
+  - :path: action:checkReportable.condition
+  - :path: action:checkReportable.condition.kind
+    :fixed_value: applicability
+  - :path: action:checkReportable.condition.expression
+  - :path: action:checkReportable.condition.expression.language
+    :fixed_value: text/fhirpath
+  - :path: action:checkReportable.input
+  - :path: action:checkReportable.input.type
+  - :path: action:checkReportable.output
+  - :path: action:checkReportable.output.type
+  - :path: action:checkReportable.output.profile
+  - :path: action:checkReportable.relatedAction
+  - :path: action:checkReportable.relatedAction.actionId
+  - :path: action:checkReportable.relatedAction.relationship
+    :fixed_value: before-start
+  - :path: action:checkReportable.timing[x]
+  - :path: action:checkReportable.action
+  - :path: action:checkReportable.action:isEncounterReportable.id
+  - :path: action:checkReportable.action:isEncounterReportable.condition.expression
+  - :path: action:checkReportable.action:isEncounterReportable.input
+  - :path: action:checkReportable.action:isEncounterReportable.input.id
+  - :path: action:checkReportable.action:shouldContinueReporting.id
+  - :path: action:checkReportable.action:shouldContinueReporting.condition.expression
+  - :path: action:reportCancerData.id
+  - :path: action:reportCancerData.description
+  - :path: action:reportCancerData.code
+  - :path: action:reportCancerData.trigger
+  - :path: action:reportCancerData.trigger.type
+    :fixed_value: named-event
+  - :path: action:reportCancerData.condition
+  - :path: action:reportCancerData.condition.kind
+    :fixed_value: applicability
+  - :path: action:reportCancerData.condition.expression
+  - :path: action:reportCancerData.condition.expression.language
+    :fixed_value: text/fhirpath
+  - :path: action:reportCancerData.input
+  - :path: action:reportCancerData.input.type
+  - :path: action:reportCancerData.output
+  - :path: action:reportCancerData.output.type
+  - :path: action:reportCancerData.output.profile
+  - :path: action:reportCancerData.relatedAction
+  - :path: action:reportCancerData.relatedAction.actionId
+  - :path: action:reportCancerData.relatedAction.relationship
+    :fixed_value: before-start
+  - :path: action:reportCancerData.timing[x]
+  - :path: action:reportCancerData.action
+  - :path: action:reportCancerData.action:createCancerReport.id
+  - :path: action:reportCancerData.action:validateCancerReport.id
+  - :path: action:reportCancerData.action:routeAndSendCancerReport.id
+  - :path: action:reportCancerData.action:routeAndSendCancerReport.description
+  - :path: action:reportCancerData.action:routeAndSendCancerReport.textEquivalent
+:mandatory_elements:
+- PlanDefinition
+- PlanDefinition.url
+- PlanDefinition.version
+- PlanDefinition.name
+- PlanDefinition.type
+- PlanDefinition.status
+- PlanDefinition.experimental
+- PlanDefinition.date
+- PlanDefinition.publisher
+- PlanDefinition.description
+- PlanDefinition.effectivePeriod.start
+- PlanDefinition.goal.description
+- PlanDefinition.action
+- PlanDefinition.action.trigger.type
+- PlanDefinition.action.condition.kind
+- PlanDefinition.action.condition.expression.language
+- PlanDefinition.action.input.type
+- PlanDefinition.action.input.sort.path
+- PlanDefinition.action.input.sort.direction
+- PlanDefinition.action.output.type
+- PlanDefinition.action.output.sort.path
+- PlanDefinition.action.output.sort.direction
+- PlanDefinition.action.relatedAction.actionId
+- PlanDefinition.action.relatedAction.relationship
+- PlanDefinition.action.participant.type
+- PlanDefinition.action.id
+- PlanDefinition.action.description
+- PlanDefinition.action.textEquivalent
+- PlanDefinition.action.code
+- PlanDefinition.action.trigger
+- PlanDefinition.action.relatedAction
+- PlanDefinition.action.action
+- PlanDefinition.action.action.id
+- PlanDefinition.action.action.code
+- PlanDefinition.action.action.condition.kind
+- PlanDefinition.action.action.condition.expression
+- PlanDefinition.action.action.condition.expression.language
+- PlanDefinition.action.action.input.id
+- PlanDefinition.action.action.input.type
+- PlanDefinition.action.action.input.sort.path
+- PlanDefinition.action.action.input.sort.direction
+- PlanDefinition.action.action.relatedAction.actionId
+- PlanDefinition.action.action.relatedAction.relationship
+- PlanDefinition.action.action.participant.type
+- PlanDefinition.action.action.description
+- PlanDefinition.action.action.textEquivalent
+:tests: []
+:id: ccrr_v100_plan_definition
+:file_name: plan_definition_group.rb

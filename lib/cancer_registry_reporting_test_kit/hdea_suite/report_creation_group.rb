@@ -1,5 +1,28 @@
 require_relative 'report_creation_group/content_bundle_validation_test'
-require_relative 'report_creation_group/report_resources_validation_test'
+require_relative 'report_creation_group/cancer_encounter_validation_test'
+require_relative 'report_creation_group/cancer_patient_validation_test'
+require_relative 'report_creation_group/plan_definition_validation_test'
+require_relative 'report_creation_group/ccrr_reporting_bundle_validation_test'
+require_relative 'report_creation_group/central_cancer_registry_primary_cancer_condition_validation_test'
+require_relative 'report_creation_group/message_header_validation_test'
+require_relative 'report_creation_group/us_ph_patient_validation_test'
+require_relative 'report_creation_group/extension_validation_test'
+require_relative 'report_creation_group/medication_administration_validation_test'
+require_relative 'report_creation_group/mcode_radiotherapy_course_summary_validation_test'
+require_relative 'report_creation_group/mcode_secondary_cancer_condition_validation_test'
+require_relative 'report_creation_group/mcode_tnm_stage_group_validation_test'
+require_relative 'report_creation_group/odh_usual_work_validation_test'
+require_relative 'report_creation_group/allergy_intolerance_validation_test'
+require_relative 'report_creation_group/care_plan_validation_test'
+require_relative 'report_creation_group/document_reference_validation_test'
+require_relative 'report_creation_group/encounter_validation_test'
+require_relative 'report_creation_group/medication_validation_test'
+require_relative 'report_creation_group/organization_validation_test'
+require_relative 'report_creation_group/patient_validation_test'
+require_relative 'report_creation_group/practitioner_validation_test'
+require_relative 'report_creation_group/practitioner_role_validation_test'
+require_relative 'report_creation_group/procedure_validation_test'
+require_relative 'report_creation_group/smokingstatus_validation_test'
 
 
 module CancerRegistryReportingTestKit
@@ -27,7 +50,30 @@ module CancerRegistryReportingTestKit
     description: 'A single Content Bundle'
 
     test from: :ccrr_hdea_content_bundle_validation_test
-    test from: :ccrr_hdea_report_resources_validation_test
+    test from: :ccrr_v100_cancer_encounter_validation_test
+    test from: :ccrr_v100_cancer_patient_validation_test
+    test from: :ccrr_v100_plan_definition_validation_test
+    # test from: :ccrr_v100_ccrr_reporting_bundle_validation_test
+    test from: :ccrr_v100_central_cancer_registry_primary_cancer_condition_validation_test
+    # test from: :ccrr_v100_message_header_validation_test
+    test from: :ccrr_v100_us_ph_patient_validation_test
+    test from: :ccrr_v100_extension_validation_test
+    test from: :ccrr_v100_medication_administration_validation_test
+    test from: :ccrr_v100_mcode_radiotherapy_course_summary_validation_test
+    test from: :ccrr_v100_mcode_secondary_cancer_condition_validation_test
+    test from: :ccrr_v100_mcode_tnm_stage_group_validation_test
+    test from: :ccrr_v100_odh_usual_work_validation_test
+    test from: :ccrr_v100_allergy_intolerance_validation_test
+    test from: :ccrr_v100_care_plan_validation_test
+    test from: :ccrr_v100_document_reference_validation_test
+    test from: :ccrr_v100_encounter_validation_test
+    test from: :ccrr_v100_medication_validation_test
+    test from: :ccrr_v100_organization_validation_test
+    test from: :ccrr_v100_patient_validation_test
+    test from: :ccrr_v100_practitioner_validation_test
+    test from: :ccrr_v100_practitioner_role_validation_test
+    test from: :ccrr_v100_procedure_validation_test
+    test from: :ccrr_v100_smokingstatus_validation_test
 
   end
 end

@@ -14,6 +14,15 @@ namespace :db do
   end
 end
 
+namespace :ccrr do
+  desc 'Run Generator'
+  task :generate do
+    require_relative 'lib/cancer_registry_reporting_test_kit/generator'
+
+    CancerRegistryReportingTestKit::Generator.generate
+  end
+end
+
 namespace :requirements do
   desc 'Generate requirements coverage CSV'
   task :generate_coverage do

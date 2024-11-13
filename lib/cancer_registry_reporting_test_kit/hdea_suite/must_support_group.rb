@@ -1,8 +1,29 @@
-require_relative 'must_support_group/content_bundle_must_support_test'
-require_relative 'must_support_group/report_composition_must_support_test'
-require_relative 'must_support_group/report_resources_must_support_test'
-
-
+require_relative 'must_support_group/cancer_encounter_must_support_test'
+require_relative 'must_support_group/cancer_patient_must_support_test'
+require_relative 'must_support_group/composition_must_support_test'
+require_relative 'must_support_group/ccrr_content_bundle_must_support_test'
+require_relative 'must_support_group/plan_definition_must_support_test'
+require_relative 'must_support_group/ccrr_reporting_bundle_must_support_test'
+require_relative 'must_support_group/central_cancer_registry_primary_cancer_condition_must_support_test'
+require_relative 'must_support_group/message_header_must_support_test'
+require_relative 'must_support_group/us_ph_patient_must_support_test'
+require_relative 'must_support_group/extension_must_support_test'
+require_relative 'must_support_group/medication_administration_must_support_test'
+require_relative 'must_support_group/mcode_radiotherapy_course_summary_must_support_test'
+require_relative 'must_support_group/mcode_secondary_cancer_condition_must_support_test'
+require_relative 'must_support_group/mcode_tnm_stage_group_must_support_test'
+require_relative 'must_support_group/odh_usual_work_must_support_test'
+require_relative 'must_support_group/allergy_intolerance_must_support_test'
+require_relative 'must_support_group/care_plan_must_support_test'
+require_relative 'must_support_group/document_reference_must_support_test'
+require_relative 'must_support_group/encounter_must_support_test'
+require_relative 'must_support_group/medication_must_support_test'
+require_relative 'must_support_group/organization_must_support_test'
+require_relative 'must_support_group/patient_must_support_test'
+require_relative 'must_support_group/practitioner_must_support_test'
+require_relative 'must_support_group/practitioner_role_must_support_test'
+require_relative 'must_support_group/procedure_must_support_test'
+require_relative 'must_support_group/smokingstatus_must_support_test'
 module CancerRegistryReportingTestKit
   class HDEAReportMustSupportGroup < Inferno::TestGroup
     title 'Health Data Exchange App Must Support Group'
@@ -21,9 +42,32 @@ module CancerRegistryReportingTestKit
     title: 'Cancer Reports',
     description: 'List of Content Bundle(s)'
 
-    test from: :ccrr_hdea_content_bundle_must_support_test
-    test from: :ccrr_hdea_report_composition_must_support_test
-    test from: :ccrr_hdea_report_resources_must_support_test
+    test from: :ccrr_v100_ccrr_content_bundle_must_support_test
+    test from: :ccrr_v100_cancer_encounter_must_support_test
+    test from: :ccrr_v100_cancer_patient_must_support_test
+    test from: :ccrr_v100_composition_must_support_test
+    test from: :ccrr_v100_plan_definition_must_support_test
+    # test from: :ccrr_v100_ccrr_reporting_bundle_must_support_test
+    test from: :ccrr_v100_central_cancer_registry_primary_cancer_condition_must_support_test
+    # test from: :ccrr_v100_message_header_must_support_test
+    test from: :ccrr_v100_us_ph_patient_must_support_test
+    test from: :ccrr_v100_extension_must_support_test
+    test from: :ccrr_v100_medication_administration_must_support_test
+    test from: :ccrr_v100_mcode_radiotherapy_course_summary_must_support_test
+    test from: :ccrr_v100_mcode_secondary_cancer_condition_must_support_test
+    test from: :ccrr_v100_mcode_tnm_stage_group_must_support_test
+    test from: :ccrr_v100_odh_usual_work_must_support_test
+    test from: :ccrr_v100_allergy_intolerance_must_support_test
+    test from: :ccrr_v100_care_plan_must_support_test
+    test from: :ccrr_v100_document_reference_must_support_test
+    test from: :ccrr_v100_encounter_must_support_test
+    test from: :ccrr_v100_medication_must_support_test
+    test from: :ccrr_v100_organization_must_support_test
+    test from: :ccrr_v100_patient_must_support_test
+    test from: :ccrr_v100_practitioner_must_support_test
+    test from: :ccrr_v100_practitioner_role_must_support_test
+    test from: :ccrr_v100_procedure_must_support_test
+    test from: :ccrr_v100_smokingstatus_must_support_test
 
   end
 end
