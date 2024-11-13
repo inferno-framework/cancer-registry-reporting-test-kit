@@ -3,6 +3,9 @@
 Inferno template [Inferno](https://github.com/inferno-community/inferno-core) Test Kit
 for FHIR testing.
 
+## Inferno Developers Notes
+The generator is not capable of bringing the test kit to its current state.  It is used to generate tests that are then organized manually.
+
 ## Instructions for Developing Your Test Kit
 
 Refer to the Inferno documentation for information about [setting up

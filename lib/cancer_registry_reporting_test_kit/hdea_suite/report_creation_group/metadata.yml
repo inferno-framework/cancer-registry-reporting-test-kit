@@ -1,0 +1,58 @@
+---
+:name: must_support
+:class_name: MustSupportSequence
+:version: v1.0.0
+:reformatted_version: v100
+:resource: Validation
+:title: Validation
+:tests:
+- :id: ccrr_v100_cancer_encounter_validation_test
+  :file_name: cancer_encounter_validation_test.rb
+- :id: ccrr_v100_cancer_patient_validation_test
+  :file_name: cancer_patient_validation_test.rb
+- :id: ccrr_v100_plan_definition_validation_test
+  :file_name: plan_definition_validation_test.rb
+- :id: ccrr_v100_ccrr_reporting_bundle_validation_test
+  :file_name: ccrr_reporting_bundle_validation_test.rb
+- :id: ccrr_v100_central_cancer_registry_primary_cancer_condition_validation_test
+  :file_name: central_cancer_registry_primary_cancer_condition_validation_test.rb
+- :id: ccrr_v100_message_header_validation_test
+  :file_name: message_header_validation_test.rb
+- :id: ccrr_v100_us_ph_patient_validation_test
+  :file_name: us_ph_patient_validation_test.rb
+- :id: ccrr_v100_extension_validation_test
+  :file_name: extension_validation_test.rb
+- :id: ccrr_v100_medication_administration_validation_test
+  :file_name: medication_administration_validation_test.rb
+- :id: ccrr_v100_mcode_radiotherapy_course_summary_validation_test
+  :file_name: mcode_radiotherapy_course_summary_validation_test.rb
+- :id: ccrr_v100_mcode_secondary_cancer_condition_validation_test
+  :file_name: mcode_secondary_cancer_condition_validation_test.rb
+- :id: ccrr_v100_mcode_tnm_stage_group_validation_test
+  :file_name: mcode_tnm_stage_group_validation_test.rb
+- :id: ccrr_v100_odh_usual_work_validation_test
+  :file_name: odh_usual_work_validation_test.rb
+- :id: ccrr_v100_allergy_intolerance_validation_test
+  :file_name: allergy_intolerance_validation_test.rb
+- :id: ccrr_v100_care_plan_validation_test
+  :file_name: care_plan_validation_test.rb
+- :id: ccrr_v100_document_reference_validation_test
+  :file_name: document_reference_validation_test.rb
+- :id: ccrr_v100_encounter_validation_test
+  :file_name: encounter_validation_test.rb
+- :id: ccrr_v100_medication_validation_test
+  :file_name: medication_validation_test.rb
+- :id: ccrr_v100_organization_validation_test
+  :file_name: organization_validation_test.rb
+- :id: ccrr_v100_patient_validation_test
+  :file_name: patient_validation_test.rb
+- :id: ccrr_v100_practitioner_validation_test
+  :file_name: practitioner_validation_test.rb
+- :id: ccrr_v100_practitioner_role_validation_test
+  :file_name: practitioner_role_validation_test.rb
+- :id: ccrr_v100_procedure_validation_test
+  :file_name: procedure_validation_test.rb
+- :id: ccrr_v100_smokingstatus_validation_test
+  :file_name: smokingstatus_validation_test.rb
+:id: ccrr_v100_validation
+:file_name: validation_group.rb

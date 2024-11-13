@@ -1,0 +1,276 @@
+---
+:name: cancer_patient
+:class_name: CancerPatientSequence
+:version: v1.0.0
+:reformatted_version: v100
+:resource: Patient
+:profile_url: http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/cancer-patient
+:profile_name: Central Cancer Registry Reporting Cancer Patient
+:profile_version: 1.0.0
+:title: Patient Central Cancer Registry Reporting Cancer
+:short_description: Verify support for the server capabilities required by the Central
+  Cancer Registry Reporting Cancer Patient.
+:must_supports:
+  :extensions:
+  - :id: Patient.extension:race
+    :path: extension
+    :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-race
+  - :id: Patient.extension:ethnicity
+    :path: extension
+    :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity
+  - :id: Patient.extension:birthsex
+    :path: extension
+    :url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex
+  - :id: Patient.extension:genderIdentity
+    :path: extension
+    :url: http://hl7.org/fhir/StructureDefinition/individual-genderIdentity
+  - :id: Patient.extension:birthPlace
+    :path: extension
+    :url: http://hl7.org/fhir/StructureDefinition/patient-birthPlace
+  - :id: Patient.extension:tribalAffiliation
+    :path: extension
+    :url: http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/us-ph-tribal-affiliation-extension
+  - :id: Patient.name.extension:dataAbsentReason
+    :path: name.extension
+    :url: http://hl7.org/fhir/StructureDefinition/data-absent-reason
+  - :id: Patient.name.family.extension:data-absent-reason
+    :path: name.family.extension
+    :url: http://hl7.org/fhir/StructureDefinition/data-absent-reason
+  - :id: Patient.name.given.extension:data-absent-reason
+    :path: name.given.extension
+    :url: http://hl7.org/fhir/StructureDefinition/data-absent-reason
+  - :id: Patient.telecom.extension:dataAbsentReason
+    :path: telecom.extension
+    :url: http://hl7.org/fhir/StructureDefinition/data-absent-reason
+  - :id: Patient.gender.extension:dataAbsentReason
+    :path: gender.extension
+    :url: http://hl7.org/fhir/StructureDefinition/data-absent-reason
+  - :id: Patient.birthDate.extension:dataAbsentReason
+    :path: birthDate.extension
+    :url: http://hl7.org/fhir/StructureDefinition/data-absent-reason
+  - :id: Patient.address.extension:dataAbsentReason
+    :path: address.extension
+    :url: http://hl7.org/fhir/StructureDefinition/data-absent-reason
+  - :id: Patient.address.state.extension:data-absent-reason
+    :path: address.state.extension
+    :url: http://hl7.org/fhir/StructureDefinition/data-absent-reason
+  - :id: Patient.contact.name.extension:dataAbsentReason
+    :path: contact.name.extension
+    :url: http://hl7.org/fhir/StructureDefinition/data-absent-reason
+  - :id: Patient.contact.telecom.extension:dataAbsentReason
+    :path: contact.telecom.extension
+    :url: http://hl7.org/fhir/StructureDefinition/data-absent-reason
+  - :id: Patient.contact.address.extension:dataAbsentReason
+    :path: contact.address.extension
+    :url: http://hl7.org/fhir/StructureDefinition/data-absent-reason
+  - :id: Patient.communication.language.extension:dataAbsentReason
+    :path: communication.language.extension
+    :url: http://hl7.org/fhir/StructureDefinition/data-absent-reason
+  :slices:
+  - :slice_id: Patient.identifier:MedicareIdentifier
+    :slice_name: MedicareIdentifier
+    :path: identifier
+    :discriminator:
+      :type: value
+      :values:
+      - :path: type.coding.system
+        :value: http://terminology.hl7.org/CodeSystem/v2-0203
+      - :path: type.coding.code
+        :value: MC
+  - :slice_id: Patient.identifier:MedicaidIdentifier
+    :slice_name: MedicaidIdentifier
+    :path: identifier
+    :discriminator:
+      :type: value
+      :values:
+      - :path: type.coding.system
+        :value: http://terminology.hl7.org/CodeSystem/v2-0203
+      - :path: type.coding.code
+        :value: MA
+  - :slice_id: Patient.identifier:MR
+    :slice_name: MR
+    :path: identifier
+    :discriminator:
+      :type: value
+      :values:
+      - :path: type.coding.system
+        :value: http://terminology.hl7.org/CodeSystem/v2-0203
+      - :path: type.coding.code
+        :value: MR
+  - :slice_id: Patient.identifier:SSNIdentifier
+    :slice_name: SSNIdentifier
+    :path: identifier
+    :discriminator:
+      :type: value
+      :values:
+      - :path: type.coding.system
+        :value: http://terminology.hl7.org/CodeSystem/v2-0203
+      - :path: type.coding.code
+        :value: SS
+  - :slice_id: Patient.telecom:phone
+    :slice_name: phone
+    :path: telecom
+    :discriminator:
+      :type: value
+      :values:
+      - :path: system
+        :value: phone
+  - :slice_id: Patient.telecom:email
+    :slice_name: email
+    :path: telecom
+    :discriminator:
+      :type: value
+      :values:
+      - :path: system
+        :value: email
+  :elements:
+  - :path: identifier
+  - :path: identifier.extension:dataAbsentReason.value[x]
+    :fixed_value: masked
+  - :path: identifier.system
+  - :path: identifier.value
+  - :path: identifier:MedicareIdentifier.extension:dataAbsentReason.value[x]
+    :fixed_value: masked
+  - :path: identifier:MedicareIdentifier.type
+  - :path: identifier:MedicareIdentifier.type.coding
+  - :path: identifier:MedicareIdentifier.type.coding.system
+    :fixed_value: http://terminology.hl7.org/CodeSystem/v2-0203
+  - :path: identifier:MedicareIdentifier.type.coding.code
+    :fixed_value: MC
+  - :path: identifier:MedicareIdentifier.system
+  - :path: identifier:MedicareIdentifier.value
+  - :path: identifier:MedicaidIdentifier.extension:dataAbsentReason.value[x]
+    :fixed_value: masked
+  - :path: identifier:MedicaidIdentifier.type
+  - :path: identifier:MedicaidIdentifier.type.coding
+  - :path: identifier:MedicaidIdentifier.type.coding.system
+    :fixed_value: http://terminology.hl7.org/CodeSystem/v2-0203
+  - :path: identifier:MedicaidIdentifier.type.coding.code
+    :fixed_value: MA
+  - :path: identifier:MedicaidIdentifier.system
+  - :path: identifier:MedicaidIdentifier.value
+  - :path: identifier:MR.extension:dataAbsentReason.value[x]
+    :fixed_value: masked
+  - :path: identifier:MR.type
+  - :path: identifier:MR.type.coding
+  - :path: identifier:MR.type.coding.system
+    :fixed_value: http://terminology.hl7.org/CodeSystem/v2-0203
+  - :path: identifier:MR.type.coding.code
+    :fixed_value: MR
+  - :path: identifier:MR.system
+  - :path: identifier:MR.value
+  - :path: identifier:SSNIdentifier.extension:dataAbsentReason.value[x]
+    :fixed_value: masked
+  - :path: identifier:SSNIdentifier.type
+  - :path: identifier:SSNIdentifier.type.coding
+  - :path: identifier:SSNIdentifier.type.coding.system
+    :fixed_value: http://terminology.hl7.org/CodeSystem/v2-0203
+  - :path: identifier:SSNIdentifier.type.coding.code
+    :fixed_value: SS
+  - :path: identifier:SSNIdentifier.system
+  - :path: identifier:SSNIdentifier.value
+  - :path: name
+  - :path: name.extension:dataAbsentReason.value[x]
+    :fixed_value: masked
+  - :path: name.family
+  - :path: name.given
+  - :path: telecom
+  - :path: telecom.extension:dataAbsentReason.value[x]
+    :fixed_value: masked
+  - :path: telecom.system
+  - :path: telecom.value
+  - :path: telecom.use
+  - :path: telecom:phone.system
+    :fixed_value: phone
+  - :path: telecom:phone.value
+  - :path: telecom:phone.use
+  - :path: telecom:email.system
+    :fixed_value: email
+  - :path: telecom:email.value
+  - :path: telecom:email.use
+  - :path: gender
+  - :path: gender.extension:dataAbsentReason.value[x]
+    :fixed_value: masked
+  - :path: birthDate
+  - :path: birthDate.extension:dataAbsentReason.value[x]
+    :fixed_value: masked
+  - :path: address
+  - :path: address.extension:dataAbsentReason.value[x]
+    :fixed_value: masked
+  - :path: address.line
+  - :path: address.city
+  - :path: address.district
+  - :path: address.state
+  - :path: address.postalCode
+  - :path: address.period
+  - :path: maritalStatus
+  - :path: contact
+  - :path: contact.relationship
+  - :path: contact.name
+  - :path: contact.name.extension:dataAbsentReason.value[x]
+    :fixed_value: masked
+  - :path: contact.telecom
+  - :path: contact.telecom.extension:dataAbsentReason.value[x]
+    :fixed_value: masked
+  - :path: contact.address
+  - :path: contact.address.extension:dataAbsentReason.value[x]
+    :fixed_value: masked
+  - :path: communication
+  - :path: communication.language
+  - :path: communication.language.extension:dataAbsentReason.value[x]
+    :fixed_value: masked
+  - :path: generalPractitioner
+    :types:
+    - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+  - :path: managingOrganization
+    :types:
+    - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
+:mandatory_elements:
+- Patient.identifier
+- Patient.identifier.extension.url
+- Patient.identifier.extension.value[x]
+- Patient.identifier.system
+- Patient.identifier.value
+- Patient.identifier.type
+- Patient.identifier.type.coding
+- Patient.identifier.type.coding.system
+- Patient.identifier.type.coding.code
+- Patient.name
+- Patient.name.extension.url
+- Patient.name.extension.value[x]
+- Patient.name.family
+- Patient.name.given
+- Patient.telecom
+- Patient.telecom.extension.url
+- Patient.telecom.extension.value[x]
+- Patient.telecom.system
+- Patient.telecom.value
+- Patient.gender
+- Patient.gender.extension.url
+- Patient.gender.extension.value[x]
+- Patient.birthDate
+- Patient.birthDate.extension.url
+- Patient.birthDate.extension.value[x]
+- Patient.address
+- Patient.address.extension.url
+- Patient.address.extension.value[x]
+- Patient.address.state
+- Patient.contact.relationship
+- Patient.contact.name.extension.url
+- Patient.contact.name.extension.value[x]
+- Patient.contact.telecom.extension.url
+- Patient.contact.telecom.extension.value[x]
+- Patient.contact.address.extension.url
+- Patient.contact.address.extension.value[x]
+- Patient.communication.language
+- Patient.communication.language.extension.url
+- Patient.communication.language.extension.value[x]
+- Patient.link.other
+- Patient.link.type
+:tests: []
+:id: ccrr_v100_cancer_patient
+:file_name: cancer_patient_group.rb
