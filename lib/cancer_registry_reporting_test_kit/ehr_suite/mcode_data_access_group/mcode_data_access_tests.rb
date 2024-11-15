@@ -1,7 +1,7 @@
 
 
 module CancerRegistryReportingTestKit
-  class EHRUSCoreAccessTests < Inferno::Test
+  class EHRmCodeAccessTests < Inferno::Test
     title 'PLACEHOLDER: mCode Search Tests'
     id :ccrr_ehr_mcode_tests
 
