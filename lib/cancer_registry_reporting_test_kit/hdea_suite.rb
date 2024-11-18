@@ -5,6 +5,7 @@ require_relative 'hdea_suite/must_support_group'
 
 module CancerRegistryReportingTestKit
   class HDEASuite < Inferno::TestSuite
+    include HDEABundleParse
     id :ccrr_hdea
     title 'Cancer Registry Reporting Health Data Exchange App (HDEA) Test Suite'
     short_title 'CCRR Health Data Exchange App (HDEA)'
@@ -45,7 +46,7 @@ module CancerRegistryReportingTestKit
         message.message.match?(/\A\S+: \S+: URL value '.*' does not resolve/)
       end
     end
-    
+    binding.pry
     group from: :ccrr_hdea_report_creation
     group from: :ccrr_hdea_must_support
 

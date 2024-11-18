@@ -29,7 +29,7 @@ module CancerRegistryReportingTestKit
       'author' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole'
     }
     
-    def parse_bundle(bundle)
+    def self.parse_bundle(bundle)
       first_resource = bundle.entry.first.resource
       if first_resource.is_a?(FHIR::Composition)
         look_for_references_in_resource(first_resource, bundle).each { |k,v| puts "#{k} ---> #{v}\n\n"}
@@ -38,7 +38,7 @@ module CancerRegistryReportingTestKit
       end
     end
     
-    def look_for_references_in_resource(resource, bundle)
+    def self.look_for_references_in_resource(resource, bundle)
       resource_hash = {}
         resource.to_hash.each_key do |k|
           value = resource.send(k.to_sym)
@@ -58,19 +58,19 @@ module CancerRegistryReportingTestKit
       resource_hash
     end
     
-    def parse_sections(sections, bundle)
+    def self.parse_sections(sections, bundle)
       sections.each_with_object({}) do |sec, hash|
         hash[CODE_TO_URL_MAP[sec.code.coding.first.code]] ||= []
         sec.entry.each do |ref| 
           referenced_resource = find_resource_in_bundle(ref.reference, bundle)
-          # validation_result = validate(referenced_resource)
+          # validation_result = CancerRegistryReportingTestKit::HDEASuite.validate(referenced_resource)
           binding.pry
           hash[CODE_TO_URL_MAP[sec.code.coding.first.code]] << referenced_resource if referenced_resource
         end
       end
     end
     
-    def find_resource_in_bundle(reference, bundle)
+    def self.find_resource_in_bundle(reference, bundle)
       bundle.entry.find { |res| res.resource.id == reference.split('/').last && res.resource.resourceType == reference.split('/').first }&.resource
     end
   end
