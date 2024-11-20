@@ -83,8 +83,6 @@ module CancerRegistryReportingTestKit
       ### END SPECIAL CASES ###
 
       def profile
-        binding.pry if profile_url.include?('Must-Support')
-        binding.pry if resource_capabilities.title == "Must Support"
         if resource_capabilities.title == "Must Support"
           SpecialCases.MUST_SUPPORT_GROUP_PROFILE
         elsif resource_capabilities.title == "Validation"
