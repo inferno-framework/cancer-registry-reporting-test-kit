@@ -5,6 +5,14 @@ module CancerRegistryReportingTestKit
     extend Forwardable
     include FHIRResourceNavigation
 
+    def unresolved_references
+      @unresolved_references ||= []
+    end
+
+    def clear_unresolved_references
+      @unresolved_references = []
+    end
+
     CODE_TO_URL_MAP = {
       '363346000' => 'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-primary-cancer-condition',
       '128462008' => 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-secondary-cancer-condition',
@@ -35,7 +43,12 @@ module CancerRegistryReportingTestKit
     def parse_bundle(bundle)
       first_resource = bundle.entry.first.resource
       if first_resource.is_a?(FHIR::Composition)
-        look_for_references_in_resource(first_resource, bundle)
+        parsed_bundle = look_for_references_in_resource(first_resource, bundle)
+        if !unresolved_references.empty?
+          info "The following references did not resolve, the resources either do not exist in the bundle or are mislabeled: #{unresolved_references}"
+        end
+        clear_unresolved_references
+        parsed_bundle
       else
         puts "Error - first entry should be a Composition"
       end
@@ -48,6 +61,7 @@ module CancerRegistryReportingTestKit
         if value.is_a?(FHIR::Reference)
           resource_hash[FIELD_TO_URL_MAP[key]] ||= []
           referenced_resource = find_resource_in_bundle(value.reference, bundle)
+          unresolved_references << value.reference if !referenced_resource
           resource_hash[FIELD_TO_URL_MAP[key]] << referenced_resource if referenced_resource
         elsif value.is_a?(Array) && value.all? { |elmt| elmt.is_a?(FHIR::Composition::Section) }
           resource_hash.merge!(parse_sections(value, bundle))
@@ -55,6 +69,7 @@ module CancerRegistryReportingTestKit
           resource_hash[FIELD_TO_URL_MAP[key]] ||= []
           value.each do |val| 
             referenced_resource = find_resource_in_bundle(val.reference, bundle)
+            unresolved_references << val.reference if !referenced_resource
             resource_hash[FIELD_TO_URL_MAP[key]] << referenced_resource if referenced_resource
           end
         elsif value.is_a?(FHIR::Model)
@@ -75,6 +90,8 @@ module CancerRegistryReportingTestKit
             if referenced_resource
               hash[profile_from_resource_type(code, referenced_resource.resourceType)] ||= []
               hash[profile_from_resource_type(code, referenced_resource.resourceType)] << referenced_resource
+            else
+              unresolved_references << ref.reference
             end
           end
         else
@@ -82,6 +99,7 @@ module CancerRegistryReportingTestKit
           hash[resource_key] ||= []
           sec.entry.each do |ref| 
             referenced_resource = find_resource_in_bundle(ref.reference, bundle)
+            unresolved_references << ref.reference if !referenced_resource
             hash[resource_key] << referenced_resource if referenced_resource
           end
         end
