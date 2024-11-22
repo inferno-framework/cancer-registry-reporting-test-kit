@@ -22,16 +22,16 @@ module CancerRegistryReportingTestKit
       '48765-2' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance',
       '74165-2' => 'http://hl7.org/fhir/us/odh/StructureDefinition/odh-UsualWork',
       '47519-4' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure',
-      '8716-3' => 'VitalSigns', #TODO: Observation has no related profile, just a resource definition...
+      '8716-3' => 'http://hl7.org/fhir/StructureDefinition/Observation',
       '29762-2' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus'
     }
     
     CODE_TO_MULTIPLE_ENTRY_RESOURCE_MAP = {
       '29549-3' => {'MedicationAdministration' => 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration', 'Medication' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication'},
-      '10160-0' => {'MedicationAdministration' => 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration', 'MedicationStatement' => '#TODO', 'Medication' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication'}, #TODO: Resolve this profile_url
+      '10160-0' => {'MedicationAdministration' => 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration', 'MedicationStatement' => 'http://hl7.org/fhir/StructureDefinition/MedicationStatement', 'Medication' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication'},
       '30954-2' => {'Observation' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab', 'DiagnosticReport' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab'},
       '28650-0' => {'Document' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference', 'DiagnosticReport' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note'},
-      '18776-5' => {'MedicationRequest' => 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-request', 'Medication' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication', 'ServiceRequest' => '#TODO', 'CarePlan' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan'},
+      '18776-5' => {'MedicationRequest' => 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-request', 'Medication' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication', 'ServiceRequest' => 'http://hl7.org/fhir/StructureDefinition/ServiceRequest', 'CarePlan' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan'},
     }
     
     FIELD_TO_URL_MAP = {
