@@ -1,8 +1,5 @@
 require_relative 'must_support_group/cancer_encounter_must_support_test'
 require_relative 'must_support_group/cancer_patient_must_support_test'
-
-require_relative 'must_support_group/test_ms_test'
-
 require_relative 'must_support_group/composition_must_support_test'
 require_relative 'must_support_group/ccrr_content_bundle_must_support_test'
 require_relative 'must_support_group/plan_definition_must_support_test'
@@ -44,8 +41,6 @@ module CancerRegistryReportingTestKit
     input :reports,
     title: 'Cancer Reports',
     description: 'List of Content Bundle(s)'
-
-    test from: :ccrr_v100_test_must_support_test
 
     test from: :ccrr_v100_ccrr_content_bundle_must_support_test
     test from: :ccrr_v100_cancer_encounter_must_support_test

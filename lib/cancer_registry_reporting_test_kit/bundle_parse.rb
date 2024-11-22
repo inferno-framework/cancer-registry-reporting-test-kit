@@ -39,7 +39,8 @@ module CancerRegistryReportingTestKit
       'encounter' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter',
       'author' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole'
     }
-    
+
+    # Method for translating received bundle into a hash of resources.  Use for MS and Validation testing
     def parse_bundle(bundle)
       first_resource = bundle.entry.first.resource
       if first_resource.is_a?(FHIR::Composition)
@@ -54,6 +55,7 @@ module CancerRegistryReportingTestKit
       end
     end
     
+    # Helpers
     def look_for_references_in_resource(resource, bundle)
       resource_hash = {}
       resource.to_hash.each_key do |key|
