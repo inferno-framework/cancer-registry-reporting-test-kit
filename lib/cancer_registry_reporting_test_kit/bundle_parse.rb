@@ -48,6 +48,34 @@ module CancerRegistryReportingTestKit
       'author' => ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole', 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner', 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization']
     }
 
+    
+    PROFILE_TO_RESOURCE_KEY_MAP = {
+      'http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance' => :allergy_intolerance_resources,
+      'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/cancer-encounter' => :cancer_encounter_resources,
+      'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/cancer-patient' => :cancer_patient_resources,
+      'http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan' => :care_plan_resources,
+      'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-reporting-bundle' => :ccrr_reporting_bundle_resources,
+      'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-primary-cancer-condition' => :central_cancer_registry_primary_cancer_condition_resources,
+      'http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference' => :document_reference_resources,
+      'http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter' => :encounter_resources,
+      'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/us-ph-tribal-affiliation-extension' => :extension_resources,
+      'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-course-summary' => :mcode_radiotherapy_course_summary_resources,
+      'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-secondary-cancer-condition'=> :mcode_secondary_cancer_condition_resources,
+      'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-stage-group' => :mcode_tnm_stage_group_resources,
+      'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration' => :medication_administration_resources,
+      'http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication' => :medication_resources,
+      'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-reporting-messageheader' => :message_header_resources,
+      'http://hl7.org/fhir/us/odh/StructureDefinition/odh-UsualWork' => :odh_usual_work_resources,
+      'http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization' => :organization_resources,
+      'http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient'=> :patient_resources,
+      'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-plandefinition' => :plan_definition_resources,
+      'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole' => :practitioner_role_resources,
+      'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner' => :practitioner_resources,
+      'http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure' => :procedure_resources,
+      'http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus' => :smokingstatus_resources,
+      'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/us-ph-patient' => :us_ph_patient_resources
+    }
+
     # Method for translating received bundle into a hash of resources.  Use for MS and Validation testing
     def parse_bundle(bundle)
       first_resource = bundle.entry.first.resource
@@ -60,7 +88,7 @@ module CancerRegistryReportingTestKit
         clear_unresolved_references
         return parsed_bundle, current_bundle_unresolved_references
       else
-        puts "Error - first entry should be a Composition"
+        puts 'Error - first entry should be a Composition'
       end
     end
     

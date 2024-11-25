@@ -49,6 +49,8 @@ module CancerRegistryReportingTestKit
     title: 'Cancer Report',
     description: 'A single Content Bundle'
 
+    run_as_group
+
     test from: :ccrr_hdea_content_bundle_validation_test
     test from: :ccrr_v100_cancer_encounter_validation_test
     test from: :ccrr_v100_cancer_patient_validation_test
