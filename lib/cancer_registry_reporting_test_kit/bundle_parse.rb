@@ -5,6 +5,14 @@ module CancerRegistryReportingTestKit
     extend Forwardable
     include FHIRResourceNavigation
 
+    # Much of this is extremely custom fit to HDEA.  
+    # HDEA Custom Components:
+    # - CODE_TO_URL_MAP, CODE_TO_MULTIPLE_ENTRY_RESOURCE_MAP, FIELD_TO_URL_MAP are nongenerated mappings specific to HDEA.
+    # - The `profile_from_resource_type()` method similarly assumes decisions between profiles are made via code. This is NOT what the IG suggests (instead verify by profile)
+    # - The `parse_bundle()` method assumes the bundle is a content bundle for hdea and thus starts with a composition resource. It also immediately yields unresolved references as an info message
+    # - The `look_for_references_in_resource()` method was designed to be flexible but with HDEA CCRR as the grounds for inspiration. It has not been tested on other bundles that include a composition.
+    # - Assumes references are of the form `ResourceType/ID` 
+
     def unresolved_references
       @unresolved_references ||= []
     end
@@ -37,7 +45,7 @@ module CancerRegistryReportingTestKit
     FIELD_TO_URL_MAP = {
       'subject' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient',
       'encounter' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter',
-      'author' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole'
+      'author' => ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole', 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner', 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization']
     }
 
     # Method for translating received bundle into a hash of resources.  Use for MS and Validation testing
@@ -112,7 +120,7 @@ module CancerRegistryReportingTestKit
       CODE_TO_MULTIPLE_ENTRY_RESOURCE_MAP.keys.include?(code)
     end
     
-    # This and some surrounding logic is extremely custom fit to HDEA.  Perhaps should be split off to special cases if we mean to generalize this later.
+    
     def profile_from_resource_type(code, resource_type)
       CODE_TO_MULTIPLE_ENTRY_RESOURCE_MAP[code][resource_type]
     end

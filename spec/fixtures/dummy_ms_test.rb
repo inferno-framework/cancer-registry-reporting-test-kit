@@ -16,8 +16,9 @@ module CancerRegistryReportingTestKit
       id :ccrr_v100_dummy_must_support_test
 
       run do
+        bundle_file = File.read('spec/fixtures/ccrr_hdea_content_bundle_example_with_multiple_resource_type_section.json')
+        bundle_model = FHIR.from_contents(bundle_file)
         report_results = parse_bundle(bundle_model)
-        binding.pry
       end
     end
   end
