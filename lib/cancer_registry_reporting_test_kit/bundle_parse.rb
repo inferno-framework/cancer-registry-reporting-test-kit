@@ -56,8 +56,9 @@ module CancerRegistryReportingTestKit
         if !unresolved_references.empty?
           info "The following references did not resolve, the resources either do not exist in the bundle or are mislabeled: #{unresolved_references}"
         end
+        current_bundle_unresolved_references = unresolved_references
         clear_unresolved_references
-        parsed_bundle
+        return parsed_bundle, current_bundle_unresolved_references
       else
         puts "Error - first entry should be a Composition"
       end
