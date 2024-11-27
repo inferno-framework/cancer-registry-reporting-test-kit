@@ -45,7 +45,7 @@ module CancerRegistryReportingTestKit
         message.message.match?(/\A\S+: \S+: URL value '.*' does not resolve/)
       end
     end
-    
+
     group from: :ccrr_hdea_report_creation
     group from: :ccrr_hdea_must_support
 

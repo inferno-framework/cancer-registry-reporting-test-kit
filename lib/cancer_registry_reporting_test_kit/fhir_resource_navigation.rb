@@ -80,7 +80,7 @@ module CancerRegistryReportingTestKit
 
       return nil unless source_value.present?
 
-      primitive_value = USCoreTestKit::PrimitiveType.new(source_value)
+      primitive_value = CancerRegistryReportingTestKit::PrimitiveType.new(source_value)
       primitive_value.value = value
       primitive_value
     end
