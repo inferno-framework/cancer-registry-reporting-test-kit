@@ -125,6 +125,7 @@ module CancerRegistryReportingTestKit
       CODE_TO_MULTIPLE_ENTRY_RESOURCE_MAP[code][resource_type]
     end
     
+    ## TODO: we may have to be more comprehensive with checks for references - TBD
     def find_resource_in_bundle(reference, bundle)
       bundle.entry.find { |res| res.resource.id == reference.split('/').last && res.resource.resourceType == reference.split('/').first }&.resource
     end
