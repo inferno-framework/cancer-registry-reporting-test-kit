@@ -47,7 +47,8 @@ module CancerRegistryReportingTestKit
 
     input :single_report,
     title: 'Cancer Report',
-    description: 'A single Content Bundle'
+    type: 'textarea',
+    description: 'A single Content Bundle. This Content Bundle should include all of the referenced resources.'
 
     run_as_group
 
