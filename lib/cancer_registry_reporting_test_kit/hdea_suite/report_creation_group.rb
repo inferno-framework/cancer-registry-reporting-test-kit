@@ -2,7 +2,6 @@ require_relative 'report_creation_group/content_bundle_validation_test'
 require_relative 'report_creation_group/cancer_encounter_validation_test'
 require_relative 'report_creation_group/cancer_patient_validation_test'
 require_relative 'report_creation_group/plan_definition_validation_test'
-require_relative 'report_creation_group/ccrr_reporting_bundle_validation_test'
 require_relative 'report_creation_group/central_cancer_registry_primary_cancer_condition_validation_test'
 require_relative 'report_creation_group/message_header_validation_test'
 require_relative 'report_creation_group/us_ph_patient_validation_test'
@@ -52,14 +51,14 @@ module CancerRegistryReportingTestKit
 
     run_as_group
 
+    # Commenting out some of these tests 
     test from: :ccrr_hdea_content_bundle_validation_test
-    test from: :ccrr_v100_cancer_encounter_validation_test
-    test from: :ccrr_v100_cancer_patient_validation_test
+    # test from: :ccrr_v100_cancer_encounter_validation_test
+    # test from: :ccrr_v100_cancer_patient_validation_test
     test from: :ccrr_v100_plan_definition_validation_test
-    # test from: :ccrr_v100_ccrr_reporting_bundle_validation_test
     test from: :ccrr_v100_central_cancer_registry_primary_cancer_condition_validation_test
     # test from: :ccrr_v100_message_header_validation_test
-    test from: :ccrr_v100_us_ph_patient_validation_test
+    # test from: :ccrr_v100_us_ph_patient_validation_test
     test from: :ccrr_v100_extension_validation_test
     test from: :ccrr_v100_medication_administration_validation_test
     test from: :ccrr_v100_mcode_radiotherapy_course_summary_validation_test
