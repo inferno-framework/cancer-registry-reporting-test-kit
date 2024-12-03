@@ -15,7 +15,10 @@ module CancerRegistryReportingTestKit
       )
   
       def add_resources_to_scratch(parsed_bundle)
-        parsed_bundle.each do |profile, resources|
+        referenced_resources = parsed_bundle[0]
+        scratch[:unresolved_references] = parsed_bundle[1] || []
+
+        referenced_resources.each do |profile, resources|
           scratch[PROFILE_TO_RESOURCE_KEY_MAP[profile]] = { all: resources } || {}
         end
       end
@@ -25,8 +28,7 @@ module CancerRegistryReportingTestKit
       skip_if single_report.blank?, 'No CCRR Bundle Provided'
 
       assert_valid_json(single_report)
-      resource_instance = FHIR.from_contents(single_report)
-
+      resource_instance = FHIR.from_contents(single_report) 
       add_resources_to_scratch(parse_bundle(resource_instance))
 
       assert_resource_type(:bundle, resource: resource_instance)
