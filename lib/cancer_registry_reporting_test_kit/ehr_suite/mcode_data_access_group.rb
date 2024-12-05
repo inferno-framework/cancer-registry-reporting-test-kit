@@ -1,5 +1,9 @@
 require_relative 'mcode_data_access_group/mcode_data_access_tests'
 
+require_relative './mcode_data_access_resources/tnm_distant_metastases_category_group'
+require_relative './mcode_data_access_resources/tnm_primary_tumor_category_group'
+require_relative './mcode_data_access_resources/tnm_regional_nodes_category_group'
+require_relative './mcode_data_access_resources/tnm_stage_group_group'
 
 module CancerRegistryReportingTestKit
   class EHRmCodeDataAccessGroup < Inferno::TestGroup
@@ -13,6 +17,12 @@ module CancerRegistryReportingTestKit
     )
 
     test from: :ccrr_ehr_mcode_tests
+
+    # Below Groupings are for non US Core resources
+    group from: :ehr_tnm_distant_metastases_category
+    group from: :ehr_tnm_primary_tumor_category
+    group from: :ehr_tnm_regional_nodes_category
+    group from: :ehr_tnm_stage_group
 
   end
 end
