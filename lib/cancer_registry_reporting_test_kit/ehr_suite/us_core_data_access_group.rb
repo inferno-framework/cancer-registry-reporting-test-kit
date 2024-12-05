@@ -36,6 +36,11 @@ require 'us_core_test_kit/generated/v3.1.1/organization_group'
 require 'us_core_test_kit/generated/v3.1.1/practitioner_group'
 require 'us_core_test_kit/generated/v3.1.1/provenance_group'
 
+require_relative './mcode_data_access_resources/tnm_distant_metastases_category_group'
+require_relative './mcode_data_access_resources/tnm_primary_tumor_category_group'
+require_relative './mcode_data_access_resources/tnm_regional_nodes_category_group'
+require_relative './mcode_data_access_resources/tnm_stage_group_group'
+
 module CancerRegistryReportingTestKit
   class EHRUSCoreDataAccessGroup < Inferno::TestGroup
     id :ccrr_us_core_data_access
@@ -92,5 +97,11 @@ module CancerRegistryReportingTestKit
       group from: :us_core_v311_provenance
       group from: :us_core_v311_clinical_notes_guidance
       group from: :us_core_311_data_absent_reason
+
+      # Below Groupings are for non US Core resources
+      group from: :ehr_tnm_distant_metastases_category
+      group from: :ehr_tnm_primary_tumor_category
+      group from: :ehr_tnm_regional_nodes_category
+      group from: :ehr_tnm_stage_group
   end
 end

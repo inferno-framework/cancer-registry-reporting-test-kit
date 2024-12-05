@@ -5,7 +5,7 @@ module CancerRegistryReportingTestKit
   class EHRSuite < Inferno::TestSuite
     id :ccrr_ehr
     title 'Cancer Registry Reporting Electronic Health Record (EHR) Test Suite'
-    short_title 'CCRR Electornic Health Record (EHR)'
+    short_title 'CCRR Electronic Health Record (EHR)'
     description '
     The Cancer Registry Reporting EHR Test Suite verifies the 
     conformance of EHRs to the STU 1.0.0 version of the HL7® FHIR® 
