@@ -38,6 +38,7 @@ module CancerRegistryReportingTestKit
         * Encounter.status
         * Encounter.subject
         * Encounter.type
+        * testing123
       )
 
       id :ccrr_v100_cancer_encounter_must_support_test

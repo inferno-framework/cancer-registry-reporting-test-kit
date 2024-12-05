@@ -21,16 +21,20 @@ module CancerRegistryReportingTestKit
 
       # This is the first test where we loop through all of the bundles and on each bundles we are calling (bundles_parse())
       # scratch = { all: { profile1: ['resource1'], profile2: ['resource2'] } }
-      def ms_scratch
-        scratch[:all] ||= {}
-      end
+      # def ms_scratch
+      #   scratch[:all] ||= {}
+      # end
+    
+      def add_ms_resources_to_scratch(reports)
+        reports.each do |bundle|
+          report_hash = parse_bundle(FHIR.from_contents(bundle)) # taking the reports out of the bundles and parsing them
+          scratch.merge(report_hash) { |_key, ms_resources_scratch, report_hash_resources| 
+            ms_resources_scratch + report_hash_resources}
+        end
+      end 
 
-      reports.each do |bundle|
-        report_hash = parse_bundle(bundle)
-        ms_scratch.merge(report_hash) {|profile, ms_resources_scratch, report_hash_resources| ms_resources_scratch << report_hash_resources}
-      end
-
-      
+      # run the logic from us core and go through the resources to see if the must supports are in these resources
+      # 
 
       # pass to each test the ms_scratch for each one 
       # check to see that all resources are merged correctly with the binding.pry 
@@ -51,6 +55,8 @@ module CancerRegistryReportingTestKit
       end
 
       run do
+        scratch.clear
+        add_ms_resources_to_scratch(reports)
         perform_must_support_test(all_scratch_resources)
       end
     end
