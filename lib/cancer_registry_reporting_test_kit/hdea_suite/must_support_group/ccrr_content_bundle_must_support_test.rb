@@ -1,4 +1,6 @@
 require_relative '../../must_support_test'
+require pry
+
 
 module CancerRegistryReportingTestKit
   module HDEAV100
@@ -16,6 +18,23 @@ module CancerRegistryReportingTestKit
         * Bundle.entry:composition
         * Bundle.entry:composition.resource
       )
+
+      # This is the first test where we loop through all of the bundles and on each bundles we are calling (bundles_parse())
+      # scratch = { all: { profile1: ['resource1'], profile2: ['resource2'] } }
+      def ms_scratch
+        scratch[:all] ||= {}
+      end
+
+      reports.each do |bundle|
+        report_hash = parse_bundle(bundle)
+        ms_scratch.merge(report_hash) {|profile, ms_resources_scratch, report_hash_resources| ms_resources_scratch << report_hash_resources}
+      end
+
+      
+
+      # pass to each test the ms_scratch for each one 
+      # check to see that all resources are merged correctly with the binding.pry 
+      binding.pry 
 
       id :ccrr_v100_ccrr_content_bundle_must_support_test
 

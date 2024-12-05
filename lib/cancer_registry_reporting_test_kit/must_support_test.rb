@@ -1,31 +1,38 @@
 require_relative 'fhir_resource_navigation'
+require_relative '../../must_support_test'
+require_relative '../../bundle_parse'
 
 module CancerRegistryReportingTestKit
   module MustSupportTest
     extend Forwardable
     include FHIRResourceNavigation
+    include HDEAReportMustSupportGroup
+    include HDEABundleParse
 
     def_delegators 'self.class', :metadata
 
     def all_scratch_resources
-      scratch_resources[:all]
-    end
-
+      scratch_resources[:all]      
+    end   
+    
     def perform_must_support_test(resources)
-      skip_if true, "Test not implemented, skipped"
-      # skip_if resources.blank?, "No #{resource_type} resources were found"
+      # Ensure resources are present.
+      assert resources.present?, "No #{resource_type} resources were found"
 
-      # missing_elements(resources)
-      # missing_slices(resources)
-      # missing_extensions(resources)
+      # Check for missing elements, slices, and extensions.
+      missing_elements(resources)
+      missing_slices(resources)
+      missing_extensions(resources)
 
-      # handle_must_support_choices if metadata.must_supports[:choices].present?
+      handle_must_support_choices if metadata.must_supports[:choices].present?
 
-      # if (missing_elements + missing_slices + missing_extensions).length.zero?
-      #   pass
-      # end
-      # skip "Could not find #{missing_must_support_strings.join(', ')} in the #{resources.length} " \
-      #      "provided #{resource_type} resource(s)"
+      return unless (missing_elements + missing_slices + missing_extensions).compact.reject(&:empty?).present?
+
+      all_must_support_errors << "Could not find #{missing_must_support_strings.join(', ')} " \
+                                 "in the #{resources.length} provided #{resource_type} resource(s)."
+
+      all_must_support_errors.reject! { |err| err.downcase.include?('x12') }
+      reset_variables
     end
 
     def handle_must_support_choices
