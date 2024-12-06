@@ -1,5 +1,4 @@
-require_relative 'ehr_suite/us_core_data_access_group'
-require_relative 'ehr_suite/mcode_data_access_group'
+require_relative 'ehr_suite/ehr_data_access_group'
 require_relative 'ehr_suite/smart_app_launch_group'
 module CancerRegistryReportingTestKit
   class EHRSuite < Inferno::TestSuite
@@ -59,7 +58,7 @@ module CancerRegistryReportingTestKit
     end
 
     fhir_resource_validator do
-      igs 'hl7.fhir.us.core#3.1.1'
+      igs('hl7.fhir.us.core#3.1.1', 'hl7.fhir.us.central-cancer-registry-reporting#1.0.0')
       message_filters = VALIDATION_MESSAGE_FILTERS
 
       exclude_message do |message|
@@ -73,8 +72,7 @@ module CancerRegistryReportingTestKit
     end
 
     group from: :ccrr_smart_app_launch_group
-    group from: :ccrr_us_core_data_access
-    group from: :ccrr_mcode_data_access
+    group from: :ccrr_ehr_data_access
 
   end
 end
