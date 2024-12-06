@@ -1,4 +1,5 @@
 require_relative '../../must_support_test'
+require_relative '../../generator/group_metadata'
 
 module CancerRegistryReportingTestKit
   module HDEAV100
