@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
       include CancerRegistryReportingTestKit::ValidationTest
 
       id :ccrr_v100_medication_administration_validation_test
-      title 'MedicationAdministration resources returned during previous tests conform to the Cancer-Related Medication Administration Profile'
+      title 'MedicationAdministration resources in composition conform to the Cancer-Related Medication Administration Profile'
       description %(
 This test verifies resources returned from the first search conform to
 the [Cancer-Related Medication Administration Profile](http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration).

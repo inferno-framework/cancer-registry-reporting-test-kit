@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
       include CancerRegistryReportingTestKit::ValidationTest
 
       id :ccrr_v100_odh_usual_work_validation_test
-      title 'Observation resources returned during previous tests conform to the Usual Work'
+      title 'ODH resources in composition slice conform to the Usual Work profile'
       description %(
 This test verifies resources returned from the first search conform to
 the [Usual Work](http://hl7.org/fhir/us/odh/StructureDefinition/odh-UsualWork).

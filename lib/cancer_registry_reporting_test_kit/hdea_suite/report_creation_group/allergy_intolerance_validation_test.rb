@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
       include CancerRegistryReportingTestKit::ValidationTest
 
       id :ccrr_v100_allergy_intolerance_validation_test
-      title 'AllergyIntolerance resources returned during previous tests conform to the US Core AllergyIntolerance Profile'
+      title 'AllergyIntolerance resources in composition slice conforms to the US Core AllergyIntolerance Profile'
       description %(
 This test verifies resources returned from the first search conform to
 the [US Core AllergyIntolerance Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance).

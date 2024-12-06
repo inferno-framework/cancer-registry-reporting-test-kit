@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
       include CancerRegistryReportingTestKit::ValidationTest
 
       id :ccrr_v100_central_cancer_registry_primary_cancer_condition_validation_test
-      title 'Condition resources returned during previous tests conform to the Central Cancer Registry Reporting Primary Cancer Condition'
+      title 'Primary Cancer Condition resources in composition slice conforms to the Central Cancer Registry Reporting Primary Cancer Condition profile'
       description %(
 This test verifies resources returned from the first search conform to
 the [Central Cancer Registry Reporting Primary Cancer Condition](http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-primary-cancer-condition).

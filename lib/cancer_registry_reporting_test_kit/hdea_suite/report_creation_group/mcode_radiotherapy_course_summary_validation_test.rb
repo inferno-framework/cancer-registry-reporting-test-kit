@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
       include CancerRegistryReportingTestKit::ValidationTest
 
       id :ccrr_v100_mcode_radiotherapy_course_summary_validation_test
-      title 'Procedure resources returned during previous tests conform to the Radiotherapy Course Summary Profile'
+      title 'RadioTherapyCourseSummary resources in composition slice conforms to the Radiotherapy Course Summary Profile'
       description %(
 This test verifies resources returned from the first search conform to
 the [Radiotherapy Course Summary Profile](http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-course-summary).

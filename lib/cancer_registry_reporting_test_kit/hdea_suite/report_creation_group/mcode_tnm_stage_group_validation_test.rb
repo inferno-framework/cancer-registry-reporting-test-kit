@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
       include CancerRegistryReportingTestKit::ValidationTest
 
       id :ccrr_v100_mcode_tnm_stage_group_validation_test
-      title 'Observation resources returned during previous tests conform to the TNM Stage Group Profile'
+      title 'Cancer Stage Group resources in composition slice conforms to the mCode TNM Stage Group profile'
       description %(
 This test verifies resources returned from the first search conform to
 the [TNM Stage Group Profile](http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-stage-group).

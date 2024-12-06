@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
       include CancerRegistryReportingTestKit::ValidationTest
 
       id :ccrr_v100_document_reference_validation_test
-      title 'DocumentReference resources returned during previous tests conform to the US Core DocumentReference Profile'
+      title 'Note resources in composition slice conforms to US Core DocumentReference Profile'
       description %(
 This test verifies resources returned from the first search conform to
 the [US Core DocumentReference Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference).

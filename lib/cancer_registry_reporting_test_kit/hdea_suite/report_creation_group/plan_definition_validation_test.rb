@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
       include CancerRegistryReportingTestKit::ValidationTest
 
       id :ccrr_v100_plan_definition_validation_test
-      title 'PlanDefinition resources returned during previous tests conform to the Central Cancer Registry Reporting PlanDefinition'
+      title 'PlanDefinition Care Plan resources in composition conforms to the Central Cancer Registry Reporting PlanDefinition'
       description %(
 This test verifies resources returned from the first search conform to
 the [Central Cancer Registry Reporting PlanDefinition](http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-plandefinition).

@@ -39,7 +39,7 @@ module CancerRegistryReportingTestKit
 
     # All FHIR validation requests will use this FHIR validator
     fhir_resource_validator do
-      igs 'hl7.fhir.us.central-cancer-registry-reporting#1.0.0'
+      igs 'hl7.fhir.us.central-cancer-registry-reporting#1.0.0', 'hl7.fhir.us.core#3.1.1'
 
       exclude_message do |message|
         message.message.match?(/\A\S+: \S+: URL value '.*' does not resolve/)

@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
       include CancerRegistryReportingTestKit::ValidationTest
 
       id :ccrr_v100_mcode_secondary_cancer_condition_validation_test
-      title 'Condition resources returned during previous tests conform to the Secondary Cancer Condition Profile'
+      title 'Secondary Cancer Condition resources in composition slice conforms to the mCode Secondary Cancer Condition profile'
       description %(
 This test verifies resources returned from the first search conform to
 the [Secondary Cancer Condition Profile](http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-secondary-cancer-condition).

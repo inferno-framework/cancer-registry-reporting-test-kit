@@ -73,7 +73,8 @@ module CancerRegistryReportingTestKit
       'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner' => :practitioner_resources,
       'http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure' => :procedure_resources,
       'http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus' => :smokingstatus_resources,
-      'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/us-ph-patient' => :us_ph_patient_resources
+      'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/us-ph-patient' => :us_ph_patient_resources,
+      FIELD_TO_URL_MAP['author'] => :author_resources
     }
 
     # Method for translating received bundle into a hash of resources.  Use for MS and Validation testing

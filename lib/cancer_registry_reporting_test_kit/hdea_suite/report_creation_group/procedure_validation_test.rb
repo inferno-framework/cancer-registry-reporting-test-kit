@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
       include CancerRegistryReportingTestKit::ValidationTest
 
       id :ccrr_v100_procedure_validation_test
-      title 'Procedure resources returned during previous tests conform to the US Core Procedure Profile'
+      title 'Procedure resources in composition slice conforms to the US Core Procedure Profile'
       description %(
 This test verifies resources returned from the first search conform to
 the [US Core Procedure Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure).

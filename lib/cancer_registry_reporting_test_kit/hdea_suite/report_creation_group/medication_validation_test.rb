@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
       include CancerRegistryReportingTestKit::ValidationTest
 
       id :ccrr_v100_medication_validation_test
-      title 'Medication resources returned during previous tests conform to the US Core Medication Profile'
+      title 'Medication resources in composition conform to the US Core Medication Profile'
       description %(
 This test verifies resources returned from previous tests conform to
 the [US Core Medication Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication).

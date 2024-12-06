@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
       include CancerRegistryReportingTestKit::ValidationTest
 
       id :ccrr_v100_encounter_validation_test
-      title 'Encounter resources returned during previous tests conform to the US Core Encounter Profile'
+      title 'Encounter resources in composition conforms to the US Core Encounter Profile'
       description %(
 This test verifies resources returned from the first search conform to
 the [US Core Encounter Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter).
