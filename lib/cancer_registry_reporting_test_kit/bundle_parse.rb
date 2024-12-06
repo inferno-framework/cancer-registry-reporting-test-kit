@@ -56,8 +56,9 @@ module CancerRegistryReportingTestKit
         if !unresolved_references.empty?
           info "The following references did not resolve, the resources either do not exist in the bundle or are mislabeled: #{unresolved_references}"
         end
+        current_bundle_unresolved_references = unresolved_references
         clear_unresolved_references
-        parsed_bundle
+        return parsed_bundle, current_bundle_unresolved_references
       else
         puts "Error - first entry should be a Composition"
       end
@@ -125,6 +126,7 @@ module CancerRegistryReportingTestKit
       CODE_TO_MULTIPLE_ENTRY_RESOURCE_MAP[code][resource_type]
     end
     
+    ## TODO: we may have to be more comprehensive with checks for references - TBD
     def find_resource_in_bundle(reference, bundle)
       bundle.entry.find { |res| res.resource.id == reference.split('/').last && res.resource.resourceType == reference.split('/').first }&.resource
     end
