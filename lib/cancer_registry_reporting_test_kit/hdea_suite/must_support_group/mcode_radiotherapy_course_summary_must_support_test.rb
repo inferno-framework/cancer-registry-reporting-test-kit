@@ -1,4 +1,5 @@
 require_relative '../../must_support_test'
+require_relative '../../generator/group_metadata'
 
 module CancerRegistryReportingTestKit
   module HDEAV100
@@ -34,7 +35,7 @@ module CancerRegistryReportingTestKit
       end
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, '..', '..', 'generated', 'v1.0.0', 'mcode_radiotherapy_course_summary', 'metadata.yml'), aliases: true))
       end
 
       def scratch_resources

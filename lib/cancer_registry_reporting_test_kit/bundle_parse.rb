@@ -53,6 +53,10 @@ module CancerRegistryReportingTestKit
       first_resource = bundle.entry.first.resource
       if first_resource.is_a?(FHIR::Composition)
         parsed_bundle = look_for_references_in_resource(first_resource, bundle)
+        parsed_bundle['http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-content-bundle'] ||= []
+        parsed_bundle['http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-content-bundle'].push(bundle)
+        parsed_bundle['http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-composition'] ||= []
+        parsed_bundle['http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-composition'].push(first_resource)
         if !unresolved_references.empty?
           info "The following references did not resolve, the resources either do not exist in the bundle or are mislabeled: #{unresolved_references}"
         end

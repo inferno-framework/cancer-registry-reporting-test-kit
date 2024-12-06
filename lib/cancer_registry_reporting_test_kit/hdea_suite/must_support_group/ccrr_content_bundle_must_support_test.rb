@@ -1,12 +1,12 @@
 require_relative '../../must_support_test'
-require pry
+require_relative '../../generator/naming'
+require_relative '../../generator/group_metadata'
 
 
 module CancerRegistryReportingTestKit
   module HDEAV100
     class CcrrContentBundleMustSupportTest < Inferno::Test
       include CancerRegistryReportingTestKit::MustSupportTest
-
       title 'All must support elements are provided in the Bundle resources returned'
       description %(
         US Core Responders SHALL be capable of populating all data elements as
@@ -19,27 +19,25 @@ module CancerRegistryReportingTestKit
         * Bundle.entry:composition.resource
       )
 
-      # This is the first test where we loop through all of the bundles and on each bundles we are calling (bundles_parse())
-      # scratch = { all: { profile1: ['resource1'], profile2: ['resource2'] } }
-      # def ms_scratch
-      #   scratch[:all] ||= {}
-      # end
-    
+      def init_scratch
+        scratch ||= {}
+      end
+
       def add_ms_resources_to_scratch(reports)
         reports.each do |bundle|
-          report_hash = parse_bundle(FHIR.from_contents(bundle)) # taking the reports out of the bundles and parsing them
-          scratch.merge(report_hash) { |_key, ms_resources_scratch, report_hash_resources| 
-            ms_resources_scratch + report_hash_resources}
+          report_hash = url_keys_to_group_keys(parse_bundle(FHIR.from_contents(bundle)).first) # taking the reports out of the bundles and parsing them
+          report_hash.each do |group, resources| 
+            scratch[group] ||= {}
+            scratch[group][:all] ||= []
+            scratch[group][:all].concat(resources)
+          end
         end
-      end 
+      end
 
-      # run the logic from us core and go through the resources to see if the must supports are in these resources
-      # 
-
-      # pass to each test the ms_scratch for each one 
-      # check to see that all resources are merged correctly with the binding.pry 
-      binding.pry 
-
+      def url_keys_to_group_keys(report_hash)
+        report_hash.transform_keys { |key| "#{Generator::Naming.snake_case_for_url(key)}_resources".to_sym}
+      end
+      
       id :ccrr_v100_ccrr_content_bundle_must_support_test
 
       def resource_type
@@ -47,7 +45,7 @@ module CancerRegistryReportingTestKit
       end
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, '..', '..', 'generated', 'v1.0.0', 'ccrr_content_bundle', 'metadata.yml'), aliases: true))
       end
 
       def scratch_resources
@@ -55,8 +53,8 @@ module CancerRegistryReportingTestKit
       end
 
       run do
-        scratch.clear
-        add_ms_resources_to_scratch(reports)
+        init_scratch
+        add_ms_resources_to_scratch([reports])
         perform_must_support_test(all_scratch_resources)
       end
     end
