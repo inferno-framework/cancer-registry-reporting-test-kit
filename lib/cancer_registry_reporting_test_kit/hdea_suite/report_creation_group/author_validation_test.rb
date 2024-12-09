@@ -28,7 +28,8 @@ fail if their code/system are not found in the valueset.
       end
 
       run do
-        skip_if scratch_resources[:all].blank?
+        assert(false, 'Author (required) reference is not present or does not resolve') if scratch_resources[:all].blank?
+
 
         AUTHOR_PROFILES = {
           'PractitionerRole' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole',
@@ -48,12 +49,12 @@ fail if their code/system are not found in the valueset.
 
         resources_by_type.each do |resource_type, resources|
           next if resources.blank?
-          perform_validation_test(resources,
+          perform_validation_test(
+            resource_type,
+            resources,
             AUTHOR_PROFILES[resource_type],
-            '5.0.1',
-            skip_if_empty: true)
+            '3.1.1')
         end
-
       end
     end
   end
