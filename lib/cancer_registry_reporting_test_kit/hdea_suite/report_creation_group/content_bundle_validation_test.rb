@@ -1,7 +1,9 @@
 # frozen_string_literal: true
+require_relative '../../bundle_parse'
 
 module CancerRegistryReportingTestKit
   class HDEAContentBundleValidationTest < Inferno::Test
+    include CancerRegistryReportingTestKit::HDEABundleParse
     title 'HDEA Content Bundle Validation Test'
     id :ccrr_hdea_content_bundle_validation_test
 
@@ -11,12 +13,23 @@ module CancerRegistryReportingTestKit
         Will also verify that the included composition is a conformant
         [Report Composition](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/StructureDefinition-ccrr-composition.html).
       )
+  
+      def add_resources_to_scratch(parsed_bundle)
+        referenced_resources = parsed_bundle[0]
+        scratch[:unresolved_references] = parsed_bundle[1] || []
+
+        referenced_resources.each do |profile, resources|
+          scratch[PROFILE_TO_RESOURCE_KEY_MAP[profile]] = { all: resources } || {}
+        end
+      end
+      
 
     run do
       skip_if single_report.blank?, 'No CCRR Bundle Provided'
 
       assert_valid_json(single_report)
-      resource_instance = FHIR.from_contents(single_report)
+      resource_instance = FHIR.from_contents(single_report) 
+      add_resources_to_scratch(parse_bundle(resource_instance))
 
       assert_resource_type(:bundle, resource: resource_instance)
       assert_valid_resource(resource: resource_instance, profile_url: 'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-content-bundle|1.0.0')
