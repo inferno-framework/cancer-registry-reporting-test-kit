@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
       include CancerRegistryReportingTestKit::ValidationTest
 
       id :ccrr_v100_medication_administration_validation_test
-      title 'MedicationAdministration resources returned during previous tests conform to the Cancer-Related Medication Administration Profile'
+      title 'MedicationAdministration resources in composition conform to the Cancer-Related Medication Administration Profile'
       description %(
 This test verifies resources returned from the first search conform to
 the [Cancer-Related Medication Administration Profile](http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration).
@@ -30,6 +30,10 @@ fail if their code/system are not found in the valueset.
       end
 
       run do
+        # TODO: Check for type due to open slicing. For now, enforce check for only 1 resource
+        skip_if scratch_resources[:all].nil?, 'No resources found'
+        assert scratch_resources[:all].length < 2, "Test currently allows only for 1 resource for this type."
+        
         perform_validation_test(scratch_resources[:all] || [],
                                 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration',
                                 '3.0.0',

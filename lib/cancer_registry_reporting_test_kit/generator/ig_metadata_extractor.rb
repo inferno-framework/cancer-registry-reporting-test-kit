@@ -46,7 +46,7 @@ module CancerRegistryReportingTestKit
               'http://hl7.org/fhir/StructureDefinition/heartrate',
               'http://hl7.org/fhir/StructureDefinition/resprate'
             ]
-        when '5.0.1'
+        when '3.1.1'
           # The US Core v5.0.1 Server Capability Statement does not have supported-profile for Encounter
           ig_resources.capability_statement.rest.first.resource
             .find { |resource| resource.type == 'Encounter' }

@@ -1,8 +1,8 @@
 require_relative 'report_creation_group/content_bundle_validation_test'
+require_relative 'report_creation_group/author_validation_test'
 require_relative 'report_creation_group/cancer_encounter_validation_test'
 require_relative 'report_creation_group/cancer_patient_validation_test'
 require_relative 'report_creation_group/plan_definition_validation_test'
-require_relative 'report_creation_group/ccrr_reporting_bundle_validation_test'
 require_relative 'report_creation_group/central_cancer_registry_primary_cancer_condition_validation_test'
 require_relative 'report_creation_group/message_header_validation_test'
 require_relative 'report_creation_group/us_ph_patient_validation_test'
@@ -17,10 +17,7 @@ require_relative 'report_creation_group/care_plan_validation_test'
 require_relative 'report_creation_group/document_reference_validation_test'
 require_relative 'report_creation_group/encounter_validation_test'
 require_relative 'report_creation_group/medication_validation_test'
-require_relative 'report_creation_group/organization_validation_test'
 require_relative 'report_creation_group/patient_validation_test'
-require_relative 'report_creation_group/practitioner_validation_test'
-require_relative 'report_creation_group/practitioner_role_validation_test'
 require_relative 'report_creation_group/procedure_validation_test'
 require_relative 'report_creation_group/smokingstatus_validation_test'
 
@@ -47,32 +44,46 @@ module CancerRegistryReportingTestKit
 
     input :single_report,
     title: 'Cancer Report',
-    description: 'A single Content Bundle'
+    type: 'textarea',
+    description: 'A single Content Bundle. This Content Bundle should include all of the referenced resources.'
+
+    run_as_group
 
     test from: :ccrr_hdea_content_bundle_validation_test
-    test from: :ccrr_v100_cancer_encounter_validation_test
-    test from: :ccrr_v100_cancer_patient_validation_test
-    test from: :ccrr_v100_plan_definition_validation_test
-    # test from: :ccrr_v100_ccrr_reporting_bundle_validation_test
-    test from: :ccrr_v100_central_cancer_registry_primary_cancer_condition_validation_test
-    # test from: :ccrr_v100_message_header_validation_test
-    test from: :ccrr_v100_us_ph_patient_validation_test
-    test from: :ccrr_v100_extension_validation_test
-    test from: :ccrr_v100_medication_administration_validation_test
-    test from: :ccrr_v100_mcode_radiotherapy_course_summary_validation_test
-    test from: :ccrr_v100_mcode_secondary_cancer_condition_validation_test
-    test from: :ccrr_v100_mcode_tnm_stage_group_validation_test
-    test from: :ccrr_v100_odh_usual_work_validation_test
-    test from: :ccrr_v100_allergy_intolerance_validation_test
-    test from: :ccrr_v100_care_plan_validation_test
-    test from: :ccrr_v100_document_reference_validation_test
-    test from: :ccrr_v100_encounter_validation_test
-    test from: :ccrr_v100_medication_validation_test
-    test from: :ccrr_v100_organization_validation_test
+    # Subject
     test from: :ccrr_v100_patient_validation_test
-    test from: :ccrr_v100_practitioner_validation_test
-    test from: :ccrr_v100_practitioner_role_validation_test
+    # Encounter
+    test from: :ccrr_v100_encounter_validation_test
+    # Author
+    test from: :ccrr_v100_author_validation_test
+    # Primary Cancer Condition
+    test from: :ccrr_v100_central_cancer_registry_primary_cancer_condition_validation_test
+    # Secondary Cancer Condition
+    test from: :ccrr_v100_mcode_secondary_cancer_condition_validation_test
+    # Cancer Stage Group
+    test from: :ccrr_v100_mcode_tnm_stage_group_validation_test
+    # Radio Therapy Course Summary
+    test from: :ccrr_v100_mcode_radiotherapy_course_summary_validation_test
+    # Problem
+    # Allergies
+    test from: :ccrr_v100_allergy_intolerance_validation_test
+    # Medications Administered
+    # Medications
+    test from: :ccrr_v100_medication_administration_validation_test
+    test from: :ccrr_v100_medication_validation_test
+    # Odh
+    test from: :ccrr_v100_odh_usual_work_validation_test
+    # Results
+    # -- Lab results, diagnostic result
+    # Notes
+    test from: :ccrr_v100_document_reference_validation_test
+    # --- Diagnostic Report?
+    # Plan of Treatment
+    test from: :ccrr_v100_care_plan_validation_test
+    # Procedures
     test from: :ccrr_v100_procedure_validation_test
+    # Vital Signs
+    # Social History
     test from: :ccrr_v100_smokingstatus_validation_test
 
   end

@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
       include CancerRegistryReportingTestKit::ValidationTest
 
       id :ccrr_v100_patient_validation_test
-      title 'Patient resources returned during previous tests conform to the US Core Patient Profile'
+      title 'Subject resource in composition conforms to the US Core Patient Profile'
       description %(
 This test verifies resources returned from the first search conform to
 the [US Core Patient Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient).
@@ -30,10 +30,10 @@ fail if their code/system are not found in the valueset.
       end
 
       run do
+        assert(false, 'Patient (required) reference is not present or does not resolve') if scratch_resources[:all].blank?
         perform_validation_test(scratch_resources[:all] || [],
                                 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient',
-                                '5.0.1',
-                                skip_if_empty: true)
+                                '3.1.1')
       end
     end
   end
