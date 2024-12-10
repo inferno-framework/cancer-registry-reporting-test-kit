@@ -20,8 +20,8 @@ module CancerRegistryReportingTestKit
     * patient + category
 
     ### Search Parameters
-    The first search uses the selected patient(s) from the prior launch
-    sequence. Any subsequent searches will look for its parameter values
+    The first search uses the selected patient(s). Any subsequent searches 
+    will look for its parameter values
     from the results of the first search. For example, the `identifier`
     search in the patient sequence is performed by looking for an existing
     `Patient.identifier` from any of the resources returned in the `_id`

@@ -57,7 +57,7 @@ module CancerRegistryReportingTestKit
       input :smart_credentials,
         title: 'OAuth Credentials',
         type: :oauth_credentials,
-        optional: true
+        optional: false
 
       fhir_client do
         url :url
