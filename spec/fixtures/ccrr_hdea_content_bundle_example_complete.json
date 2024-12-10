@@ -184,10 +184,10 @@
           "reference" : "MedicationAdministration/cancer-related-medication-administration-example"
         },
         {
-          "reference" : "MedicationStatement"
+          "reference" : "MedicationStatement/1"
         },
         {
-          "reference" : "Medication"
+          "reference" : "Medication/1"
         }]
       },
       {
@@ -195,18 +195,311 @@
         "code" : {
           "coding" : [{
             "system" : "http://loinc.org",
-            "code" : "48765-2",
-            "display" : "Allergies and adverse reactions Document"
+            "code" : "74165-2",
+            "display" : "ODH Narrative"
           }]
         },
         "text" : {
           "status" : "generated",
-          "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Allergy to Sulfonide</p></div>"
+          "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>ODH Narrative</p></div>"
         },
         "entry" : [{
-          "reference" : "AllergyIntolerance/example"
+          "reference" : "UsualWork/1"
+        }]
+      },
+      {
+        "title" : "Results Section",
+        "code" : {
+          "coding" : [{
+            "system" : "http://loinc.org",
+            "code" : "30954-2",
+            "display" : "Results"
+          }]
+        },
+        "text" : {
+          "status" : "generated",
+          "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Results</p></div>"
+        },
+        "entry" : [{
+          "reference" : "Observation/1"
+        },
+        {
+          "reference" : "DiagnosticReport/1"
+        }]
+      },
+      {
+        "title" : "Notes Section",
+        "code" : {
+          "coding" : [{
+            "system" : "http://loinc.org",
+            "code" : "28650-0",
+            "display" : "Notes Narrative"
+          }]
+        },
+        "text" : {
+          "status" : "generated",
+          "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>ODH Narrative</p></div>"
+        },
+        "entry" : [{
+          "reference" : "DocumentReference/1"
+        },
+        {
+          "reference" : "DiagnosticReport/1"
+        }]
+      },
+      {
+        "title" : "Plan Of Treatment Section",
+        "code" : {
+          "coding" : [{
+            "system" : "http://loinc.org",
+            "code" : "18776-5",
+            "display" : "Plan of Treatment"
+          }]
+        },
+        "text" : {
+          "status" : "generated",
+          "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Plan Of Treatment Narrative</p></div>"
+        },
+        "entry" : [{
+          "reference" : "MedicationReferences/1"
+        },
+        {
+          "reference" : "MedicationRequest/1"
+        },
+        {
+          "reference" : "ServiceRequest/1"
+        },
+        {
+          "reference" : "CarePlan/1"
+        }]
+      },
+      {
+        "title" : "Procedures Section",
+        "code" : {
+          "coding" : [{
+            "system" : "http://loinc.org",
+            "code" : "47519-4",
+            "display" : "Procedures"
+          }]
+        },
+        "text" : {
+          "status" : "generated",
+          "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Procedures</p></div>"
+        },
+        "entry" : [{
+          "reference" : "Procedure/1"
+        }]
+      },
+      {
+        "title" : "Vital Signs Section",
+        "code" : {
+          "coding" : [{
+            "system" : "http://loinc.org",
+            "code" : "8716-3",
+            "display" : "Vital Signs"
+          }]
+        },
+        "text" : {
+          "status" : "generated",
+          "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Vital Signs</p></div>"
+        },
+        "entry" : [{
+          "reference" : "Observation/1"
+        }]
+      },
+      {
+        "title" : "Social History Section",
+        "code" : {
+          "coding" : [{
+            "system" : "http://loinc.org",
+            "code" : "29762-2",
+            "display" : "Social History"
+          }]
+        },
+        "text" : {
+          "status" : "generated",
+          "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Social History</p></div>"
+        },
+        "entry" : [{
+          "reference" : "SmokingStatusObservation/1"
         }]
       }]
     }
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
+    "resource" : Patient/example
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
+    "resource" : Encounter/encounter-cancer-example
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Condition/primary-cancer-condition-breast",
+    "resource" : {
+      "resourceType" : "Condition",
+      "id" : "primary-cancer-condition-breast",
+      "meta" : {
+        "profile" : ["http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-primary-cancer-condition"]
+      },
+      "text" : {
+        "status" : "extensions",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Narrative:</b></p><p><b>Condition: </b>primary-cancer-condition-breast</p><p><b>Histology-Morphology-Behavior Extension</b>: Lobular carcinoma in situ (morphologic abnormality) <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT[Intl]</a>#77284006)</p><p><b>clinicalStatus</b>: Active</p><p><b>verificationStatus</b>: Confirmed</p><p><b>category</b>: Problem List Item</p><p><b>code</b>: Malignant neoplastic disease (disorder) <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT[Intl]</a>#363346000)</p><p><b>bodySite</b>: Left breast structure (body structure) <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT[Intl]</a>#80248007)</p><p><b>subject</b>: <a href=\"Patient-example.html\">Patient/example</a> Amy Shaw</p><p><b>onset</b>: 2019-04-01</p><p><b>asserter</b>: <a href=\"Practitioner-1.html\">Practitioner/1</a> Joseph Nichols</p><p><b>Stage: </b>American Joint Committee on Cancer stage IIIC (qualifier value) <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT[Intl]</a>#1222806003)</p></div>"
+      },
+      "extension" : [{
+        "url" : "http://hl7.org/fhir/StructureDefinition/condition-assertedDate",
+        "valueDateTime" : "2019-04-01"
+      },
+      {
+        "url" : "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-histology-morphology-behavior",
+        "valueCodeableConcept" : {
+          "coding" : [{
+            "system" : "http://snomed.info/sct",
+            "code" : "127569003",
+            "display" : "In situ neoplasm (morphologic abnormality)"
+          }]
+        }
+      }],
+      "clinicalStatus" : {
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
+          "code" : "active",
+          "display" : "Active"
+        }]
+      },
+      "verificationStatus" : {
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+          "code" : "confirmed",
+          "display" : "Confirmed"
+        }]
+      },
+      "category" : [{
+        "coding" : [{
+          "system" : "http://terminology.hl7.org/CodeSystem/condition-category",
+          "code" : "problem-list-item"
+        }]
+      }],
+      "code" : {
+        "coding" : [{
+          "system" : "http://snomed.info/sct",
+          "code" : "363346000",
+          "display" : "Malignant neoplastic disease (disorder)"
+        }]
+      },
+      "bodySite" : [{
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-laterality-qualifier",
+          "valueCodeableConcept" : {
+            "coding" : [{
+              "system" : "http://snomed.info/sct",
+              "code" : "7771000",
+              "display" : "Left (qualifier value)"
+            }]
+          }
+        }],
+        "coding" : [{
+          "system" : "http://snomed.info/sct",
+          "code" : "80248007",
+          "display" : "Left breast structure (body structure)"
+        }]
+      }],
+      "subject" : {
+        "reference" : "Patient/example"
+      },
+      "onsetDateTime" : "2019-04-01",
+      "asserter" : {
+        "reference" : "Practitioner/1"
+      },
+      "stage" : [{
+        "summary" : {
+          "coding" : [{
+            "system" : "http://snomed.info/sct",
+            "code" : "1222806003",
+            "display" : "American Joint Committee on Cancer stage IIIC (qualifier value)"
+          }]
+        }
+      }]
+    }
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
+    "resource" : Practitioner/1
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
+    "resource" : Condition/secondary-cancer-condition-brain-mets
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
+    "resource" : Observation/cancer-stage-group-example
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
+    "resource" : Procedure/radiotherapy-example
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
+    "resource" : Condition/CONDITION1
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
+    "resource" : AllergyIntolerance/example
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
+    "resource" : Medication/MEDICATION1
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
+    "resource" : MedicationAdministration/MEDICATIONADMINISTRATION2
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
+    "resource" : MedicationStatement/1
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
+    "resource" : UsualWork/1
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
+    "resource" : Observation/1 #Results
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
+    "resource" : DiagnosticReport/1 #Results
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
+    "resource" : DocumentReference/1
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
+    "resource" : DiagnosticReport/1 # Notes
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
+    "resource" : MedicationReferences/1
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
+    "resource" : ServiceRequest/1
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
+    "resource" : CarePlan/1
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
+    "resource" : Procedure/1
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
+    "resource" : Observation/1 #Vitals
+  },
+  {
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
+    "resource" : SmokingStatusObservation/1
   }]
 }

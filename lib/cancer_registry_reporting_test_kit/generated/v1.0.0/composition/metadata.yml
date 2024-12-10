@@ -19,120 +19,120 @@
     :discriminator:
       :type: value
       :values:
-      - :path: code
-        :value: 
+      - :path: code.coding.code
+        :value: 363346000
   - :slice_id: Composition.section:sliceSecondaryCancerCondition
     :slice_name: sliceSecondaryCancerCondition
     :path: section
     :discriminator:
       :type: value
       :values:
-      - :path: code
-        :value: 
+      - :path: code.coding.code
+        :value: 128462008
   - :slice_id: Composition.section:sliceCancerStageGroup
     :slice_name: sliceCancerStageGroup
     :path: section
     :discriminator:
       :type: value
       :values:
-      - :path: code
-        :value: 
+      - :path: code.coding.code
+        :value: 21908-9
   - :slice_id: Composition.section:sliceRadioTherapyCourseSummary
     :slice_name: sliceRadioTherapyCourseSummary
     :path: section
     :discriminator:
       :type: value
       :values:
-      - :path: code
-        :value: 
+      - :path: code.coding.code
+        :value: 1217123003
   - :slice_id: Composition.section:sliceProblemSection
     :slice_name: sliceProblemSection
     :path: section
     :discriminator:
       :type: value
       :values:
-      - :path: code
-        :value: 
+      - :path: code.coding.code
+        :value: 11450-4
   - :slice_id: Composition.section:sliceAllergiesSection
     :slice_name: sliceAllergiesSection
     :path: section
     :discriminator:
       :type: value
       :values:
-      - :path: code
-        :value: 
+      - :path: code.coding.code
+        :value: 48765-2
   - :slice_id: Composition.section:sliceMedicationsAdministeredSection
     :slice_name: sliceMedicationsAdministeredSection
     :path: section
     :discriminator:
       :type: value
       :values:
-      - :path: code
-        :value: 
+      - :path: code.coding.code
+        :value: 29549-3
   - :slice_id: Composition.section:sliceMedicationsSection
     :slice_name: sliceMedicationsSection
     :path: section
     :discriminator:
       :type: value
       :values:
-      - :path: code
-        :value: 
+      - :path: code.coding.code
+        :value: 10160-0
   - :slice_id: Composition.section:sliceOdhSection
     :slice_name: sliceOdhSection
     :path: section
     :discriminator:
       :type: value
       :values:
-      - :path: code
-        :value: 
+      - :path: code.coding.code
+        :value: 74165-2
   - :slice_id: Composition.section:sliceResultsSection
     :slice_name: sliceResultsSection
     :path: section
     :discriminator:
       :type: value
       :values:
-      - :path: code
-        :value: 
+      - :path: code.coding.code
+        :value: 30954-2
   - :slice_id: Composition.section:sliceNotesSection
     :slice_name: sliceNotesSection
     :path: section
     :discriminator:
       :type: value
       :values:
-      - :path: code
-        :value: 
+      - :path: code.coding.code
+        :value: 28650-0
   - :slice_id: Composition.section:slicePlanOfTreatmentSection
     :slice_name: slicePlanOfTreatmentSection
     :path: section
     :discriminator:
       :type: value
       :values:
-      - :path: code
-        :value: 
+      - :path: code.coding.code
+        :value: 18776-5
   - :slice_id: Composition.section:sliceProceduresSection
     :slice_name: sliceProceduresSection
     :path: section
     :discriminator:
       :type: value
       :values:
-      - :path: code
-        :value: 
+      - :path: code.coding.code
+        :value: 47519-4
   - :slice_id: Composition.section:sliceVitalSignsSection
     :slice_name: sliceVitalSignsSection
     :path: section
     :discriminator:
       :type: value
       :values:
-      - :path: code
-        :value: 
+      - :path: code.coding.code
+        :value: 8716-3
   - :slice_id: Composition.section:sliceSocialHistorySection
     :slice_name: sliceSocialHistorySection
     :path: section
     :discriminator:
       :type: value
       :values:
-      - :path: code
-        :value: 
+      - :path: code.coding.code
+        :value: 29762-2
   :elements:
   - :path: Composition
   - :path: identifier
