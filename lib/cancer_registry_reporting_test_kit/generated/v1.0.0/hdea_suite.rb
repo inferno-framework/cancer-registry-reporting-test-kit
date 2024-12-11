@@ -18,9 +18,13 @@ require_relative 'mcode_tnm_distant_metastases_category_group'
 require_relative 'mcode_tnm_primary_tumor_category_group'
 require_relative 'mcode_tnm_regional_nodes_category_group'
 require_relative 'mcode_tnm_stage_group_group'
+require_relative 'medication_statement_group'
+require_relative 'observation_group'
 require_relative 'odh_usual_work_group'
+require_relative 'service_request_group'
 require_relative 'allergy_intolerance_group'
 require_relative 'care_plan_group'
+require_relative 'condition_group'
 require_relative 'diagnostic_report_lab_group'
 require_relative 'diagnostic_report_note_group'
 require_relative 'document_reference_group'
@@ -37,9 +41,9 @@ require_relative 'smokingstatus_group'
 module CancerRegistryReportingTestKit
   module CCRRV100
     class HDEASuite < Inferno::TestSuite
-      title 'HDEA Suite'
+      title 'HDEA CCRR v1.0.0'
       description %(
-        The HDEA Test Kit tests systems for their conformance to the [
+        The US Core Test Kit tests systems for their conformance to the [US Core
         Implementation Guide]().
 
         HL7® FHIR® resources are validated with the Java validator using
@@ -102,7 +106,7 @@ module CancerRegistryReportingTestKit
           oauth_credentials :smart_credentials
         end
 
-        title 'HDEA MS and Validation Sequence'
+        title 'HDEA MS and Validation'
         id :ccrr_v100_fhir_api
 
       
@@ -110,19 +114,24 @@ module CancerRegistryReportingTestKit
         group from: :ccrr_v100_composition
         group from: :ccrr_v100_central_cancer_registry_primary_cancer_condition
         group from: :ccrr_v100_cancer_encounter
+        group from: :ccrr_v100_cancer_patient
         group from: :ccrr_v100_plan_definition
-        group from: :ccrr_v100_medication_administration
+        group from: :ccrr_v100_medication_administration #ROB: Check this is cancer related?
         group from: :ccrr_v100_medication_request
-        group from: :ccrr_v100_mcode_primary_cancer_condition
+        group from: :ccrr_v100_mcode_primary_cancer_condition #ROB: remove this?
         group from: :ccrr_v100_mcode_radiotherapy_course_summary
         group from: :ccrr_v100_mcode_secondary_cancer_condition
-        group from: :ccrr_v100_mcode_tnm_distant_metastases_category
-        group from: :ccrr_v100_mcode_tnm_primary_tumor_category
-        group from: :ccrr_v100_mcode_tnm_regional_nodes_category
+        group from: :ccrr_v100_mcode_tnm_distant_metastases_category #ROB: remove this?
+        group from: :ccrr_v100_mcode_tnm_primary_tumor_category #ROB:remove this?
+        group from: :ccrr_v100_mcode_tnm_regional_nodes_category #ROB: remove this?
         group from: :ccrr_v100_mcode_tnm_stage_group
+        group from: :ccrr_v100_medication_statement
+        group from: :ccrr_v100_observation
         group from: :ccrr_v100_odh_usual_work
+        group from: :ccrr_v100_service_request
         group from: :ccrr_v100_allergy_intolerance
         group from: :ccrr_v100_care_plan
+        group from: :ccrr_v100_condition
         group from: :ccrr_v100_diagnostic_report_lab
         group from: :ccrr_v100_diagnostic_report_note
         group from: :ccrr_v100_document_reference
@@ -130,7 +139,6 @@ module CancerRegistryReportingTestKit
         group from: :ccrr_v100_medication
         group from: :ccrr_v100_observation_lab
         group from: :ccrr_v100_organization
-        group from: :ccrr_v100_patient
         group from: :ccrr_v100_practitioner
         group from: :ccrr_v100_practitioner_role
         group from: :ccrr_v100_procedure

@@ -264,7 +264,7 @@
 - Composition.section.code
 - Composition.section.text
 - Composition.section.entry
-:tests: 
+:tests:
 - :id: ccrr_v100_composition_must_support_test
   :file_name: composition_must_support_test.rb
 :id: ccrr_v100_composition

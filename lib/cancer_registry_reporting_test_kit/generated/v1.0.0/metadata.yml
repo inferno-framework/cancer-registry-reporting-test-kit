@@ -1923,6 +1923,58 @@
     :file_name: mcode_tnm_stage_group_validation_test.rb
   :id: ccrr_v100_mcode_tnm_stage_group
   :file_name: mcode_tnm_stage_group_group.rb
+- :name: MedicationStatement
+  :class_name: MedicationstatementSequence
+  :version: v1.0.0
+  :reformatted_version: v100
+  :resource: MedicationStatement
+  :profile_url: http://hl7.org/fhir/StructureDefinition/MedicationStatement
+  :profile_name: Base MedicationStatement
+  :profile_version: 4.0.1
+  :title: Base MedicationStatement
+  :short_description: Verify support for the server capabilities required by the Base
+    MedicationStatement.
+  :must_supports:
+    :extensions: []
+    :slices: []
+    :elements: []
+  :mandatory_elements:
+  - MedicationStatement.status
+  - MedicationStatement.medication[x]
+  - MedicationStatement.subject
+  :tests:
+  - :id: ccrr_v100_medication_statement_must_support_test
+    :file_name: medication_statement_must_support_test.rb
+  - :id: ccrr_v100_medication_statement_validation_test
+    :file_name: medication_statement_validation_test.rb
+  :id: ccrr_v100_medication_statement
+  :file_name: medication_statement_group.rb
+- :name: Observation
+  :class_name: ObservationSequence
+  :version: v1.0.0
+  :reformatted_version: v100
+  :resource: Observation
+  :profile_url: http://hl7.org/fhir/StructureDefinition/Observation
+  :profile_name: Base Observation
+  :profile_version: 4.0.1
+  :title: Observation Base
+  :short_description: Verify support for the server capabilities required by the Base
+    Observation.
+  :must_supports:
+    :extensions: []
+    :slices: []
+    :elements: []
+  :mandatory_elements:
+  - Observation.status
+  - Observation.code
+  - Observation.component.code
+  :tests:
+  - :id: ccrr_v100_observation_must_support_test
+    :file_name: observation_must_support_test.rb
+  - :id: ccrr_v100_observation_validation_test
+    :file_name: observation_validation_test.rb
+  :id: ccrr_v100_observation
+  :file_name: observation_group.rb
 - :name: odh_UsualWork
   :class_name: OdhUsualworkSequence
   :version: v1.0.0
@@ -1996,6 +2048,35 @@
     :file_name: odh_usual_work_validation_test.rb
   :id: ccrr_v100_odh_usual_work
   :file_name: odh_usual_work_group.rb
+- :name: ServiceRequest
+  :class_name: ServicerequestSequence
+  :version: v1.0.0
+  :reformatted_version: v100
+  :resource: ServiceRequest
+  :profile_url: http://hl7.org/fhir/StructureDefinition/ServiceRequest
+  :profile_name: Base ServiceRequest
+  :profile_version: 6.0.0-ballot2
+  :title: Base ServiceRequest
+  :short_description: Verify support for the server capabilities required by the Base
+    ServiceRequest.
+  :must_supports:
+    :extensions: []
+    :slices: []
+    :elements: []
+  :mandatory_elements:
+  - ServiceRequest.status
+  - ServiceRequest.intent
+  - ServiceRequest.orderDetail.parameter
+  - ServiceRequest.orderDetail.parameter.code
+  - ServiceRequest.orderDetail.parameter.value[x]
+  - ServiceRequest.subject
+  :tests:
+  - :id: ccrr_v100_service_request_must_support_test
+    :file_name: service_request_must_support_test.rb
+  - :id: ccrr_v100_service_request_validation_test
+    :file_name: service_request_validation_test.rb
+  :id: ccrr_v100_service_request
+  :file_name: service_request_group.rb
 - :name: us_core_allergyintolerance
   :class_name: UsCoreAllergyintoleranceSequence
   :version: v1.0.0
@@ -2082,6 +2163,39 @@
     :file_name: care_plan_validation_test.rb
   :id: ccrr_v100_care_plan
   :file_name: care_plan_group.rb
+- :name: us_core_condition
+  :class_name: UsCoreConditionSequence
+  :version: v1.0.0
+  :reformatted_version: v100
+  :resource: Condition
+  :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition
+  :profile_name: US Core Condition Profile
+  :profile_version: 3.1.1
+  :title: Condition US Core
+  :short_description: Verify support for the server capabilities required by the US
+    Core Condition Profile.
+  :must_supports:
+    :extensions: []
+    :slices: []
+    :elements:
+    - :path: clinicalStatus
+    - :path: verificationStatus
+    - :path: category
+    - :path: code
+    - :path: subject
+      :types:
+      - Reference
+  :mandatory_elements:
+  - Condition.category
+  - Condition.code
+  - Condition.subject
+  :tests:
+  - :id: ccrr_v100_condition_must_support_test
+    :file_name: condition_must_support_test.rb
+  - :id: ccrr_v100_condition_validation_test
+    :file_name: condition_validation_test.rb
+  :id: ccrr_v100_condition
+  :file_name: condition_group.rb
 - :name: us_core_diagnosticreport_lab
   :class_name: UsCoreDiagnosticreportLabSequence
   :version: v1.0.0
