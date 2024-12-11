@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
     class CentralCancerRegistryPrimaryCancerConditionMustSupportTest < Inferno::Test
       include CancerRegistryReportingTestKit::MustSupportTest
 
-      title 'All must support elements are provided in the Condition resources returned'
+      title 'All must support elements are provided in the Primary Cancer Condition resources returned'
       description %(
         US Core Responders SHALL be capable of populating all data elements as
         part of the query results as specified by the US Core Server Capability

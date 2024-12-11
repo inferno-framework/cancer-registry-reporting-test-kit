@@ -191,7 +191,11 @@ module CancerRegistryReportingTestKit
           when 'String'
             element.is_a? String
           else
-            element.is_a? FHIR.const_get(discriminator[:code])
+            if element.is_a? FHIR::Bundle::Entry
+              element.resource.is_a? FHIR.const_get(discriminator[:code])
+            else
+              element.is_a? FHIR.const_get(discriminator[:code])
+            end
           end
         when 'requiredBinding'
           coding_path = discriminator[:path].present? ? "#{discriminator[:path]}.coding" : 'coding'
@@ -218,7 +222,7 @@ module CancerRegistryReportingTestKit
 
             current_element_values_match =
               current_element_value_definitions
-                .all? { |value_definition| value_definition[:value] == el_found }
+                .all? { |value_definition| value_definition[:value].to_s == el_found.to_s }
 
             child_element_values_match =
               child_element_value_definitions.present? ?

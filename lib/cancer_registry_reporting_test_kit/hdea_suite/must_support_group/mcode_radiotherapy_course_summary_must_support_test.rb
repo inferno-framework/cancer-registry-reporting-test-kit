@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
     class McodeRadiotherapyCourseSummaryMustSupportTest < Inferno::Test
       include CancerRegistryReportingTestKit::MustSupportTest
 
-      title 'All must support elements are provided in the Procedure resources returned'
+      title 'All must support elements are provided in the Radiotherapy Procedure resources returned'
       description %(
         US Core Responders SHALL be capable of populating all data elements as
         part of the query results as specified by the US Core Server Capability

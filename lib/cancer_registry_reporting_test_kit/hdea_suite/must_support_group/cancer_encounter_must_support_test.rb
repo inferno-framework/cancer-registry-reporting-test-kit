@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
     class CancerEncounterMustSupportTest < Inferno::Test
       include CancerRegistryReportingTestKit::MustSupportTest
 
-      title 'All must support elements are provided in the Encounter resources returned'
+      title 'All must support elements are provided in the Cancer Encounter resources returned'
       description %(
         US Core Responders SHALL be capable of populating all data elements as
         part of the query results as specified by the US Core Server Capability
@@ -39,7 +39,6 @@ module CancerRegistryReportingTestKit
         * Encounter.status
         * Encounter.subject
         * Encounter.type
-        * testing123
       )
 
       id :ccrr_v100_cancer_encounter_must_support_test

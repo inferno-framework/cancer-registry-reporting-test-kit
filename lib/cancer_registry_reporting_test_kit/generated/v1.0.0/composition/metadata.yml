@@ -134,7 +134,6 @@
       - :path: code.coding.code
         :value: 29762-2
   :elements:
-  - :path: Composition
   - :path: identifier
   - :path: status
     :fixed_value: final

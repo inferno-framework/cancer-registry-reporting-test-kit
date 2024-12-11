@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
     class McodeTnmStageGroupMustSupportTest < Inferno::Test
       include CancerRegistryReportingTestKit::MustSupportTest
 
-      title 'All must support elements are provided in the Observation resources returned'
+      title 'All must support elements are provided in the TNM Stage Group Observation resources returned'
       description %(
         US Core Responders SHALL be capable of populating all data elements as
         part of the query results as specified by the US Core Server Capability

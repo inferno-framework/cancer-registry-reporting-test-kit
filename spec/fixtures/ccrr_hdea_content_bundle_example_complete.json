@@ -34,16 +34,16 @@
         }]
       },
       "subject" : {
-        "reference" : "Patient/example",
+        "reference" : "Patient/example-Patient",
         "display" : "Amy Shaw"
       },
       "encounter" : {
-        "reference" : "Encounter/encounter-cancer-example",
+        "reference" : "Encounter/example-Encounter",
         "display" : "Patient encounter procedure"
       },
       "date" : "2023-01-02T22:13:23Z",
       "author" : [{
-        "reference" : "Practitioner/1",
+        "reference" : "Practitioner/example-Practitioner",
         "display" : "Nicholas Joseph"
       }],
       "title" : "Central Cancer Registry Report",
@@ -128,7 +128,7 @@
           "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Problem</p></div>"
         },
         "entry" : [{
-          "reference" : "Condition/CONDITION1"
+          "reference" : "Condition/example-Condition"
         }]
       },
       {
@@ -184,10 +184,10 @@
           "reference" : "MedicationAdministration/cancer-related-medication-admin-cyclophosphamide-jenny-m"
         },
         {
-          "reference" : "MedicationStatement/1"
+          "reference" : "MedicationStatement/example-MedicationStatement"
         },
         {
-          "reference" : "Medication/1"
+          "reference" : "Medication/uscore-med1"
         }]
       },
       {
@@ -221,7 +221,7 @@
           "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Results</p></div>"
         },
         "entry" : [{
-          "reference" : "Observation/1"
+          "reference" : "Observation/blood-glucose"
         },
         {
           "reference" : "DiagnosticReport/1"
@@ -241,10 +241,10 @@
           "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>ODH Narrative</p></div>"
         },
         "entry" : [{
-          "reference" : "DocumentReference/1"
+          "reference" : "DocumentReference/example-DocumentReference"
         },
         {
-          "reference" : "DiagnosticReport/1"
+          "reference" : "DiagnosticReport/cbc"
         }]
       },
       {
@@ -267,10 +267,10 @@
           "reference" : "MedicationRequest/cancer-related-medication-request-anastrozole-jenny-m"
         },
         {
-          "reference" : "ServiceRequest/1"
+          "reference" : "ServiceRequest/lipid"
         },
         {
-          "reference" : "CarePlan/1"
+          "reference" : "CarePlan/example-CarePlan"
         }]
       },
       {
@@ -304,7 +304,7 @@
           "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Vital Signs</p></div>"
         },
         "entry" : [{
-          "reference" : "Observation/1"
+          "reference" : "Observation/blood-glucose"
         }]
       },
       {
@@ -321,18 +321,239 @@
           "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Social History</p></div>"
         },
         "entry" : [{
-          "reference" : "SmokingStatusObservation/1"
+          "reference" : "Observation/example-SmokingStatus"
         }]
       }]
     }
   },
   {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
-    "resource" : "Patient/example"
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Patient/example-Patient",
+    "resource" : {
+      "resourceType" : "Patient",
+      "id" : "example-Patient",
+      "meta" : {
+        "profile" : [
+          "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+        ]
+      },
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><p><b>id</b>: example</p><p><b>meta</b>: </p><p><b>identifier</b>: Medical Record Number: 1032702 (USUAL)</p><p><b>active</b>: true</p><p><b>name</b>: Amy V. Shaw , Amy V. Baxter </p><p><b>telecom</b>: ph: 555-555-5555(HOME), amy.shaw@example.com</p><p><b>gender</b>: female</p><p><b>birthDate</b>: 1987-02-20</p><p><b>address</b>: </p><ul><li>49 Meadow St Mounds OK 74047 US </li><li>183 Mountain View St Mounds OK 74048 US </li></ul></div>"
+      },
+      "extension" : [
+        {
+          "extension" : [
+            {
+              "url" : "ombCategory",
+              "valueCoding" : {
+                "system" : "urn:oid:2.16.840.1.113883.6.238",
+                "code" : "2106-3",
+                "display" : "White"
+              }
+            },
+            {
+              "url" : "ombCategory",
+              "valueCoding" : {
+                "system" : "urn:oid:2.16.840.1.113883.6.238",
+                "code" : "1002-5",
+                "display" : "American Indian or Alaska Native"
+              }
+            },
+            {
+              "url" : "ombCategory",
+              "valueCoding" : {
+                "system" : "urn:oid:2.16.840.1.113883.6.238",
+                "code" : "2028-9",
+                "display" : "Asian"
+              }
+            },
+            {
+              "url" : "detailed",
+              "valueCoding" : {
+                "system" : "urn:oid:2.16.840.1.113883.6.238",
+                "code" : "1586-7",
+                "display" : "Shoshone"
+              }
+            },
+            {
+              "url" : "detailed",
+              "valueCoding" : {
+                "system" : "urn:oid:2.16.840.1.113883.6.238",
+                "code" : "2036-2",
+                "display" : "Filipino"
+              }
+            },
+            {
+              "url" : "text",
+              "valueString" : "Mixed"
+            }
+          ],
+          "url" : "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
+        },
+        {
+          "extension" : [
+            {
+              "url" : "ombCategory",
+              "valueCoding" : {
+                "system" : "urn:oid:2.16.840.1.113883.6.238",
+                "code" : "2135-2",
+                "display" : "Hispanic or Latino"
+              }
+            },
+            {
+              "url" : "detailed",
+              "valueCoding" : {
+                "system" : "urn:oid:2.16.840.1.113883.6.238",
+                "code" : "2184-0",
+                "display" : "Dominican"
+              }
+            },
+            {
+              "url" : "detailed",
+              "valueCoding" : {
+                "system" : "urn:oid:2.16.840.1.113883.6.238",
+                "code" : "2148-5",
+                "display" : "Mexican"
+              }
+            },
+            {
+              "url" : "text",
+              "valueString" : "Hispanic or Latino"
+            }
+          ],
+          "url" : "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
+        },
+        {
+          "url" : "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
+          "valueCode" : "F"
+        }
+      ],
+      "identifier" : [
+        {
+          "use" : "usual",
+          "type" : {
+            "coding" : [
+              {
+                "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+                "code" : "MR",
+                "display" : "Medical Record Number"
+              }
+            ],
+            "text" : "Medical Record Number"
+          },
+          "system" : "http://hospital.smarthealthit.org",
+          "value" : "1032702"
+        }
+      ],
+      "active" : true,
+      "name" : [
+        {
+          "family" : "Shaw",
+          "given" : [
+            "Amy",
+            "V."
+          ],
+          "period" : {
+            "start" : "2016-12-06",
+            "end" : "2020-07-22"
+          }
+        },
+        {
+          "family" : "Baxter",
+          "given" : [
+            "Amy",
+            "V."
+          ],
+          "suffix" : [
+            "PharmD"
+          ],
+          "period" : {
+            "start" : "2020-07-22"
+          }
+        }
+      ],
+      "telecom" : [
+        {
+          "system" : "phone",
+          "value" : "555-555-5555",
+          "use" : "home"
+        },
+        {
+          "system" : "email",
+          "value" : "amy.shaw@example.com"
+        }
+      ],
+      "gender" : "female",
+      "birthDate" : "1987-02-20",
+      "address" : [
+        {
+          "line" : [
+            "49 Meadow St"
+          ],
+          "city" : "Mounds",
+          "state" : "OK",
+          "postalCode" : "74047",
+          "country" : "US",
+          "period" : {
+            "start" : "2016-12-06",
+            "end" : "2020-07-22"
+          }
+        },
+        {
+          "line" : [
+            "183 Mountain View St"
+          ],
+          "city" : "Mounds",
+          "state" : "OK",
+          "postalCode" : "74048",
+          "country" : "US",
+          "period" : {
+            "start" : "2020-07-22"
+          }
+        }
+      ]
+    }
   },
   {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
-    "resource" : "Encounter/encounter-cancer-example"
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Encounter/example-Encounter",
+    "resource" : {
+      "resourceType" : "Encounter",
+      "id" : "example-Encounter",
+      "meta" : {
+        "lastUpdated" : "2017-05-26T11:56:57.250-04:00",
+        "profile" : [
+          "http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter"
+        ]
+      },
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><p><b>id</b>: example-1</p><p><b>meta</b>: </p><p><b>status</b>: finished</p><p><b>class</b>: <span title=\"{http://terminology.hl7.org/CodeSystem/v3-ActCode AMB}\">ambulatory</span></p><p><b>type</b>: <span title=\"Codes: {http://www.ama-assn.org/go/cpt 99201}\">Office Visit</span></p><p><b>subject</b>: <a href=\"Patient-example.html\">Generated Summary: id: example; Medical Record Number: 1032702 (USUAL); active; Amy V. Shaw , Amy V. Baxter ; ph: 555-555-5555(HOME), amy.shaw@example.com; gender: female; birthDate: 1987-02-20</a></p><p><b>period</b>: 02/11/2015 9:00:14 AM --&gt; 02/11/2015 10:00:14 AM</p></div>"
+      },
+      "status" : "finished",
+      "class" : {
+        "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+        "code" : "AMB",
+        "display" : "ambulatory"
+      },
+      "type" : [
+        {
+          "coding" : [
+            {
+              "system" : "http://www.ama-assn.org/go/cpt",
+              "code" : "99201"
+            }
+          ],
+          "text" : "Office Visit"
+        }
+      ],
+      "subject" : {
+        "reference" : "Patient/example"
+      },
+      "period" : {
+        "start" : "2015-11-01T17:00:14-05:00",
+        "end" : "2015-11-01T18:00:14-05:00"
+      }
+    }
   },
   {
     "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Condition/primary-cancer-condition-breast",
@@ -409,7 +630,7 @@
       },
       "onsetDateTime" : "2019-04-01",
       "asserter" : {
-        "reference" : "Practitioner/1"
+        "reference" : "Practitioner/example-Practitioner"
       },
       "stage" : [{
         "summary" : {
@@ -423,8 +644,52 @@
     }
   },
   {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
-    "resource" : "Practitioner/1"
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Practitioner/example-Practitioner",
+    "resource" : {
+      "resourceType" : "Practitioner",
+      "id" : "example-Practitioner",
+      "meta" : {
+        "profile" : [
+          "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner"
+        ]
+      },
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><p><b>id</b>: practitioner-1</p><p><b>meta</b>: </p><p><b>identifier</b>: id: 9941339108, id: 25456</p><p><b>name</b>: Ronald Bone </p><p><b>address</b>: 1003 Healthcare Drive Amherst MA 01002 (HOME)</p></div>"
+      },
+      "identifier" : [
+        {
+          "system" : "http://hl7.org.fhir/sid/us-npi",
+          "value" : "9941339108"
+        },
+        {
+          "system" : "http://www.acme.org/practitioners",
+          "value" : "25456"
+        }
+      ],
+      "name" : [
+        {
+          "family" : "Bone",
+          "given" : [
+            "Ronald"
+          ],
+          "prefix" : [
+            "Dr"
+          ]
+        }
+      ],
+      "address" : [
+        {
+          "use" : "home",
+          "line" : [
+            "1003 Healthcare Drive"
+          ],
+          "city" : "Amherst",
+          "state" : "MA",
+          "postalCode" : "01002"
+        }
+      ]
+    }
   },
   {
     "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Condition/secondary-cancer-condition-brain-mets",
@@ -690,16 +955,170 @@
     }
   },
   {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
-    "resource" : "Condition/CONDITION1"
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Condition/example-Condition",
+    "resource" : {
+      "resourceType" : "Condition",
+      "id" : "example-Condition",
+      "meta" : {
+        "profile" : [
+          "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition"
+        ]
+      },
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><p><b>id</b>: example</p><p><b>meta</b>: </p><p><b>clinicalStatus</b>: <span title=\"Codes: {http://terminology.hl7.org/CodeSystem/condition-clinical active}\">Active</span></p><p><b>verificationStatus</b>: <span title=\"Codes: {http://terminology.hl7.org/CodeSystem/condition-ver-status confirmed}\">Confirmed</span></p><p><b>category</b>: <span title=\"Codes: {http://terminology.hl7.org/CodeSystem/condition-category problem-list-item}\">Problem</span></p><p><b>code</b>: <span title=\"Codes: {http://snomed.info/sct 442311008}\">Single liveborn, born in hospital</span></p><p><b>subject</b>: <a href=\"Patient-example.html\">Amy V. Shaw. Generated Summary: id: example; Medical Record Number: 1032702 (USUAL); active; Amy V. Shaw , Amy V. Baxter ; ph: 555-555-5555(HOME), amy.shaw@example.com; gender: female; birthDate: 1987-02-20</a></p><p><b>onset</b>: 2016-08-10</p></div>"
+      },
+      "clinicalStatus" : {
+        "coding" : [
+          {
+            "system" : "http://terminology.hl7.org/CodeSystem/condition-clinical",
+            "code" : "active",
+            "display" : "Active"
+          }
+        ],
+        "text" : "Active"
+      },
+      "verificationStatus" : {
+        "coding" : [
+          {
+            "system" : "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+            "code" : "confirmed",
+            "display" : "Confirmed"
+          }
+        ],
+        "text" : "Confirmed"
+      },
+      "category" : [
+        {
+          "coding" : [
+            {
+              "system" : "http://terminology.hl7.org/CodeSystem/condition-category",
+              "code" : "problem-list-item",
+              "display" : "Problem List Item"
+            }
+          ],
+          "text" : "Problem"
+        }
+      ],
+      "code" : {
+        "coding" : [
+          {
+            "system" : "http://snomed.info/sct",
+            "code" : "442311008",
+            "display" : "Liveborn born in hospital"
+          }
+        ],
+        "text" : "Single liveborn, born in hospital"
+      },
+      "subject" : {
+        "reference" : "Patient/example",
+        "display" : "Amy V. Shaw"
+      },
+      "onsetDateTime" : "2016-08-10"
+    }
   },
   {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
-    "resource" : "AllergyIntolerance/example"
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/AllergyIntolerance/example-AllergyIntolerance",
+    "resource" : {
+      "resourceType" : "AllergyIntolerance",
+      "id" : "example-AllergyIntolerance",
+      "meta" : {
+        "profile" : [
+          "http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance"
+        ]
+      },
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><p><b>id</b>: example</p><p><b>meta</b>: </p><p><b>clinicalStatus</b>: <span title=\"Codes: {http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical active}\">Active</span></p><p><b>verificationStatus</b>: <span title=\"Codes: {http://terminology.hl7.org/CodeSystem/allergyintolerance-verification confirmed}\">Confirmed</span></p><p><b>category</b>: medication</p><p><b>criticality</b>: high</p><p><b>code</b>: <span title=\"Codes: {http://snomed.info/sct 387406002}\">sulfonamide antibacterial</span></p><p><b>patient</b>: <a href=\"Patient-example.html\">Amy V. Shaw. Generated Summary: id: example; Medical Record Number: 1032702 (USUAL); active; Amy V. Shaw , Amy V. Baxter ; ph: 555-555-5555(HOME), amy.shaw@example.com; gender: female; birthDate: 1987-02-20</a></p><h3>Reactions</h3><table class=\"grid\"><tr><td>-</td><td><b>Manifestation</b></td><td><b>Severity</b></td></tr><tr><td>*</td><td><span title=\"Codes: {http://snomed.info/sct 271807003}\">skin rash</span></td><td>mild</td></tr></table></div>"
+      },
+      "clinicalStatus" : {
+        "coding" : [
+          {
+            "system" : "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
+            "code" : "active"
+          }
+        ]
+      },
+      "verificationStatus" : {
+        "coding" : [
+          {
+            "system" : "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+            "code" : "confirmed"
+          }
+        ]
+      },
+      "category" : [
+        "medication"
+      ],
+      "criticality" : "high",
+      "code" : {
+        "coding" : [
+          {
+            "system" : "http://snomed.info/sct",
+            "code" : "387406002",
+            "display" : "Sulfonamide (substance)"
+          }
+        ],
+        "text" : "sulfonamide antibacterial"
+      },
+      "patient" : {
+        "reference" : "Patient/example",
+        "display" : "Amy V. Shaw"
+      },
+      "reaction" : [
+        {
+          "manifestation" : [
+            {
+              "coding" : [
+                {
+                  "system" : "http://snomed.info/sct",
+                  "code" : "271807003",
+                  "display" : "skin rash"
+                }
+              ],
+              "text" : "skin rash"
+            }
+          ],
+          "severity" : "mild"
+        }
+      ]
+    }
   },
   {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
-    "resource" : "Medication/MEDICATION1"
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Medication/uscore-med1",
+    "resource" : {
+      "resourceType": "Medication",
+      "id": "uscore-med1",
+      "meta": {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/instance-name",
+            "valueString": "Uscore Med1 Example"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/instance-description",
+            "valueMarkdown": "This is a uscore med1 example for the *US Core Medication Profile*."
+          }
+        ],
+        "profile": [
+          "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication"
+        ]
+      },
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"uscore-med1\" </p><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-medication.html\">US Core Medication Profile</a></p></div><p><b>code</b>: lisinopril oral 10 mg <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/3.1.0/CodeSystem-v3-rxNorm.html\">RxNorm</a>#206765 \"Prinivil 10 MG Oral Tablet\")</span></p></div>"
+      },
+      "code": {
+        "coding": [
+          {
+            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+            "code": "206765",
+            "display": "Prinivil 10 MG Oral Tablet"
+          }
+        ],
+        "text": "lisinopril oral 10 mg"
+      }
+    }
   },
   {
     "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/MedicationAdministration/cancer-related-medication-admin-cyclophosphamide-jenny-m",
@@ -774,8 +1193,205 @@
     }
   },
   {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
-    "resource" : "MedicationStatement/1"
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/MedicationStatement/example-MedicationStatement",
+    "resource" : {
+      "resourceType": "MedicationStatement",
+      "id": "example-MedicationStatement",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: example001</p><p><b>contained</b>: </p><p><b>identifier</b>: 12345689 (OFFICIAL)</p><p><b>status</b>: active</p><p><b>category</b>: Inpatient <span>(Details : {http://terminology.hl7.org/CodeSystem/medication-statement-category code 'inpatient' = 'Inpatient', given as 'Inpatient'})</span></p><p><b>medication</b>: id: med0309; Tylenol PM <span>(Details : {http://hl7.org/fhir/sid/ndc code '50580-506-02' = 'n/a', given as 'Tylenol PM'})</span>; Film-coated tablet (qualifier value) <span>(Details : {SNOMED CT code '385057009' = 'Film-coated tablet', given as 'Film-coated tablet (qualifier value)'})</span></p><p><b>subject</b>: <a>Donald Duck</a></p><p><b>effective</b>: 23/01/2015</p><p><b>dateAsserted</b>: 22/02/2015</p><p><b>informationSource</b>: <a>Donald Duck</a></p><p><b>derivedFrom</b>: <a>MedicationRequest/medrx002</a></p><p><b>reasonCode</b>: Restless Legs <span>(Details : {SNOMED CT code '32914008' = 'Restless legs', given as 'Restless Legs'})</span></p><p><b>note</b>: Patient indicates they miss the occasional dose</p><p><b>dosage</b>: </p></div>"
+      },
+      "contained": [
+        {
+          "resourceType": "Medication",
+          "id": "med0309",
+          "code": {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/sid/ndc",
+                "code": "50580-506-02",
+                "display": "Tylenol PM"
+              }
+            ]
+          },
+          "form": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "385057009",
+                "display": "Film-coated tablet (qualifier value)"
+              }
+            ]
+          },
+          "ingredient": [
+            {
+              "itemCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                    "code": "315266",
+                    "display": "Acetaminophen 500 MG"
+                  }
+                ]
+              },
+              "strength": {
+                "numerator": {
+                  "value": 500,
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mg"
+                },
+                "denominator": {
+                  "value": 1,
+                  "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm",
+                  "code": "Tab"
+                }
+              }
+            },
+            {
+              "itemCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                    "code": "901813",
+                    "display": "Diphenhydramine Hydrochloride 25 mg"
+                  }
+                ]
+              },
+              "strength": {
+                "numerator": {
+                  "value": 25,
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mg"
+                },
+                "denominator": {
+                  "value": 1,
+                  "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm",
+                  "code": "Tab"
+                }
+              }
+            }
+          ],
+          "batch": {
+            "lotNumber": "9494788",
+            "expirationDate": "2017-05-22"
+          }
+        }
+      ],
+      "identifier": [
+        {
+          "use": "official",
+          "system": "http://www.bmc.nl/portal/medstatements",
+          "value": "12345689"
+        }
+      ],
+      "status": "active",
+      "category": {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/medication-statement-category",
+            "code": "inpatient",
+            "display": "Inpatient"
+          }
+        ]
+      },
+      "medicationReference": {
+        "reference": "#med0309"
+      },
+      "subject": {
+        "reference": "Patient/pat1",
+        "display": "Donald Duck"
+      },
+      "effectiveDateTime": "2015-01-23",
+      "dateAsserted": "2015-02-22",
+      "informationSource": {
+        "reference": "Patient/pat1",
+        "display": "Donald Duck"
+      },
+      "derivedFrom": [
+        {
+          "reference": "MedicationRequest/medrx002"
+        }
+      ],
+      "reasonCode": [
+        {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "32914008",
+              "display": "Restless Legs"
+            }
+          ]
+        }
+      ],
+      "note": [
+        {
+          "text": "Patient indicates they miss the occasional dose"
+        }
+      ],
+      "dosage": [
+        {
+          "sequence": 1,
+          "text": "1-2 tablets once daily at bedtime as needed for restless legs",
+          "additionalInstruction": [
+            {
+              "text": "Taking at bedtime"
+            }
+          ],
+          "timing": {
+            "repeat": {
+              "frequency": 1,
+              "period": 1,
+              "periodUnit": "d"
+            }
+          },
+          "asNeededCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "32914008",
+                "display": "Restless Legs"
+              }
+            ]
+          },
+          "route": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "26643006",
+                "display": "Oral Route"
+              }
+            ]
+          },
+          "doseAndRate": [
+            {
+              "type": {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/dose-rate-type",
+                    "code": "ordered",
+                    "display": "Ordered"
+                  }
+                ]
+              },
+              "doseRange": {
+                "low": {
+                  "value": 1,
+                  "unit": "TAB",
+                  "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm",
+                  "code": "TAB"
+                },
+                "high": {
+                  "value": 2,
+                  "unit": "TAB",
+                  "system": "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm",
+                  "code": "TAB"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
   },
   {
     "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/MedicationRequest/cancer-related-medication-request-anastrozole-jenny-m",
@@ -958,43 +1574,509 @@
     }
   },
   {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
-    "resource" : "Observation/1"
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Observation/blood-glucose",
+    "resource" : {
+      "resourceType": "Observation",
+      "id": "blood-glucose",
+      "meta": {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/instance-name",
+            "valueString": "Blood Glucose Example"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/instance-description",
+            "valueMarkdown": "This is a blood glucose example for the *US Core Observation Lab Profile*."
+          }
+        ],
+        "versionId": "1165",
+        "lastUpdated": "2016-03-09T15:29:58.328+00:00",
+        "profile": [
+          "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab"
+        ]
+      },
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"blood-glucose\" Version \"1165\" Updated \"2016-03-09 03:29:58+0000\" </p><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-observation-lab.html\">US Core Laboratory Result Observation Profile</a></p></div><p><b>status</b>: final</p><p><b>category</b>: Laboratory <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/3.1.0/CodeSystem-observation-category.html\">Observation Category Codes</a>#laboratory)</span></p><p><b>code</b>: Glucose Bld-mCnc <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2339-0)</span></p><p><b>subject</b>: <a href=\"Patient-example.html\">Patient/example: Amy Shaw</a> \" SHAW\"</p><p><b>effective</b>: 2005-07-05</p><p><b>value</b>: 76.0 mg/dL</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td><td><b>Type</b></td></tr><tr><td>*</td><td>40.0 mg/dL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mg/dL = 'mg/dL')</span></td><td>109.0 mg/dL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mg/dL = 'mg/dL')</span></td><td>Normal Range <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/3.1.0/CodeSystem-referencerange-meaning.html\">Observation Reference Range Meaning Codes</a>#normal)</span></td></tr></table></div>"
+      },
+      "status": "final",
+      "category": [
+        {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+              "code": "laboratory",
+              "display": "Laboratory"
+            }
+          ],
+          "text": "Laboratory"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "2339-0",
+            "display": "Glucose Bld-mCnc"
+          }
+        ],
+        "text": "Glucose Bld-mCnc"
+      },
+      "subject": {
+        "reference": "Patient/example",
+        "display": "Amy Shaw"
+      },
+      "effectiveDateTime": "2005-07-05",
+      "valueQuantity": {
+        "value": 76.0,
+        "unit": "mg/dL",
+        "system": "http://unitsofmeasure.org"
+      },
+      "referenceRange": [
+        {
+          "low": {
+            "value": 40.0,
+            "unit": "mg/dL",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg/dL"
+          },
+          "high": {
+            "value": 109.0,
+            "unit": "mg/dL",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg/dL"
+          },
+          "type": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/referencerange-meaning",
+                "code": "normal",
+                "display": "Normal Range"
+              }
+            ],
+            "text": "Normal Range"
+          }
+        }
+      ]
+    }
   },
   {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
-    "resource" : "DiagnosticReport/1 #Results"
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/DiagnosticReport/cbc",
+    "resource" : {
+      "resourceType": "DiagnosticReport",
+      "id": "cbc",
+      "meta": {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/instance-name",
+            "valueString": "CBC Example"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/instance-description",
+            "valueMarkdown": "This is a CBC example for the *US Core DiagnosticReport Lab Profile*."
+          }
+        ],
+        "profile": [
+          "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab"
+        ]
+      },
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2><span title=\"Codes: {http://loinc.org 58410-2}\">CBC panel - Blood by Automated count</span> (<span title=\"Codes: {http://terminology.hl7.org/CodeSystem/v2-0074 LAB}\">Laboratory</span>) </h2><table class=\"grid\"><tr><td>Subject</td><td><b>Amy V. Baxter </b> female, DoB: 1987-02-20 ( Medical Record Number: 1032702 (USUAL))</td></tr><tr><td>When For</td><td>2005-07-05</td></tr><tr><td>Reported</td><td>2005-07-06 11:45:33+1100</td></tr></table><p><b>Report Details</b></p><table class=\"grid\"><tr><td><b>Code</b></td><td><b>Value</b></td><td><b>Reference Range</b></td><td><b>When For</b></td></tr><tr><td><a href=\"Observation-neutrophils.html\"><span title=\"Codes: {http://loinc.org 770-8}\">Neutrophils %</span></a></td><td>40.0 %</td><td><span title=\"Codes: {http://terminology.hl7.org/CodeSystem/referencerange-meaning normal}\">Normal Range</span>: 37.0 % - 67.0 %</td><td>2005-07-05</td></tr><tr><td><a href=\"Observation-mchc.html\"><span title=\"Codes: {http://loinc.org 786-4}\">MCHC RBC Auto-mCnc</span></a></td><td>34.7 g/dL</td><td><span title=\"Codes: {http://terminology.hl7.org/CodeSystem/referencerange-meaning normal}\">Normal Range</span>: 30.0 g/dL - 34.0 g/dL</td><td>2005-07-05</td></tr><tr><td><a href=\"Observation-hemoglobin.html\"><span title=\"Codes: {http://loinc.org 718-7}\">Hgb Bld-mCnc</span></a></td><td>17.0 g/dL</td><td><span title=\"Codes: {http://terminology.hl7.org/CodeSystem/referencerange-meaning normal}\">Normal Range</span>: 16.5 g/dL - 21.5 g/dL</td><td>2005-07-05</td></tr><tr><td><a href=\"Observation-erythrocytes.html\"><span title=\"Codes: {http://loinc.org 789-8}\">RBC # Bld Auto</span></a></td><td>4.58 10*6/uL</td><td><span title=\"Codes: {http://terminology.hl7.org/CodeSystem/referencerange-meaning normal}\">Normal Range</span>: 4.1 10*6/uL - 6.1 10*6/uL</td><td>2005-07-05</td></tr></table></div>"
+      },
+      "status": "final",
+      "category": [
+        {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+              "code": "LAB",
+              "display": "Laboratory"
+            }
+          ]
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "58410-2",
+            "display": "CBC panel - Blood by Automated count"
+          }
+        ]
+      },
+      "subject": {
+        "reference": "Patient/example",
+        "display": "Amy Shaw"
+      },
+      "effectiveDateTime": "2005-07-05",
+      "issued": "2005-07-06T11:45:33+11:00",
+      "performer": [
+        {
+          "reference": "Organization/acme-lab",
+          "display": "Acme Laboratory, Inc"
+        }
+      ],
+      "result": [
+        {
+          "reference": "Observation/neutrophils",
+          "display": "NEUTROPHILS"
+        },
+        {
+          "reference": "Observation/mchc",
+          "display": "MCHC"
+        },
+        {
+          "reference": "Observation/hemoglobin",
+          "display": "HEMOGLOBIN"
+        },
+        {
+          "reference": "Observation/erythrocytes",
+          "display": "ERYTHROCYTES"
+        }
+      ]
+    }
   },
   {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
-    "resource" : "DocumentReference/1"
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/DocumentReference/example-DocumentReference",
+    "resource" : {
+      "resourceType" : "DocumentReference",
+      "id" : "example-DocumentReference",
+      "meta" : {
+        "profile" : [
+          "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference"
+        ]
+      },
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><p><b>id</b>: episode-summary</p><p><b>meta</b>: </p><p><b>identifier</b>: id: urn:oid:2.16.840.1.113883.19.5.99999.1</p><p><b>status</b>: current</p><p><b>type</b>: <span title=\"Codes: {http://loinc.org 34133-9}\">CCD Document</span></p><p><b>category</b>: <span title=\"Codes: {http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category clinical-note}\">Clinical Note</span></p><p><b>subject</b>: <a href=\"Patient-example.html\">Amy Shaw. Generated Summary: id: example; Medical Record Number: 1032702 (USUAL); active; Amy V. Shaw , Amy V. Baxter ; ph: 555-555-5555(HOME), amy.shaw@example.com; gender: female; birthDate: 1987-02-20</a></p><p><b>date</b>: 10/03/2016 2:29:46 AM</p><p><b>author</b>: <a href=\"Practitioner-practitioner-1.html\">Ronald Bone, MD. Generated Summary: id: practitioner-1; id: 9941339108, id: 25456; Ronald Bone </a></p><p><b>description</b>: Pulmonology clinic acute visit</p><h3>Contents</h3><table class=\"grid\"><tr><td>-</td><td><b>Attachment</b></td><td><b>Format</b></td></tr><tr><td>*</td><td></td><td><span title=\"{urn:oid:1.3.6.1.4.1.19376.1.2.3 urn:hl7-org:sdwg:ccda-structuredBody:2.1}\">Documents following C-CDA constraints using a structured body</span></td></tr></table><h3>Contexts</h3><table class=\"grid\"><tr><td>-</td><td><b>Period</b></td></tr><tr><td>*</td><td>23/12/2004 8:00:00 AM --&gt; 23/12/2004 8:01:00 AM</td></tr></table></div>"
+      },
+      "identifier" : [
+        {
+          "system" : "urn:ietf:rfc:3986",
+          "value" : "urn:oid:2.16.840.1.113883.19.5.99999.1"
+        }
+      ],
+      "status" : "current",
+      "type" : {
+        "coding" : [
+          {
+            "system" : "http://loinc.org",
+            "code" : "34133-9",
+            "display" : "Summary of episode note"
+          }
+        ],
+        "text" : "CCD Document"
+      },
+      "category" : [
+        {
+          "coding" : [
+            {
+              "system" : "http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category",
+              "code" : "clinical-note",
+              "display" : "Clinical Note"
+            }
+          ],
+          "text" : "Clinical Note"
+        }
+      ],
+      "subject" : {
+        "reference" : "Patient/example",
+        "display" : "Amy Shaw"
+      },
+      "date" : "2016-03-09T15:29:46Z",
+      "author" : [
+        {
+          "reference" : "Practitioner/practitioner-1",
+          "display" : "Ronald Bone, MD"
+        }
+      ],
+      "description" : "Pulmonology clinic acute visit",
+      "content" : [
+        {
+          "attachment" : {
+            "contentType" : "text/plain",
+            "url" : "/Binary/1-note",
+            "title" : "Uri where the data can be found: [base]/Binary/1-note"
+          },
+          "format" : {
+            "system" : "urn:oid:1.3.6.1.4.1.19376.1.2.3",
+            "code" : "urn:hl7-org:sdwg:ccda-structuredBody:2.1",
+            "display" : "Documents following C-CDA constraints using a structured body"
+          }
+        }
+      ],
+      "context" : {
+        "period" : {
+          "start" : "2004-12-23T08:00:00+11:00",
+          "end" : "2004-12-23T08:01:00+11:00"
+        }
+      }
+    }
   },
   {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
-    "resource" : "DiagnosticReport/1"
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/ServiceRequest/lipid",
+    "resource" : {
+      "resourceType": "ServiceRequest",
+      "id": "lipid",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: lipid</p><p><b>contained</b>: , </p><p><b>identifier</b>: Placer = 2345234234234</p><p><b>status</b>: active</p><p><b>intent</b>: original-order</p><p><b>code</b>: Lipid Panel <span>(Details : {http://acme.org/tests code 'LIPID' = 'LIPID)</span></p><p><b>subject</b>: <a>Patient/example</a></p><p><b>encounter</b>: <a>Encounter/example</a></p><p><b>occurrence</b>: 02/05/2013 4:16:00 PM</p><p><b>requester</b>: <a>Practitioner/example</a></p><p><b>performer</b>: <a>Practitioner/f202</a></p><p><b>reasonCode</b>: Fam hx-ischem heart dis <span>(Details : {ICD-9 code 'V173' = 'V173', given as 'Fam hx-ischem heart dis'})</span></p><p><b>supportingInfo</b>: Fasting status. Generated Summary: id: fasting; status: final; Fasting status - Reported <span>(Details : {LOINC code '49541-6' = 'Fasting status - Reported', given as 'Fasting status - Reported'})</span>; Yes <span>(Details : {http://terminology.hl7.org/CodeSystem/v2-0136 code 'Y' = 'Yes', given as 'Yes'})</span></p><p><b>specimen</b>: Serum specimen. Generated Summary: id: serum; 20150107-0012; Serum sample <span>(Details : {SNOMED CT code '119364003' = 'Serum specimen', given as 'Serum sample'})</span></p><p><b>note</b>: patient is afraid of needles</p></div>"
+      },
+      "contained": [
+        {
+          "resourceType": "Observation",
+          "id": "fasting",
+          "status": "final",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "49541-6",
+                "display": "Fasting status - Reported"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "Patient/example"
+          },
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0136",
+                "code": "Y",
+                "display": "Yes"
+              }
+            ]
+          }
+        },
+        {
+          "resourceType": "Specimen",
+          "id": "serum",
+          "identifier": [
+            {
+              "system": "http://acme.org/specimens",
+              "value": "20150107-0012"
+            }
+          ],
+          "type": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "119364003",
+                "display": "Serum sample"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "Patient/example"
+          },
+          "collection": {
+            "collectedDateTime": "2015-08-16T06:40:17Z"
+          }
+        }
+      ],
+      "identifier": [
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                "code": "PLAC"
+              }
+            ],
+            "text": "Placer"
+          },
+          "system": "urn:oid:1.3.4.5.6.7",
+          "value": "2345234234234"
+        }
+      ],
+      "status": "active",
+      "intent": "original-order",
+      "code": {
+        "coding": [
+          {
+            "system": "http://acme.org/tests",
+            "code": "LIPID"
+          }
+        ],
+        "text": "Lipid Panel"
+      },
+      "subject": {
+        "reference": "Patient/example"
+      },
+      "encounter": {
+        "reference": "Encounter/example"
+      },
+      "occurrenceDateTime": "2013-05-02T16:16:00-07:00",
+      "requester": {
+        "reference": "Practitioner/example"
+      },
+      "performer": [
+        {
+          "reference": "Practitioner/f202"
+        }
+      ],
+      "reasonCode": [
+        {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-9",
+              "code": "V173",
+              "display": "Fam hx-ischem heart dis"
+            }
+          ]
+        }
+      ],
+      "supportingInfo": [
+        {
+          "reference": "#fasting",
+          "display": "Fasting status"
+        }
+      ],
+      "specimen": [
+        {
+          "reference": "#serum",
+          "display": "Serum specimen"
+        }
+      ],
+      "note": [
+        {
+          "text": "patient is afraid of needles"
+        }
+      ]
+    }
   },
   {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
-    "resource" : "MedicationReferences/1"
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/CarePlan/example-CarePlan",
+    "resource" : {
+      "resourceType" : "CarePlan",
+      "id" : "example-CarePlan",
+      "meta" : {
+        "profile" : [
+          "http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan"
+        ]
+      },
+      "text" : {
+        "status" : "additional",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\t\t\t<strong>Assessment</strong>\n\t\t\t<ol>\n\t\t\t\t<li>Recurrent GI bleed of unknown etiology; hypotension perhaps secondary to this but as likely secondary to polypharmacy.</li>\n\t\t\t\t<li>Acute on chronic anemia secondary to #1.</li>\n\t\t\t\t<li>Azotemia, acute renal failure with volume loss secondary to #1.</li>\n\t\t\t\t<li>Hyperkalemia secondary to #3 and on ACE and K+ supplement.</li>\n\t\t\t\t<li>Other chronic diagnoses as noted above, currently stable.</li>\n\t\t\t</ol>\n\t\t\t<table>\n\t\t\t\t<thead>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<th>Planned Activity</th>\n\t\t\t\t\t\t<th>Planned Date</th>\n\t\t\t\t\t</tr>\n\t\t\t\t</thead>\n\t\t\t\t<tbody>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td>Colonoscopy</td>\n\t\t\t\t\t\t<td>April 21, 2000</td>\n\t\t\t\t\t</tr>\n\t\t\t\t</tbody>\n\t\t\t</table>\n\t\t</div>"
+      },
+      "status" : "active",
+      "intent" : "order",
+      "category" : [
+        {
+          "coding" : [
+            {
+              "system" : "http://hl7.org/fhir/us/core/CodeSystem/careplan-category",
+              "code" : "assess-plan"
+            }
+          ]
+        }
+      ],
+      "subject" : {
+        "reference" : "Patient/example",
+        "display" : "Amy Shaw"
+      }
+    }
   },
   {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
-    "resource" : "ServiceRequest/1"
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Procedure/rehab",
+    "resource" : {
+      "resourceType": "Procedure",
+      "id": "rehab",
+      "meta": {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/instance-name",
+            "valueString": "Rehab Example"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/instance-description",
+            "valueMarkdown": "This is a rehab example for the *US Core Procedure Profile*."
+          }
+        ],
+        "profile": [
+          "http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure"
+        ]
+      },
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource \"rehab\" </p><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-us-core-procedure.html\">US Core Procedure Profile</a></p></div><p><b>status</b>: completed</p><p><b>code</b>: Alcohol rehabilitation <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#24165007 \"Alcoholism counseling\"; <a href=\"http://terminology.hl7.org/3.1.0/CodeSystem-icd10PCS.html\">ICD-10 Procedure Codes</a>#HZ30ZZZ \"Individual Counseling for Substance Abuse Treatment, Cognitive\")</span></p><p><b>subject</b>: <a href=\"Patient-example.html\">Patient/example: Amy Shaw</a> \" SHAW\"</p><p><b>performed</b>: 2002-05-23</p></div>"
+      },
+      "status": "completed",
+      "code": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "24165007",
+            "display": "Alcoholism counseling"
+          },
+          {
+            "system": "http://www.cms.gov/Medicare/Coding/ICD10",
+            "code": "HZ30ZZZ",
+            "display": "Individual Counseling for Substance Abuse Treatment, Cognitive"
+          }
+        ],
+        "text": "Alcohol rehabilitation"
+      },
+      "subject": {
+        "reference": "Patient/example",
+        "display": "Amy Shaw"
+      },
+      "performedDateTime": "2002-05-23"
+    }
   },
   {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
-    "resource" : "CarePlan/1"
-  },
-  {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
-    "resource" : "Procedure/1"
-  },
-  {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
-    "resource" : "Observation/1"
-  },
-  {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/RESOURCETYPE/ID",
-    "resource" : "SmokingStatusObservation/1"
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Observation/example-SmokingStatus",
+    "resource" : {
+      "resourceType" : "Observation",
+      "id" : "example-SmokingStatus",
+      "meta" : {
+        "profile" : [
+          "http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus"
+        ]
+      },
+      "text" : {
+        "status" : "generated",
+        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><p><b>id</b>: some-day-smoker</p><p><b>meta</b>: </p><p></p><p><b>category</b>: <span title=\"Codes: {http://terminology.hl7.org/CodeSystem/observation-category social-history}\">Social History</span></p><p><b>code</b>: <span title=\"Codes: {http://loinc.org 72166-2}\">Tobacco smoking status</span></p><p><b>subject</b>: <a href=\"Patient-example.html\">Amy Shaw. Generated Summary: id: example; Medical Record Number: 1032702 (USUAL); active; Amy V. Shaw , Amy V. Baxter ; ph: 555-555-5555(HOME), amy.shaw@example.com; gender: female; birthDate: 1987-02-20</a></p><p><b>issued</b>: 18/03/2016 4:27:04 PM</p><p><b>value</b>: <span title=\"Codes: {http://snomed.info/sct 428041000124106}\">Current some day smoker</span></p></div>"
+      },
+      "status" : "final",
+      "category" : [
+        {
+          "coding" : [
+            {
+              "system" : "http://terminology.hl7.org/CodeSystem/observation-category",
+              "code" : "social-history",
+              "display" : "Social History"
+            }
+          ],
+          "text" : "Social History"
+        }
+      ],
+      "code" : {
+        "coding" : [
+          {
+            "system" : "http://loinc.org",
+            "code" : "72166-2",
+            "display" : "Tobacco smoking status"
+          }
+        ],
+        "text" : "Tobacco smoking status"
+      },
+      "subject" : {
+        "reference" : "Patient/example",
+        "display" : "Amy Shaw"
+      },
+      "issued" : "2016-03-18T05:27:04Z",
+      "valueCodeableConcept" : {
+        "coding" : [
+          {
+            "system" : "http://snomed.info/sct",
+            "code" : "428041000124106"
+          }
+        ],
+        "text" : "Current some day smoker"
+      }
+    }
   }]
 }

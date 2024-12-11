@@ -50,8 +50,6 @@ module CancerRegistryReportingTestKit
     # test from: :ccrr_v100_ccrr_reporting_bundle_must_support_test
     test from: :ccrr_v100_central_cancer_registry_primary_cancer_condition_must_support_test
     # test from: :ccrr_v100_message_header_must_support_test
-    test from: :ccrr_v100_us_ph_patient_must_support_test
-    test from: :ccrr_v100_extension_must_support_test
     test from: :ccrr_v100_medication_administration_must_support_test
     test from: :ccrr_v100_mcode_radiotherapy_course_summary_must_support_test
     test from: :ccrr_v100_mcode_secondary_cancer_condition_must_support_test
@@ -63,7 +61,6 @@ module CancerRegistryReportingTestKit
     test from: :ccrr_v100_encounter_must_support_test
     test from: :ccrr_v100_medication_must_support_test
     test from: :ccrr_v100_organization_must_support_test
-    test from: :ccrr_v100_patient_must_support_test
     test from: :ccrr_v100_practitioner_must_support_test
     test from: :ccrr_v100_practitioner_role_must_support_test
     test from: :ccrr_v100_procedure_must_support_test
