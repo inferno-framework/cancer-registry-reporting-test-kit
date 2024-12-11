@@ -25,6 +25,10 @@
 - Extension.extension.url
 - Extension.extension.value[x]
 - Extension.url
-:tests: []
+:tests:
+- :id: ccrr_v100_extension_must_support_test
+  :file_name: extension_must_support_test.rb
+- :id: ccrr_v100_extension_validation_test
+  :file_name: extension_validation_test.rb
 :id: ccrr_v100_extension
 :file_name: extension_group.rb

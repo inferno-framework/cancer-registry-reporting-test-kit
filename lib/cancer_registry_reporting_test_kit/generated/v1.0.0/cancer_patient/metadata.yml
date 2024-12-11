@@ -271,6 +271,10 @@
 - Patient.communication.language.extension.value[x]
 - Patient.link.other
 - Patient.link.type
-:tests: []
+:tests:
+- :id: ccrr_v100_cancer_patient_must_support_test
+  :file_name: cancer_patient_must_support_test.rb
+- :id: ccrr_v100_cancer_patient_validation_test
+  :file_name: cancer_patient_validation_test.rb
 :id: ccrr_v100_cancer_patient
 :file_name: cancer_patient_group.rb

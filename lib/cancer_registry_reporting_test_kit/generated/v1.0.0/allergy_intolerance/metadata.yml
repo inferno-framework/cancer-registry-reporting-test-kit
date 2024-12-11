@@ -28,6 +28,10 @@
 - AllergyIntolerance.code
 - AllergyIntolerance.patient
 - AllergyIntolerance.reaction.manifestation
-:tests: []
+:tests:
+- :id: ccrr_v100_allergy_intolerance_must_support_test
+  :file_name: allergy_intolerance_must_support_test.rb
+- :id: ccrr_v100_allergy_intolerance_validation_test
+  :file_name: allergy_intolerance_validation_test.rb
 :id: ccrr_v100_allergy_intolerance
 :file_name: allergy_intolerance_group.rb

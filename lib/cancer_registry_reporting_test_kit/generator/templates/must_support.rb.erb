@@ -1,12 +1,12 @@
-require_relative '../../must_support_test'
-require_relative '../../generator/group_metadata'
+require_relative '../../../must_support_test'
+require_relative '../../../generator/group_metadata'
 
 module CancerRegistryReportingTestKit
   module <%= module_name %>
     class <%= class_name %> < Inferno::Test
       include CancerRegistryReportingTestKit::MustSupportTest
 
-      title 'All must support elements are provided in the <%= profile_identifier %> resources returned'
+      title 'All must support elements are provided in the <%= profile_identifier.split('_').map(&:capitalize).join(' ') %> resources returned'
       description %(
         US Core Responders SHALL be capable of populating all data elements as
         part of the query results as specified by the US Core Server Capability
@@ -27,7 +27,7 @@ module CancerRegistryReportingTestKit
       end
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, '..', '..', 'generated', 'v1.0.0', '<%= profile_identifier %>' 'metadata.yml'), aliases: true))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
       end
 
       def scratch_resources

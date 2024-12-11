@@ -12,6 +12,9 @@
   Cancer Registry Reporting Primary Cancer Condition.
 :must_supports:
   :extensions:
+  - :id: Condition.extension
+    :path: extension
+    :url: 
   - :id: Condition.extension:assertedDate
     :path: extension
     :url: http://hl7.org/fhir/StructureDefinition/condition-assertedDate
@@ -21,6 +24,9 @@
   - :id: Condition.extension:mcode-cancer-disease-type-evidence-type
     :path: extension
     :url: http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-disease-status-evidence-type
+  - :id: Condition.bodySite.extension
+    :path: bodySite.extension
+    :url: 
   - :id: Condition.bodySite.extension:locationQualifier
     :path: bodySite.extension
     :url: http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-body-location-qualifier
@@ -51,6 +57,7 @@
       :code: sdoh
       :system: http://hl7.org/fhir/us/core/CodeSystem/us-core-tags
   :elements:
+  - :path: Condition
   - :path: clinicalStatus
   - :path: verificationStatus
   - :path: category
@@ -78,6 +85,10 @@
 - Condition.code
 - Condition.bodySite
 - Condition.subject
-:tests: []
+:tests:
+- :id: ccrr_v100_central_cancer_registry_primary_cancer_condition_must_support_test
+  :file_name: central_cancer_registry_primary_cancer_condition_must_support_test.rb
+- :id: ccrr_v100_central_cancer_registry_primary_cancer_condition_validation_test
+  :file_name: central_cancer_registry_primary_cancer_condition_validation_test.rb
 :id: ccrr_v100_central_cancer_registry_primary_cancer_condition
 :file_name: central_cancer_registry_primary_cancer_condition_group.rb

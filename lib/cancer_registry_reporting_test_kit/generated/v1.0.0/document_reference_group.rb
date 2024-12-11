@@ -1,3 +1,5 @@
+require_relative 'document_reference/document_reference_must_support_test'
+require_relative 'document_reference/document_reference_validation_test'
 
 module CancerRegistryReportingTestKit
   module HDEAV100
@@ -68,6 +70,8 @@ read succeeds.
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'document_reference', 'metadata.yml'), aliases: true))
       end
       
+        test from: :ccrr_v100_document_reference_must_support_test
+        test from: :ccrr_v100_document_reference_validation_test
     end
   end
 end

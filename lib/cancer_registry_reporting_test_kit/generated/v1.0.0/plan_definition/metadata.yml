@@ -294,6 +294,10 @@
 - PlanDefinition.action.action.participant.type
 - PlanDefinition.action.action.description
 - PlanDefinition.action.action.textEquivalent
-:tests: []
+:tests:
+- :id: ccrr_v100_plan_definition_must_support_test
+  :file_name: plan_definition_must_support_test.rb
+- :id: ccrr_v100_plan_definition_validation_test
+  :file_name: plan_definition_validation_test.rb
 :id: ccrr_v100_plan_definition
 :file_name: plan_definition_group.rb

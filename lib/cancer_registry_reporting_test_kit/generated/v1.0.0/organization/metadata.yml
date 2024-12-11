@@ -38,6 +38,10 @@
 :mandatory_elements:
 - Organization.active
 - Organization.name
-:tests: []
+:tests:
+- :id: ccrr_v100_organization_must_support_test
+  :file_name: organization_must_support_test.rb
+- :id: ccrr_v100_organization_validation_test
+  :file_name: organization_validation_test.rb
 :id: ccrr_v100_organization
 :file_name: organization_group.rb

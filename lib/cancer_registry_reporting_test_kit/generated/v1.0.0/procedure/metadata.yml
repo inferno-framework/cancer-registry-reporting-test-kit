@@ -29,6 +29,10 @@
 - Procedure.subject
 - Procedure.performer.actor
 - Procedure.focalDevice.manipulated
-:tests: []
+:tests:
+- :id: ccrr_v100_procedure_must_support_test
+  :file_name: procedure_must_support_test.rb
+- :id: ccrr_v100_procedure_validation_test
+  :file_name: procedure_validation_test.rb
 :id: ccrr_v100_procedure
 :file_name: procedure_group.rb

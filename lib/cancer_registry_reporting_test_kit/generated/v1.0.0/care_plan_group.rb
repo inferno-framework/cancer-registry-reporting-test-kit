@@ -1,3 +1,5 @@
+require_relative 'care_plan/care_plan_must_support_test'
+require_relative 'care_plan/care_plan_validation_test'
 
 module CancerRegistryReportingTestKit
   module HDEAV100
@@ -68,6 +70,8 @@ read succeeds.
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'care_plan', 'metadata.yml'), aliases: true))
       end
       
+        test from: :ccrr_v100_care_plan_must_support_test
+        test from: :ccrr_v100_care_plan_validation_test
     end
   end
 end

@@ -148,6 +148,10 @@
 - DocumentReference.relatesTo.target
 - DocumentReference.content
 - DocumentReference.content.attachment
-:tests: []
+:tests:
+- :id: ccrr_v100_document_reference_must_support_test
+  :file_name: document_reference_must_support_test.rb
+- :id: ccrr_v100_document_reference_validation_test
+  :file_name: document_reference_validation_test.rb
 :id: ccrr_v100_document_reference
 :file_name: document_reference_group.rb

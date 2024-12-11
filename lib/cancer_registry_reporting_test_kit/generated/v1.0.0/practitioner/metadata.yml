@@ -42,6 +42,10 @@
 - Practitioner.name
 - Practitioner.name.family
 - Practitioner.qualification.code
-:tests: []
+:tests:
+- :id: ccrr_v100_practitioner_must_support_test
+  :file_name: practitioner_must_support_test.rb
+- :id: ccrr_v100_practitioner_validation_test
+  :file_name: practitioner_validation_test.rb
 :id: ccrr_v100_practitioner
 :file_name: practitioner_group.rb

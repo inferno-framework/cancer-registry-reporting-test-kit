@@ -18,6 +18,10 @@
 :mandatory_elements:
 - Medication.code
 - Medication.ingredient.item[x]
-:tests: []
+:tests:
+- :id: ccrr_v100_medication_must_support_test
+  :file_name: medication_must_support_test.rb
+- :id: ccrr_v100_medication_validation_test
+  :file_name: medication_validation_test.rb
 :id: ccrr_v100_medication
 :file_name: medication_group.rb

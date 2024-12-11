@@ -10,8 +10,13 @@ require_relative 'central_cancer_registry_primary_cancer_condition_group'
 require_relative 'us_ph_patient_group'
 require_relative 'extension_group'
 require_relative 'medication_administration_group'
+require_relative 'medication_request_group'
+require_relative 'mcode_primary_cancer_condition_group'
 require_relative 'mcode_radiotherapy_course_summary_group'
 require_relative 'mcode_secondary_cancer_condition_group'
+require_relative 'mcode_tnm_distant_metastases_category_group'
+require_relative 'mcode_tnm_primary_tumor_category_group'
+require_relative 'mcode_tnm_regional_nodes_category_group'
 require_relative 'mcode_tnm_stage_group_group'
 require_relative 'odh_usual_work_group'
 require_relative 'allergy_intolerance_group'
@@ -25,16 +30,13 @@ require_relative 'practitioner_group'
 require_relative 'practitioner_role_group'
 require_relative 'procedure_group'
 require_relative 'smokingstatus_group'
-require_relative 'must_support_group'
-require_relative 'validation_group'
 
 module CancerRegistryReportingTestKit
   module CCRRV100
     class HDEASuite < Inferno::TestSuite
-      title 'CCRR v1.0.0'
+      title 'CCRR HDEA v1.0.0'
       description %(
-        The US Core Test Kit tests systems for their conformance to the [US Core
-        Implementation Guide]().
+        The HDEA tests systems for their conformance to the [Central Cancer Registry Reporting Content IG](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/index.html).
 
         HL7® FHIR® resources are validated with the Java validator using
         `tx.fhir.org` as the terminology server. Users should note that the
@@ -83,9 +85,7 @@ module CancerRegistryReportingTestKit
         end
       end
 
-      input :url,
-        title: 'FHIR Endpoint',
-        description: 'URL of the FHIR endpoint'
+      input :reports
 
       group do
         input :smart_credentials,
@@ -98,21 +98,26 @@ module CancerRegistryReportingTestKit
           oauth_credentials :smart_credentials
         end
 
-        title 'US Core FHIR API'
+        title 'HDEA MS and Validation Sequence'
         id :ccrr_v100_fhir_api
 
       
+        group from: :ccrr_v100_ccrr_content_bundle
+        group from: :ccrr_v100_composition
+        group from: :ccrr_v100_central_cancer_registry_primary_cancer_condition
         group from: :ccrr_v100_cancer_encounter
         group from: :ccrr_v100_cancer_patient
-        group from: :ccrr_v100_composition
-        group from: :ccrr_v100_ccrr_content_bundle
         group from: :ccrr_v100_plan_definition
-        group from: :ccrr_v100_central_cancer_registry_primary_cancer_condition
         group from: :ccrr_v100_us_ph_patient
         group from: :ccrr_v100_extension
         group from: :ccrr_v100_medication_administration
+        group from: :ccrr_v100_medication_request
+        group from: :ccrr_v100_mcode_primary_cancer_condition
         group from: :ccrr_v100_mcode_radiotherapy_course_summary
         group from: :ccrr_v100_mcode_secondary_cancer_condition
+        group from: :ccrr_v100_mcode_tnm_distant_metastases_category
+        group from: :ccrr_v100_mcode_tnm_primary_tumor_category
+        group from: :ccrr_v100_mcode_tnm_regional_nodes_category
         group from: :ccrr_v100_mcode_tnm_stage_group
         group from: :ccrr_v100_odh_usual_work
         group from: :ccrr_v100_allergy_intolerance
@@ -126,8 +131,6 @@ module CancerRegistryReportingTestKit
         group from: :ccrr_v100_practitioner_role
         group from: :ccrr_v100_procedure
         group from: :ccrr_v100_smokingstatus
-        group from: :ccrr_v100_must_support
-        group from: :ccrr_v100_validation
       end
     end
   end

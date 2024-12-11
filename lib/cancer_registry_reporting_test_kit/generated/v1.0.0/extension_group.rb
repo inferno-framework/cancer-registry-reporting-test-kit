@@ -1,3 +1,5 @@
+require_relative 'extension/extension_must_support_test'
+require_relative 'extension/extension_validation_test'
 
 module CancerRegistryReportingTestKit
   module HDEAV100
@@ -68,6 +70,8 @@ read succeeds.
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'extension', 'metadata.yml'), aliases: true))
       end
       
+        test from: :ccrr_v100_extension_must_support_test
+        test from: :ccrr_v100_extension_validation_test
     end
   end
 end

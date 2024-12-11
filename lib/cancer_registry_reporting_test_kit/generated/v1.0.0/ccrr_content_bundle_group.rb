@@ -1,3 +1,4 @@
+require_relative 'ccrr_content_bundle/ccrr_content_bundle_must_support_test'
 
 module CancerRegistryReportingTestKit
   module HDEAV100
@@ -68,6 +69,7 @@ read succeeds.
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'ccrr_content_bundle', 'metadata.yml'), aliases: true))
       end
       
+        test from: :ccrr_v100_ccrr_content_bundle_must_support_test
     end
   end
 end

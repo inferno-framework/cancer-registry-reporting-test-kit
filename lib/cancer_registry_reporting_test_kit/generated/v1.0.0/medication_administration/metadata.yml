@@ -43,6 +43,10 @@
 - MedicationAdministration.subject
 - MedicationAdministration.effective[x]
 - MedicationAdministration.performer.actor
-:tests: []
+:tests:
+- :id: ccrr_v100_medication_administration_must_support_test
+  :file_name: medication_administration_must_support_test.rb
+- :id: ccrr_v100_medication_administration_validation_test
+  :file_name: medication_administration_validation_test.rb
 :id: ccrr_v100_medication_administration
 :file_name: medication_administration_group.rb

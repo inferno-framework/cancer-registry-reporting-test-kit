@@ -42,6 +42,10 @@
 - CarePlan.category
 - CarePlan.subject
 - CarePlan.activity.detail.status
-:tests: []
+:tests:
+- :id: ccrr_v100_care_plan_must_support_test
+  :file_name: care_plan_must_support_test.rb
+- :id: ccrr_v100_care_plan_validation_test
+  :file_name: care_plan_validation_test.rb
 :id: ccrr_v100_care_plan
 :file_name: care_plan_group.rb
