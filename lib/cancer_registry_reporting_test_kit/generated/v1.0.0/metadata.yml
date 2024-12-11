@@ -2082,6 +2082,214 @@
     :file_name: care_plan_validation_test.rb
   :id: ccrr_v100_care_plan
   :file_name: care_plan_group.rb
+- :name: us_core_diagnosticreport_lab
+  :class_name: UsCoreDiagnosticreportLabSequence
+  :version: v1.0.0
+  :reformatted_version: v100
+  :resource: DiagnosticReport
+  :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab
+  :profile_name: US Core DiagnosticReport Profile for Laboratory Results Reporting
+  :profile_version: 5.0.1
+  :title: DiagnosticReport US Core for Laboratory Results Reporting
+  :short_description: Verify support for the server capabilities required by the US
+    Core DiagnosticReport Profile for Laboratory Results Reporting.
+  :must_supports:
+    :extensions: []
+    :slices:
+    - :slice_id: DiagnosticReport.category:LaboratorySlice
+      :slice_name: LaboratorySlice
+      :path: category
+      :discriminator:
+        :type: patternCodeableConcept
+        :path: ''
+        :code: LAB
+        :system: http://terminology.hl7.org/CodeSystem/v2-0074
+    :elements:
+    - :path: status
+    - :path: category
+    - :path: code
+    - :path: subject
+      :types:
+      - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+    - :path: effectiveDateTime
+      :original_path: effective[x]
+    - :path: issued
+    - :path: performer
+      :types:
+      - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+    - :path: result
+      :types:
+      - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab
+  :mandatory_elements:
+  - DiagnosticReport.status
+  - DiagnosticReport.category
+  - DiagnosticReport.code
+  - DiagnosticReport.subject
+  - DiagnosticReport.media.link
+  :tests:
+  - :id: ccrr_v100_diagnostic_report_lab_must_support_test
+    :file_name: diagnostic_report_lab_must_support_test.rb
+  - :id: ccrr_v100_diagnostic_report_lab_validation_test
+    :file_name: diagnostic_report_lab_validation_test.rb
+  :id: ccrr_v100_diagnostic_report_lab
+  :file_name: diagnostic_report_lab_group.rb
+- :name: us_core_diagnosticreport_note
+  :class_name: UsCoreDiagnosticreportNoteSequence
+  :version: v1.0.0
+  :reformatted_version: v100
+  :resource: DiagnosticReport
+  :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note
+  :profile_name: US Core DiagnosticReport Profile for Report and Note Exchange
+  :profile_version: 5.0.1
+  :title: DiagnosticReport US Core for Report and Note Exchange
+  :short_description: Verify support for the server capabilities required by the US
+    Core DiagnosticReport Profile for Report and Note Exchange.
+  :must_supports:
+    :extensions: []
+    :slices:
+    - :slice_id: DiagnosticReport.category:us-core
+      :slice_name: us-core
+      :path: category
+      :discriminator:
+        :type: requiredBinding
+        :path: ''
+        :values:
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: AU
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: BG
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: BLB
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: CG
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: CH
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: CP
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: CT
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: CTH
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: CUS
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: EC
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: EN
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: GE
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: HM
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: ICU
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: IMM
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: LAB
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: MB
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: MCB
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: MYC
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: NMR
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: NMS
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: NRS
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: OSL
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: OT
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: OTH
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: OUS
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: PF
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: PHR
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: PHY
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: PT
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: RAD
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: RC
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: RT
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: RUS
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: RX
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: SP
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: SR
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: TX
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: VR
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: VUS
+        - :system: http://terminology.hl7.org/CodeSystem/v2-0074
+          :code: XRC
+    :elements:
+    - :path: status
+    - :path: category
+    - :path: code
+    - :path: subject
+      :types:
+      - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+    - :path: encounter
+      :types:
+      - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
+    - :path: effectiveDateTime
+      :original_path: effective[x]
+    - :path: issued
+    - :path: performer
+      :types:
+      - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization
+    - :path: result
+      :types:
+      - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-clinical-test
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-imaging
+    - :path: media
+    - :path: media.link
+      :types:
+      - Reference
+    - :path: presentedForm
+  :mandatory_elements:
+  - DiagnosticReport.status
+  - DiagnosticReport.category
+  - DiagnosticReport.code
+  - DiagnosticReport.subject
+  - DiagnosticReport.media.link
+  :tests:
+  - :id: ccrr_v100_diagnostic_report_note_must_support_test
+    :file_name: diagnostic_report_note_must_support_test.rb
+  - :id: ccrr_v100_diagnostic_report_note_validation_test
+    :file_name: diagnostic_report_note_validation_test.rb
+  :id: ccrr_v100_diagnostic_report_note
+  :file_name: diagnostic_report_note_group.rb
 - :name: us_core_documentreference
   :class_name: UsCoreDocumentreferenceSequence
   :version: v1.0.0
@@ -2337,6 +2545,59 @@
     :file_name: medication_validation_test.rb
   :id: ccrr_v100_medication
   :file_name: medication_group.rb
+- :name: us_core_observation_lab
+  :class_name: UsCoreObservationLabSequence
+  :version: v1.0.0
+  :reformatted_version: v100
+  :resource: Observation
+  :profile_url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab
+  :profile_name: US Core Laboratory Result Observation Profile
+  :profile_version: 5.0.1
+  :title: Observation US Core Laboratory Result
+  :short_description: Verify support for the server capabilities required by the US
+    Core Laboratory Result Observation Profile.
+  :must_supports:
+    :extensions: []
+    :slices:
+    - :slice_id: Observation.category:Laboratory
+      :slice_name: Laboratory
+      :path: category
+      :discriminator:
+        :type: patternCodeableConcept
+        :path: ''
+        :code: laboratory
+        :system: http://terminology.hl7.org/CodeSystem/observation-category
+    :elements:
+    - :path: status
+    - :path: category
+    - :path: code
+    - :path: subject
+      :types:
+      - Reference
+      :target_profiles:
+      - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+    - :path: effectiveDateTime
+      :original_path: effective[x]
+    - :path: valueQuantity
+      :original_path: value[x]
+    - :path: valueCodeableConcept
+      :original_path: value[x]
+    - :path: valueString
+      :original_path: value[x]
+    - :path: dataAbsentReason
+  :mandatory_elements:
+  - Observation.status
+  - Observation.category
+  - Observation.code
+  - Observation.subject
+  - Observation.component.code
+  :tests:
+  - :id: ccrr_v100_observation_lab_must_support_test
+    :file_name: observation_lab_must_support_test.rb
+  - :id: ccrr_v100_observation_lab_validation_test
+    :file_name: observation_lab_validation_test.rb
+  :id: ccrr_v100_observation_lab
+  :file_name: observation_lab_group.rb
 - :name: us_core_organization
   :class_name: UsCoreOrganizationSequence
   :version: v1.0.0

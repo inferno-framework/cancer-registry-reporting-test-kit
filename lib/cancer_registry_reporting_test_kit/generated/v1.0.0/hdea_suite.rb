@@ -21,9 +21,12 @@ require_relative 'mcode_tnm_stage_group_group'
 require_relative 'odh_usual_work_group'
 require_relative 'allergy_intolerance_group'
 require_relative 'care_plan_group'
+require_relative 'diagnostic_report_lab_group'
+require_relative 'diagnostic_report_note_group'
 require_relative 'document_reference_group'
 require_relative 'encounter_group'
 require_relative 'medication_group'
+require_relative 'observation_lab_group'
 require_relative 'organization_group'
 require_relative 'patient_group'
 require_relative 'practitioner_group'
@@ -34,9 +37,10 @@ require_relative 'smokingstatus_group'
 module CancerRegistryReportingTestKit
   module CCRRV100
     class HDEASuite < Inferno::TestSuite
-      title 'CCRR HDEA v1.0.0'
+      title 'HDEA Suite'
       description %(
-        The HDEA tests systems for their conformance to the [Central Cancer Registry Reporting Content IG](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/index.html).
+        The HDEA Test Kit tests systems for their conformance to the [
+        Implementation Guide]().
 
         HL7® FHIR® resources are validated with the Java validator using
         `tx.fhir.org` as the terminology server. Users should note that the
@@ -106,10 +110,7 @@ module CancerRegistryReportingTestKit
         group from: :ccrr_v100_composition
         group from: :ccrr_v100_central_cancer_registry_primary_cancer_condition
         group from: :ccrr_v100_cancer_encounter
-        group from: :ccrr_v100_cancer_patient
         group from: :ccrr_v100_plan_definition
-        group from: :ccrr_v100_us_ph_patient
-        group from: :ccrr_v100_extension
         group from: :ccrr_v100_medication_administration
         group from: :ccrr_v100_medication_request
         group from: :ccrr_v100_mcode_primary_cancer_condition
@@ -122,9 +123,12 @@ module CancerRegistryReportingTestKit
         group from: :ccrr_v100_odh_usual_work
         group from: :ccrr_v100_allergy_intolerance
         group from: :ccrr_v100_care_plan
+        group from: :ccrr_v100_diagnostic_report_lab
+        group from: :ccrr_v100_diagnostic_report_note
         group from: :ccrr_v100_document_reference
         group from: :ccrr_v100_encounter
         group from: :ccrr_v100_medication
+        group from: :ccrr_v100_observation_lab
         group from: :ccrr_v100_organization
         group from: :ccrr_v100_patient
         group from: :ccrr_v100_practitioner
