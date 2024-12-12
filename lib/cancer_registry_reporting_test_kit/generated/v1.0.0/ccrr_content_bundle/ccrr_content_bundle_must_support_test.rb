@@ -7,7 +7,7 @@ module CancerRegistryReportingTestKit
     class CcrrContentBundleMustSupportTest < Inferno::Test
       include CancerRegistryReportingTestKit::MustSupportTest
 
-      title 'All must support elements are provided in the Ccrr Content Bundle resources returned'
+      title 'All must support elements are provided in the CCRR Content Bundle resources returned'
       description %(
         US Core Responders SHALL be capable of populating all data elements as
         part of the query results as specified by the US Core Server Capability

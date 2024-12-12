@@ -1,22 +1,22 @@
 require 'inferno/dsl/oauth_credentials'
 require_relative '../../version'
 
-require_relative 'cancer_encounter_group'
-require_relative 'cancer_patient_group'
+# require_relative 'cancer_encounter_group'
+# require_relative 'cancer_patient_group'
 require_relative 'composition_group'
 require_relative 'ccrr_content_bundle_group'
 require_relative 'plan_definition_group'
 require_relative 'central_cancer_registry_primary_cancer_condition_group'
-require_relative 'us_ph_patient_group'
-require_relative 'extension_group'
+# require_relative 'us_ph_patient_group'
+# require_relative 'extension_group'
 require_relative 'medication_administration_group'
 require_relative 'medication_request_group'
-require_relative 'mcode_primary_cancer_condition_group'
+# require_relative 'mcode_primary_cancer_condition_group'
 require_relative 'mcode_radiotherapy_course_summary_group'
 require_relative 'mcode_secondary_cancer_condition_group'
-require_relative 'mcode_tnm_distant_metastases_category_group'
-require_relative 'mcode_tnm_primary_tumor_category_group'
-require_relative 'mcode_tnm_regional_nodes_category_group'
+# require_relative 'mcode_tnm_distant_metastases_category_group'
+# require_relative 'mcode_tnm_primary_tumor_category_group'
+# require_relative 'mcode_tnm_regional_nodes_category_group'
 require_relative 'mcode_tnm_stage_group_group'
 require_relative 'medication_statement_group'
 require_relative 'observation_group'
@@ -41,7 +41,7 @@ require_relative 'smokingstatus_group'
 module CancerRegistryReportingTestKit
   module CCRRV100
     class HDEASuite < Inferno::TestSuite
-      title 'HDEA CCRR v1.0.0'
+      title 'Cancer Registry Reporting Health Data Exchange App (HDEA) Test Suite'
       description %(
         The US Core Test Kit tests systems for their conformance to the [US Core
         Implementation Guide]().
@@ -93,37 +93,32 @@ module CancerRegistryReportingTestKit
         end
       end
 
-      input :reports
+      input :reports,
+      title: 'Cancer Reports',
+      description: 'Comma-Separated Content Bundle(s)',
+      type: 'textarea'
+
 
       group do
-        input :smart_credentials,
-          title: 'OAuth Credentials',
-          type: :oauth_credentials,
-          optional: true
 
-        fhir_client do
-          url :url
-          oauth_credentials :smart_credentials
-        end
-
-        title 'HDEA MS and Validation'
+        title 'HDEA Cancer Report Generation'
         id :ccrr_v100_fhir_api
 
       
         group from: :ccrr_v100_ccrr_content_bundle
         group from: :ccrr_v100_composition
         group from: :ccrr_v100_central_cancer_registry_primary_cancer_condition
-        group from: :ccrr_v100_cancer_encounter
-        group from: :ccrr_v100_cancer_patient
+        # group from: :ccrr_v100_cancer_encounter
+        # group from: :ccrr_v100_cancer_patient
         group from: :ccrr_v100_plan_definition
-        group from: :ccrr_v100_medication_administration #ROB: Check this is cancer related?
+        group from: :ccrr_v100_medication_administration
         group from: :ccrr_v100_medication_request
-        group from: :ccrr_v100_mcode_primary_cancer_condition #ROB: remove this?
+        # group from: :ccrr_v100_mcode_primary_cancer_condition
         group from: :ccrr_v100_mcode_radiotherapy_course_summary
         group from: :ccrr_v100_mcode_secondary_cancer_condition
-        group from: :ccrr_v100_mcode_tnm_distant_metastases_category #ROB: remove this?
-        group from: :ccrr_v100_mcode_tnm_primary_tumor_category #ROB:remove this?
-        group from: :ccrr_v100_mcode_tnm_regional_nodes_category #ROB: remove this?
+        # group from: :ccrr_v100_mcode_tnm_distant_metastases_category
+        # group from: :ccrr_v100_mcode_tnm_primary_tumor_category
+        # group from: :ccrr_v100_mcode_tnm_regional_nodes_category
         group from: :ccrr_v100_mcode_tnm_stage_group
         group from: :ccrr_v100_medication_statement
         group from: :ccrr_v100_observation

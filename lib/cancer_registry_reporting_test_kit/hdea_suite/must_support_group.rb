@@ -40,7 +40,8 @@ module CancerRegistryReportingTestKit
 
     input :reports,
     title: 'Cancer Reports',
-    description: 'List of Content Bundle(s)'
+    description: 'Comma-Separated Content Bundle(s)',
+    type: 'textarea'
 
     test from: :ccrr_v100_ccrr_content_bundle_must_support_test
     test from: :ccrr_v100_cancer_encounter_must_support_test
