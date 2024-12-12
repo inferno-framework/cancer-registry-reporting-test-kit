@@ -80,7 +80,7 @@ module CancerRegistryReportingTestKit
       id :ccrr_v100
 
       fhir_resource_validator do
-        igs 'ccrr#1.0.0'
+        igs 'ccrr#1.0.0', 'hl7.fhir.us.core#5.0.1'
         message_filters = VALIDATION_MESSAGE_FILTERS
 
         exclude_message do |message|
@@ -97,15 +97,6 @@ module CancerRegistryReportingTestKit
       title: 'Cancer Reports',
       description: 'Comma-Separated Content Bundle(s)',
       type: 'textarea'
-
-      fhir_resource_validator do
-        igs 'hl7.fhir.us.central-cancer-registry-reporting#1.0.0', 'hl7.fhir.us.core#5.0.1'
-  
-        exclude_message do |message|
-          message.message.match?(/\A\S+: \S+: URL value '.*' does not resolve/)
-        end
-      end
-
 
       group do
 
