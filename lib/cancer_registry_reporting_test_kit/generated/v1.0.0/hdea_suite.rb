@@ -116,7 +116,7 @@ module CancerRegistryReportingTestKit
         group from: :ccrr_v100_central_cancer_registry_primary_cancer_condition
         # group from: :ccrr_v100_cancer_encounter
         # group from: :ccrr_v100_cancer_patient
-        group from: :ccrr_v100_plan_definition
+        # group from: :ccrr_v100_plan_definition
         group from: :ccrr_v100_medication_administration
         group from: :ccrr_v100_medication_request
         # group from: :ccrr_v100_mcode_primary_cancer_condition

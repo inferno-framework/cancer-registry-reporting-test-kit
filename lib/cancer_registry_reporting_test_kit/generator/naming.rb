@@ -27,6 +27,7 @@ module CancerRegistryReportingTestKit
       PRACTITIONER_ROLE = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole'
       PROCEDURE = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure'
       PROVENANCE = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-provenance'
+      SERVICE_REQUEST = 'http://hl7.org/fhir/StructureDefinition/ServiceRequest'
 
       ## FOR HDEA
       COMPOSITION = 'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-composition'
