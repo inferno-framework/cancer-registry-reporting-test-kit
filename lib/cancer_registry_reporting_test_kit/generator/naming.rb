@@ -15,7 +15,7 @@ module CancerRegistryReportingTestKit
       LOCATION = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-location'
       MEDICATION = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication'
       MEDICATION_REQUEST = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest'
-      SMOKING_STATUS = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus'
+      SMOKINGSTATUS = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus'
       PEDIATRIC_WEIGHT_FOR_HEIGHT = 'http://hl7.org/fhir/us/core/StructureDefinition/pediatric-weight-for-height'
       OBSERVATION_LAB = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab'
       PEDIATRIC_BMI_FOR_AGE = 'http://hl7.org/fhir/us/core/StructureDefinition/pediatric-bmi-for-age'

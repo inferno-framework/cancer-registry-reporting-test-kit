@@ -38,7 +38,7 @@ module CancerRegistryReportingTestKit
       '29549-3' => {'MedicationAdministration' => 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration', 'Medication' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication'},
       '10160-0' => {'MedicationAdministration' => 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration', 'MedicationStatement' => 'http://hl7.org/fhir/StructureDefinition/MedicationStatement', 'Medication' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication'},
       '30954-2' => {'Observation' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab', 'DiagnosticReport' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab'},
-      '28650-0' => {'Document' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference', 'DiagnosticReport' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note'},
+      '28650-0' => {'DocumentReference' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference', 'DiagnosticReport' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note'},
       '18776-5' => {'MedicationRequest' => 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-request', 'Medication' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication', 'ServiceRequest' => 'http://hl7.org/fhir/StructureDefinition/ServiceRequest', 'CarePlan' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan'},
     }
     
