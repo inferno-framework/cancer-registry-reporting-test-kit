@@ -1,5 +1,4 @@
 require_relative 'ehr_suite/ehr_data_access_group'
-require_relative 'ehr_suite/smart_app_launch_group'
 module CancerRegistryReportingTestKit
   class EHRSuite < Inferno::TestSuite
     id :ccrr_ehr
@@ -13,7 +12,6 @@ module CancerRegistryReportingTestKit
     ## Scope
     ## Test Methodology
     ## Current Limitations
-    The Current version only tests the version 1.0.0 of the SMART App Launch
     '
 
     links [
@@ -71,7 +69,6 @@ module CancerRegistryReportingTestKit
       end
     end
 
-    group from: :ccrr_smart_app_launch_group
     group from: :ccrr_ehr_data_access
 
   end
