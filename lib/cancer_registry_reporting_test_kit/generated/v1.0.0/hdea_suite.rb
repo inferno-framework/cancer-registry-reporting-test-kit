@@ -98,13 +98,19 @@ module CancerRegistryReportingTestKit
       description: 'Comma-Separated Content Bundle(s)',
       type: 'textarea'
 
+      fhir_resource_validator do
+        igs 'hl7.fhir.us.central-cancer-registry-reporting#1.0.0', 'hl7.fhir.us.core#5.0.1'
+  
+        exclude_message do |message|
+          message.message.match?(/\A\S+: \S+: URL value '.*' does not resolve/)
+        end
+      end
+
 
       group do
 
         title 'HDEA Cancer Report Generation'
         id :ccrr_v100_fhir_api
-
-      
         group from: :ccrr_v100_ccrr_content_bundle
         group from: :ccrr_v100_composition
         group from: :ccrr_v100_central_cancer_registry_primary_cancer_condition
@@ -134,6 +140,7 @@ module CancerRegistryReportingTestKit
         group from: :ccrr_v100_medication
         group from: :ccrr_v100_observation_lab
         group from: :ccrr_v100_organization
+        group from: :ccrr_v100_patient
         group from: :ccrr_v100_practitioner
         group from: :ccrr_v100_practitioner_role
         group from: :ccrr_v100_procedure
