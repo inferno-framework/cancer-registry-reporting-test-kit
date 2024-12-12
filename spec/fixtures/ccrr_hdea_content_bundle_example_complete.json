@@ -95,7 +95,7 @@
           "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Cancer Stage Group</p></div>"
         },
         "entry" : [{
-          "reference" : "Observation/cancer-stage-group-example"
+          "reference" : "Observation/tnm-clinical-stage-group-jenny-m"
         }]
       },
       {
@@ -164,7 +164,7 @@
           "reference" : "MedicationAdministration/cancer-related-medication-admin-cyclophosphamide-jenny-m"
         },
         {
-          "reference" : "Medication/MEDICATION1"
+          "reference" : "Medication/uscore-med1"
         }]
       },
       {
@@ -261,7 +261,7 @@
           "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Plan Of Treatment Narrative</p></div>"
         },
         "entry" : [{
-          "reference" : "MedicationReferences/1"
+          "reference" : "Medication/uscore-med1"
         },
         {
           "reference" : "MedicationRequest/cancer-related-medication-request-anastrozole-jenny-m"
