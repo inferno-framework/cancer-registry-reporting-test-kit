@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
       include CancerRegistryReportingTestKit::ValidationTest
 
       id :ccrr_v100_mcode_tnm_stage_group_validation_test
-      title 'Observation resources returned during previous tests conform to the TNM Stage Group Profile'
+      title 'Cancer Stage Group resources in composition slice conforms to the mCode TNM Stage Group profile'
       description %(
 This test verifies resources returned from the first search conform to
 the [TNM Stage Group Profile](http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-stage-group).
@@ -30,6 +30,10 @@ fail if their code/system are not found in the valueset.
       end
 
       run do
+        # TODO: Check for type due to open slicing. For now, enforce check for only 1 resource
+        skip_if scratch_resources[:all].nil?, 'No resources found'
+        assert scratch_resources[:all].length < 2, "Test currently allows only for 1 resource for this type."
+
         perform_validation_test(scratch_resources[:all] || [],
                                 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-stage-group',
                                 '3.0.0',

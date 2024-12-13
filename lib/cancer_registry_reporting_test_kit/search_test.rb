@@ -27,7 +27,7 @@ module CancerRegistryReportingTestKit
           params[patient_id] ||= []
           new_params =
             if fixed_value_search?
-              fixed_value_search_param_values.map { |value| fixed_value_search_params(value, patient_id) }
+              [primary_condition_category].map { |value| fixed_value_search_params(value, patient_id) }
             else
               [search_params_with_values(search_param_names, patient_id)]
             end
@@ -106,7 +106,7 @@ module CancerRegistryReportingTestKit
 
       perform_comparator_searches(params, patient_id) if params_with_comparators.present?
 
-      filter_conditions(resources_returned) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
+      filter_conditions(resources_returned) if resource_type == 'Condition'
       filter_devices(resources_returned) if resource_type == 'Device'
 
       if first_search?
@@ -137,7 +137,7 @@ module CancerRegistryReportingTestKit
 
       post_search_resources = fetch_all_bundled_resources.select { |resource| resource.resourceType == resource_type }
 
-      filter_conditions(post_search_resources) if resource_type == 'Condition' && metadata.version == 'v5.0.1'
+      filter_conditions(post_search_resources) if resource_type == 'Condition'
       filter_devices(post_search_resources) if resource_type == 'Device'
 
       get_resource_count = get_search_resources.length
@@ -164,10 +164,12 @@ module CancerRegistryReportingTestKit
       # HL7 JIRA FHIR-37917. US Core v5.0.1 does not required patient+category.
       # In order to distinguish which resources matches the current profile, Inferno has to manually filter
       # the result of first search, which is searching by patient.
+      selected_category = primary_condition_category
+
       resources.select! do |resource|
         resource.category.any? do |category|
           category.coding.any? do |coding|
-            metadata.search_definitions[:category][:values].include? coding.code
+            selected_category.include? coding.code
           end
         end
       end

@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
       include CancerRegistryReportingTestKit::ValidationTest
 
       id :ccrr_v100_central_cancer_registry_primary_cancer_condition_validation_test
-      title 'Condition resources returned during previous tests conform to the Central Cancer Registry Reporting Primary Cancer Condition'
+      title 'Primary Cancer Condition resources in composition slice conforms to the Central Cancer Registry Reporting Primary Cancer Condition profile'
       description %(
 This test verifies resources returned from the first search conform to
 the [Central Cancer Registry Reporting Primary Cancer Condition](http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-primary-cancer-condition).
@@ -30,6 +30,10 @@ fail if their code/system are not found in the valueset.
       end
 
       run do
+        # TODO: Check for type due to open slicing. For now, enforce check for only 1 resource
+        skip_if scratch_resources[:all].nil?, 'No resources found'
+        assert scratch_resources[:all].length < 2, "Test currently allows only for 1 resource for this type."
+
         perform_validation_test(scratch_resources[:all] || [],
                                 'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-primary-cancer-condition',
                                 '1.0.0',

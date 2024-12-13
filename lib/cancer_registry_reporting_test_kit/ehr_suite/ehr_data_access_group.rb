@@ -36,16 +36,19 @@ require 'us_core_test_kit/generated/v3.1.1/organization_group'
 require 'us_core_test_kit/generated/v3.1.1/practitioner_group'
 require 'us_core_test_kit/generated/v3.1.1/provenance_group'
 
+require_relative './mcode_data_access_resources/primary_cancer_condition_group'
 
 module CancerRegistryReportingTestKit
-  class EHRUSCoreDataAccessGroup < Inferno::TestGroup
-    id :ccrr_us_core_data_access
-    title 'US Core Data Access Group'
+  class EHRDataAccessGroup < Inferno::TestGroup
+    id :ccrr_ehr_data_access
+    title 'EHR Data Access Group'
     short_description 'Verify that cancer patient data are available via US Core API.'
     description %(
         Tests verify that the EHR allows apps to access patient data via the [US Core API](http://hl7.org/fhir/us/core/STU3.1.1/index.html) 
-        as specified by the 
+        as well as mCode resources as specified by the 
         [Central Cancer Registry IG v1.0.0](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/). 
+
+        
     )
       input :url,
         title: 'FHIR Endpoint',
@@ -54,44 +57,59 @@ module CancerRegistryReportingTestKit
       input :smart_credentials,
         title: 'OAuth Credentials',
         type: :oauth_credentials,
-        optional: true
+        optional: false
 
       fhir_client do
         url :url
         oauth_credentials :smart_credentials
       end
       
-      group from: :us_core_v311_capability_statement
-      group from: :us_core_v311_patient
-      group from: :us_core_v311_allergy_intolerance
-      group from: :us_core_v311_care_plan
-      group from: :us_core_v311_care_team
-      group from: :us_core_v311_condition
-      group from: :us_core_v311_device
-      group from: :us_core_v311_diagnostic_report_note
-      group from: :us_core_v311_diagnostic_report_lab
-      group from: :us_core_v311_document_reference
-      group from: :us_core_v311_goal
-      group from: :us_core_v311_immunization
-      group from: :us_core_v311_medication_request
-      group from: :us_core_v311_smokingstatus
-      group from: :us_core_v311_pediatric_weight_for_height
-      group from: :us_core_v311_observation_lab
-      group from: :us_core_v311_pediatric_bmi_for_age
-      group from: :us_core_v311_pulse_oximetry
-      group from: :us_core_v311_head_circumference
-      group from: :us_core_v311_bodyheight
-      group from: :us_core_v311_bodytemp
-      group from: :us_core_v311_bp
-      group from: :us_core_v311_bodyweight
-      group from: :us_core_v311_heartrate
-      group from: :us_core_v311_resprate
-      group from: :us_core_v311_procedure
-      group from: :us_core_v311_encounter
-      group from: :us_core_v311_organization
-      group from: :us_core_v311_practitioner
-      group from: :us_core_v311_provenance
-      group from: :us_core_v311_clinical_notes_guidance
-      group from: :us_core_311_data_absent_reason
+      
+      group do
+        title 'Cancer Patient FHIR API Tests'
+        id :us_core_fhir_api
+
+        group from: :us_core_v311_capability_statement
+        group from: :us_core_v311_patient
+        group from: :us_core_v311_allergy_intolerance
+        group from: :us_core_v311_care_plan
+        group from: :us_core_v311_care_team
+        group from: :us_core_v311_condition
+        group from: :us_core_v311_device
+        group from: :us_core_v311_diagnostic_report_note
+        group from: :us_core_v311_diagnostic_report_lab
+        group from: :us_core_v311_document_reference
+        group from: :us_core_v311_goal
+        group from: :us_core_v311_immunization
+        group from: :us_core_v311_medication_request
+        group from: :us_core_v311_smokingstatus
+        group from: :us_core_v311_pediatric_weight_for_height
+        group from: :us_core_v311_observation_lab
+        group from: :us_core_v311_pediatric_bmi_for_age
+        group from: :us_core_v311_pulse_oximetry
+        group from: :us_core_v311_head_circumference
+        group from: :us_core_v311_bodyheight
+        group from: :us_core_v311_bodytemp
+        group from: :us_core_v311_bp
+        group from: :us_core_v311_bodyweight
+        group from: :us_core_v311_heartrate
+        group from: :us_core_v311_resprate
+        group from: :us_core_v311_procedure
+        group from: :us_core_v311_encounter
+        group from: :us_core_v311_organization
+        group from: :us_core_v311_practitioner
+        group from: :us_core_v311_provenance
+        group from: :us_core_v311_clinical_notes_guidance
+        group from: :us_core_311_data_absent_reason
+        
+        # Below Groupings are for none US Core resources
+        group from: :ehr_primary_cancer_condition
+
+        require_relative './mcode_data_access_resources/tnm_distant_metastases_category_group'
+        require_relative './mcode_data_access_resources/tnm_primary_tumor_category_group'
+        require_relative './mcode_data_access_resources/tnm_regional_nodes_category_group'
+        require_relative './mcode_data_access_resources/tnm_stage_group_group'
+
+    end
   end
 end

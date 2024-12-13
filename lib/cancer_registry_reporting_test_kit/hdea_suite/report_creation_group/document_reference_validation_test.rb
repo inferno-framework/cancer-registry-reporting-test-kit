@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
       include CancerRegistryReportingTestKit::ValidationTest
 
       id :ccrr_v100_document_reference_validation_test
-      title 'DocumentReference resources returned during previous tests conform to the US Core DocumentReference Profile'
+      title 'Note resources in composition slice conforms to US Core DocumentReference Profile'
       description %(
 This test verifies resources returned from the first search conform to
 the [US Core DocumentReference Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference).
@@ -30,9 +30,13 @@ fail if their code/system are not found in the valueset.
       end
 
       run do
+        # TODO: Check for type due to open slicing. For now, enforce check for only 1 resource
+        skip_if scratch_resources[:all].nil?, 'No resources found'
+        assert scratch_resources[:all].length < 2, "Test currently allows only for 1 resource for this type."
+        
         perform_validation_test(scratch_resources[:all] || [],
                                 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference',
-                                '5.0.1',
+                                '3.1.1',
                                 skip_if_empty: true)
       end
     end

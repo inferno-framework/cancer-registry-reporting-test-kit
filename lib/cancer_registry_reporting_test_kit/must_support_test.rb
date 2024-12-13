@@ -12,20 +12,19 @@ module CancerRegistryReportingTestKit
     end
 
     def perform_must_support_test(resources)
-      skip_if true, "Test not implemented, skipped"
-      # skip_if resources.blank?, "No #{resource_type} resources were found"
+      skip_if resources.blank?, "No #{resource_type} resources were found"
 
-      # missing_elements(resources)
-      # missing_slices(resources)
-      # missing_extensions(resources)
+      missing_elements(resources)
+      missing_slices(resources)
+      missing_extensions(resources)
 
-      # handle_must_support_choices if metadata.must_supports[:choices].present?
+      handle_must_support_choices if metadata.must_supports[:choices].present?
 
-      # if (missing_elements + missing_slices + missing_extensions).length.zero?
-      #   pass
-      # end
-      # skip "Could not find #{missing_must_support_strings.join(', ')} in the #{resources.length} " \
-      #      "provided #{resource_type} resource(s)"
+      if (missing_elements + missing_slices + missing_extensions).length.zero?
+        pass
+      end
+      skip "Could not find #{missing_must_support_strings.join(', ')} in the #{resources.length} " \
+           "provided #{resource_type} resource(s)"
     end
 
     def handle_must_support_choices

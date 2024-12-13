@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
       include CancerRegistryReportingTestKit::ValidationTest
 
       id :ccrr_v100_mcode_radiotherapy_course_summary_validation_test
-      title 'Procedure resources returned during previous tests conform to the Radiotherapy Course Summary Profile'
+      title 'RadioTherapyCourseSummary resources in composition slice conforms to the Radiotherapy Course Summary Profile'
       description %(
 This test verifies resources returned from the first search conform to
 the [Radiotherapy Course Summary Profile](http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-course-summary).
@@ -30,6 +30,10 @@ fail if their code/system are not found in the valueset.
       end
 
       run do
+        # TODO: Check for type due to open slicing. For now, enforce check for only 1 resource
+        skip_if scratch_resources[:all].nil?, 'No resources found'
+        assert scratch_resources[:all].length < 2, "Test currently allows only for 1 resource for this type."
+
         perform_validation_test(scratch_resources[:all] || [],
                                 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-course-summary',
                                 '3.0.0',
