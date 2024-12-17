@@ -10,8 +10,24 @@ module CancerRegistryReportingTestKit
     [Central Cancer Registry Reporting IG](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/).
     
     ## Scope
+    
+    These tests are a DRAFT intended to allow payer implementers to perform preliminary checks of their systems against CCRR IG requirements.
+    Future versions of these tests may validate other requirements and may change the test validation logic.
+
     ## Test Methodology
+    
+    Inferno will simulate a health data exchange app, gathering data from an EHR with cancer patient information.
+    The CCRR IG specifies support of the US Core API (v3.0.0) as well as support for particular 
+    [mCode profiles](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/spec.html#mcode-fhir-ig-usage).
+    For US Core resources, the user only provides patient IDs and Inferno searches for each US Core resource, checking for MS elements
+    and profile conformance. mCode resources do not necessarily have specified codes for searching, so the user will provide 
+    search parameters for each resource type. Likewise, the returned resources are checked for MS elements and conformance to 
+    corresponding mCode profiles.
+
     ## Current Limitations
+    
+    While no authentication process is currently supported via Inferno, the user must provide an access token to inferno. 
+    With that token, Inferno can make requests to the EHR under test.
     '
 
     links [
@@ -56,7 +72,7 @@ module CancerRegistryReportingTestKit
     end
 
     fhir_resource_validator do
-      igs('hl7.fhir.us.core#3.1.1', 'hl7.fhir.us.central-cancer-registry-reporting#1.0.0')
+      igs('hl7.fhir.us.core#3.1.1', 'hl7.fhir.us.mcode#3.0.0')
       message_filters = VALIDATION_MESSAGE_FILTERS
 
       exclude_message do |message|
