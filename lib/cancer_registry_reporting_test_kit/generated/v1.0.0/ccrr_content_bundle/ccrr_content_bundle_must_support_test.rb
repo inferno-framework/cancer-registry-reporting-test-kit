@@ -27,7 +27,7 @@ module CancerRegistryReportingTestKit
 
       def add_ms_resources_to_scratch(reports)
         reports.each do |bundle|
-          report_hash = url_keys_to_group_keys(parse_bundle(FHIR.from_contents(bundle)).first) # taking the reports out of the bundles and parsing them
+          report_hash = url_keys_to_group_keys(parse_bundle(FHIR.from_contents(bundle.to_json)).first) # taking the reports out of the bundles and parsing them
           report_hash.each do |group, resources| 
             scratch[group] ||= {}
             scratch[group][:all] ||= []
@@ -54,7 +54,7 @@ module CancerRegistryReportingTestKit
 
       run do
         init_scratch
-        add_ms_resources_to_scratch([reports])
+        add_ms_resources_to_scratch(JSON.parse("[" + reports + "]"))
         perform_must_support_test(all_scratch_resources)
       end
     end
