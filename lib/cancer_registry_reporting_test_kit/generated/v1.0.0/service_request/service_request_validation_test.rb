@@ -32,7 +32,7 @@ fail if their code/system are not found in the valueset.
       run do
         perform_validation_test(scratch_resources[:all] || [],
                                 'http://hl7.org/fhir/StructureDefinition/ServiceRequest',
-                                '6.0.0-ballot2',
+                                '4.0.1',
                                 skip_if_empty: true)
       end
     end
