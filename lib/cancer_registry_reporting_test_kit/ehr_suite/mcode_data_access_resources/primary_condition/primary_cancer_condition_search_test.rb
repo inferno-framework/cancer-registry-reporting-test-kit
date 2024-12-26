@@ -35,12 +35,8 @@ module CancerRegistryReportingTestKit
       def self.properties
           @properties ||= USCoreTestKit::SearchTestProperties.new(
           first_search: true,
-          fixed_value_search: true,
           resource_type: 'Condition',
           search_param_names: ['patient', 'category'],
-          possible_status_search: true,
-          token_search_params: ['category'],
-          test_reference_variants: true,
           test_post_search: true
           )
       end
@@ -48,14 +44,16 @@ module CancerRegistryReportingTestKit
       def self.metadata
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
       end
-      
+
       def scratch_resources
         scratch[:primary_condition_resources] ||= {}
       end
 
       run do
+        # manual params must be in the same order as the param names
+        @manual_search_params = [primary_condition_category]
         run_search_test
       end
       
     end
-  end
+end
