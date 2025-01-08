@@ -52,6 +52,8 @@ module CancerRegistryReportingTestKit
       end
 
       run do
+        # manual params must be in the same order as the param names
+        @manual_search_params = [tnm_regional_nodes_category_category]
         run_search_test
       end
       
