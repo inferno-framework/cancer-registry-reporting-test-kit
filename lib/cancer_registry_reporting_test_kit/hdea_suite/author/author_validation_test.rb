@@ -28,9 +28,6 @@ fail if their code/system are not found in the valueset.
       end
 
       run do
-        p 'VLD AUTH'
-        p scratch[:author_resources].length
-        p scratch_resources[:all].length
         assert(false, 'Author (required) reference is not present or does not resolve') if scratch_resources[:all].blank?
 
 

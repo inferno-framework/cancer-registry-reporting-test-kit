@@ -1,5 +1,4 @@
 require_relative '../../../../must_support_test'
-require_relative '../../../../generator/naming'
 require_relative '../../../../generator/group_metadata'
 
 module CancerRegistryReportingTestKit
@@ -21,25 +20,6 @@ module CancerRegistryReportingTestKit
 
       id :ccrr_v100_ccrr_content_bundle_must_support_test
 
-      def init_scratch
-        scratch ||= {}
-      end
-
-      def add_ms_resources_to_scratch(reports)
-        reports.each do |bundle|
-          report_hash = url_keys_to_group_keys(parse_bundle(FHIR.from_contents(bundle.to_json)).first) # taking the reports out of the bundles and parsing them
-          report_hash.each do |group, resources|
-            scratch[group] ||= {}
-            scratch[group][:all] ||= []
-            scratch[group][:all].concat(resources)
-          end
-        end
-      end
-
-      def url_keys_to_group_keys(report_hash)
-        report_hash.transform_keys { |key| "#{Generator::Naming.snake_case_for_url(key)}_resources".to_sym}
-      end
-
       def resource_type
         'Bundle'
       end
@@ -53,8 +33,6 @@ module CancerRegistryReportingTestKit
       end
 
       run do
-        init_scratch
-        add_ms_resources_to_scratch(JSON.parse("[" + reports + "]"))
         perform_must_support_test(all_scratch_resources)
       end
     end

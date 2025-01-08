@@ -1,9 +1,11 @@
 require_relative '../../../../validation_test'
-
+require_relative '../../../../generator/naming'
+require_relative '../../../../bundle_parse'
 module CancerRegistryReportingTestKit
   module HDEAV100
     class CcrrContentBundleValidationTest < Inferno::Test
       include CancerRegistryReportingTestKit::ValidationTest
+      include CancerRegistryReportingTestKit::HDEABundleParse
 
       id :ccrr_v100_ccrr_content_bundle_validation_test
       title 'Bundle resources returned during previous tests conform to the Central Cancer Registry Content Bundle profile'
@@ -21,6 +23,25 @@ fail if their code/system are not found in the valueset.
       )
       output :dar_code_found, :dar_extension_found
 
+      def init_scratch
+        scratch ||= {}
+      end
+
+      def add_ms_resources_to_scratch(reports)
+        reports.each do |bundle|
+          report_hash = url_keys_to_group_keys(parse_bundle(FHIR.from_contents(bundle.to_json)).first) # taking the reports out of the bundles and parsing them
+          report_hash.each do |group, resources|
+            scratch[group] ||= {}
+            scratch[group][:all] ||= []
+            scratch[group][:all].concat(resources)
+          end
+        end
+      end
+
+      def url_keys_to_group_keys(report_hash)
+        report_hash.transform_keys { |key| "#{Generator::Naming.snake_case_for_url(key)}_resources".to_sym}
+      end
+
       def resource_type
         'Bundle'
       end
@@ -30,6 +51,8 @@ fail if their code/system are not found in the valueset.
       end
 
       run do
+        init_scratch
+        add_ms_resources_to_scratch(JSON.parse("[" + reports + "]"))
         perform_validation_test(scratch_resources[:all] || [],
                                 'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-content-bundle',
                                 '1.0.0',
