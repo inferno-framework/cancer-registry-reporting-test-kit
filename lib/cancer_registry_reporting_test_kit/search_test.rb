@@ -21,13 +21,17 @@ module CancerRegistryReportingTestKit
                    :params_with_comparators,
                    :multiple_or_search_params
 
+    attr_accessor :manual_search_params
+
     def all_search_params
       @all_search_params ||=
         patient_id_list.each_with_object({}) do |patient_id, params|
           params[patient_id] ||= []
           new_params =
-            if fixed_value_search?
-              [primary_condition_category].map { |value| fixed_value_search_params(value, patient_id) }
+            if manual_search_params
+              manual_search_param_hash(patient_id)
+            elsif fixed_value_search?
+              fixed_value_search_param_values.map { |value| fixed_value_search_params(value, patient_id) }
             else
               [search_params_with_values(search_param_names, patient_id)]
             end
@@ -458,6 +462,17 @@ module CancerRegistryReportingTestKit
 
     def fixed_value_search_param_name
       (search_param_names - ['patient']).first
+    end
+
+    def manual_search_param_hash(patient_id)
+      single_patient_manual_search_params = [patient_id] + manual_search_params
+      split_values = single_patient_manual_search_params.map { |value| value.split(',') }
+
+      combinations = split_values[0].product(*split_values[1..-1])
+
+      combinations.map do |combination|
+        search_param_names.zip(combination).to_h
+      end
     end
 
     def fixed_value_search_param_values
