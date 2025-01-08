@@ -1,7 +1,7 @@
 {
   "title": "HDEA Demo Report",
   "id": null,
-  "test_suite_id": "ccrr_v100",
+  "test_suite_id": "ccrr_v100_report_generation",
   "inputs": [
     {
       "name": "reports",
