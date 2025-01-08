@@ -1,4 +1,5 @@
 require_relative 'ccrr_content_bundle/ccrr_content_bundle_must_support_test'
+require_relative 'ccrr_content_bundle/ccrr_content_bundle_validation_test'
 
 module CancerRegistryReportingTestKit
   module HDEAV100
@@ -14,27 +15,6 @@ must contain resources conforming to the Central Cancer Registry Reporting Conte
 specified in the US Core v1.0.0 Implementation Guide.
 
 # Testing Methodology
-## Searching
-This test sequence will first perform each required search associated
-with this resource. This sequence will perform searches with the
-following parameters:
-
-
-### Search Parameters
-The first search uses the selected patient(s). Any subsequent searches will look for its parameter values
-from the results of the first search. For example, the `identifier`
-search in the patient sequence is performed by looking for an existing
-`Patient.identifier` from any of the resources returned in the `_id`
-search. If a value cannot be found this way, the search is skipped.
-
-### Search Validation
-Inferno will retrieve up to the first 20 bundle pages of the reply for
-Bundle resources and save them for subsequent tests. Each of
-these resources is then checked to see if it matches the searched
-parameters in accordance with [FHIR search
-guidelines](https://www.hl7.org/fhir/search.html). The test will fail,
-for example, if a Patient search for `gender=male` returns a `female`
-patient.
 
 
 ## Must Support
@@ -69,6 +49,7 @@ read succeeds.
       end
       
         test from: :ccrr_v100_ccrr_content_bundle_must_support_test
+        test from: :ccrr_v100_ccrr_content_bundle_validation_test
     end
   end
 end

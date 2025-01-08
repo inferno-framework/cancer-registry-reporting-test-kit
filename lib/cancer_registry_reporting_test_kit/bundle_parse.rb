@@ -112,8 +112,11 @@ module CancerRegistryReportingTestKit
           resource_hash.merge!(parse_sections(value, bundle))
         elsif value.is_a?(Array) && value.all? { |elmt| elmt.is_a?(FHIR::Reference) }
           resource_hash[FIELD_TO_URL_MAP[key]] ||= []
+          p 'THERE'
+          p key
           value.each do |val| 
             referenced_resource = find_resource_in_bundle(val.reference, bundle)
+            p referenced_resource.class
             unresolved_references << val.reference if !referenced_resource
             resource_hash[FIELD_TO_URL_MAP[key]] << referenced_resource if referenced_resource
           end

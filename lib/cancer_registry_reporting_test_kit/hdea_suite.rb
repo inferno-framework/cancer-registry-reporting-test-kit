@@ -5,38 +5,7 @@ require_relative 'version'
 # require_relative 'hdea_suite/generated/v1.0.0/cancer_patient_group'
 require_relative 'hdea_suite/generated/v1.0.0/composition_group'
 require_relative 'hdea_suite/generated/v1.0.0/ccrr_content_bundle_group'
-require_relative 'hdea_suite/generated/v1.0.0/plan_definition_group'
-require_relative 'hdea_suite/generated/v1.0.0/central_cancer_registry_primary_cancer_condition_group'
-# require_relative 'hdea_suite/generated/v1.0.0/us_ph_patient_group'
-# require_relative 'hdea_suite/generated/v1.0.0/extension_group'
-require_relative 'hdea_suite/generated/v1.0.0/medication_administration_group'
-require_relative 'hdea_suite/generated/v1.0.0/medication_request_group'
-# require_relative 'hdea_suite/generated/v1.0.0/mcode_primary_cancer_condition_group'
-require_relative 'hdea_suite/generated/v1.0.0/mcode_radiotherapy_course_summary_group'
-require_relative 'hdea_suite/generated/v1.0.0/mcode_secondary_cancer_condition_group'
-# require_relative 'hdea_suite/generated/v1.0.0/mcode_tnm_distant_metastases_category_group'
-# require_relative 'hdea_suite/generated/v1.0.0/mcode_tnm_primary_tumor_category_group'
-# require_relative 'hdea_suite/generated/v1.0.0/mcode_tnm_regional_nodes_category_group'
-require_relative 'hdea_suite/generated/v1.0.0/mcode_tnm_stage_group_group'
-require_relative 'hdea_suite/generated/v1.0.0/medication_statement_group'
-require_relative 'hdea_suite/generated/v1.0.0/observation_group'
-require_relative 'hdea_suite/generated/v1.0.0/odh_usual_work_group'
-require_relative 'hdea_suite/generated/v1.0.0/service_request_group'
-require_relative 'hdea_suite/generated/v1.0.0/allergy_intolerance_group'
-require_relative 'hdea_suite/generated/v1.0.0/care_plan_group'
-require_relative 'hdea_suite/generated/v1.0.0/condition_group'
-require_relative 'hdea_suite/generated/v1.0.0/diagnostic_report_lab_group'
-require_relative 'hdea_suite/generated/v1.0.0/diagnostic_report_note_group'
-require_relative 'hdea_suite/generated/v1.0.0/document_reference_group'
-require_relative 'hdea_suite/generated/v1.0.0/encounter_group'
-require_relative 'hdea_suite/generated/v1.0.0/medication_group'
-require_relative 'hdea_suite/generated/v1.0.0/observation_lab_group'
-require_relative 'hdea_suite/generated/v1.0.0/organization_group'
-require_relative 'hdea_suite/generated/v1.0.0/patient_group'
-require_relative 'hdea_suite/generated/v1.0.0/practitioner_group'
-require_relative 'hdea_suite/generated/v1.0.0/practitioner_role_group'
-require_relative 'hdea_suite/generated/v1.0.0/procedure_group'
-require_relative 'hdea_suite/generated/v1.0.0/smokingstatus_group'
+require_relative 'hdea_suite/resources_validation_group'
 
 module CancerRegistryReportingTestKit
   module CCRRV100
@@ -77,10 +46,10 @@ module CancerRegistryReportingTestKit
           end
       end
 
-      id :ccrr_v100
+      id :ccrr_v100_report_generation
 
       fhir_resource_validator do
-        igs 'ccrr#1.0.0', 'hl7.fhir.us.core#5.0.1'
+        igs 'hl7.fhir.us.central-cancer-registry-reporting#1.0.0', 'hl7.fhir.us.core#5.0.1'
         message_filters = VALIDATION_MESSAGE_FILTERS
 
         exclude_message do |message|
@@ -98,45 +67,9 @@ module CancerRegistryReportingTestKit
       description: 'Comma-Separated Content Bundle(s)',
       type: 'textarea'
 
-      group do
-
-        title 'HDEA Cancer Report Generation'
-        id :ccrr_v100_fhir_api
-        group from: :ccrr_v100_ccrr_content_bundle
-        group from: :ccrr_v100_composition
-        group from: :ccrr_v100_central_cancer_registry_primary_cancer_condition
-        # group from: :ccrr_v100_cancer_encounter
-        # group from: :ccrr_v100_cancer_patient
-        # group from: :ccrr_v100_plan_definition
-        group from: :ccrr_v100_medication_administration
-        group from: :ccrr_v100_medication_request
-        # group from: :ccrr_v100_mcode_primary_cancer_condition
-        group from: :ccrr_v100_mcode_radiotherapy_course_summary
-        group from: :ccrr_v100_mcode_secondary_cancer_condition
-        # group from: :ccrr_v100_mcode_tnm_distant_metastases_category
-        # group from: :ccrr_v100_mcode_tnm_primary_tumor_category
-        # group from: :ccrr_v100_mcode_tnm_regional_nodes_category
-        group from: :ccrr_v100_mcode_tnm_stage_group
-        group from: :ccrr_v100_medication_statement
-        group from: :ccrr_v100_observation
-        group from: :ccrr_v100_odh_usual_work
-        group from: :ccrr_v100_service_request
-        group from: :ccrr_v100_allergy_intolerance
-        group from: :ccrr_v100_care_plan
-        group from: :ccrr_v100_condition
-        group from: :ccrr_v100_diagnostic_report_lab
-        group from: :ccrr_v100_diagnostic_report_note
-        group from: :ccrr_v100_document_reference
-        group from: :ccrr_v100_encounter
-        group from: :ccrr_v100_medication
-        group from: :ccrr_v100_observation_lab
-        group from: :ccrr_v100_organization
-        group from: :ccrr_v100_patient
-        group from: :ccrr_v100_practitioner
-        group from: :ccrr_v100_practitioner_role
-        group from: :ccrr_v100_procedure
-        group from: :ccrr_v100_smokingstatus
-      end
+      group from: :ccrr_v100_ccrr_content_bundle
+      group from: :ccrr_v100_composition
+      group from: :ccrr_report_resources_validation
     end
   end
 end

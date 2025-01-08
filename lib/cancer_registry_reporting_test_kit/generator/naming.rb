@@ -39,6 +39,7 @@ module CancerRegistryReportingTestKit
       ODH_USUAL_WORK = 'http://hl7.org/fhir/us/odh/StructureDefinition/odh-UsualWork'
       OBSERVATION = 'http://hl7.org/fhir/StructureDefinition/Observation'
       MEDICATION_ADMINISTRATION = 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration'
+      AUTHOR = ["http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"]
 
       IG_LINKS = {
         'v3.1.1' => 'http://hl7.org/fhir/us/core/STU3.1.1',
@@ -74,6 +75,10 @@ module CancerRegistryReportingTestKit
 
         ## HDEA QUICK PATCH
         def snake_case_for_url(url)
+          # special case for author
+          if url.is_a?(Array)
+            return 'author'
+          end
           snake_case = constants.find do |const_name|
             const_get(const_name) == url
           end
