@@ -1,8 +1,6 @@
 require 'inferno/dsl/oauth_credentials'
 require_relative 'version'
 
-# require_relative 'hdea_suite/generated/v1.0.0/cancer_encounter_group'
-# require_relative 'hdea_suite/generated/v1.0.0/cancer_patient_group'
 require_relative 'hdea_suite/generated/v1.0.0/composition_group'
 require_relative 'hdea_suite/generated/v1.0.0/ccrr_content_bundle_group'
 require_relative 'hdea_suite/resources_validation_group'
@@ -12,18 +10,21 @@ module CancerRegistryReportingTestKit
     class HDEASuite < Inferno::TestSuite
       title 'Cancer Registry Reporting Health Data Exchange App (HDEA) Test Suite'
       description %(
-        The US Core Test Kit tests systems for their conformance to the [US Core
-        Implementation Guide]().
+            The Cancer Registry Reporting HDEA Test Suite verifies the 
+    conformance of Health Data Exchange Apps to the STU 1.0.0 version of the HL7® FHIR® 
+    [Central Cancer Registry Reporting IG](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/).
+    
+    ## Scope
+    All resources referenced as on must support fields in the CCRR [Composition](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/StructureDefinition-ccrr-composition.html) 
+    are covered in HDEA tests. Profiles defined or specified in the IG, but not specifically included or marked MS in the composition are out of scope. Additionally,
+    Inferno does not test transmission of resources to the cancer registry.
 
-        HL7® FHIR® resources are validated with the Java validator using
-        `tx.fhir.org` as the terminology server. Users should note that the
-        although the ONC Certification (g)(10) Standardized API Test Suite
-        includes tests from this suite, [it uses a different method to perform
-        terminology
-        validation](https://github.com/onc-healthit/onc-certification-g10-test-kit/wiki/FAQ#q-why-do-some-resources-fail-in-us-core-test-kit-with-terminology-validation-errors).
-        As a result, resource validation results may not be consistent between
-        the US Core Test Suite and the ONC Certification (g)(10) Standardized
-        API Test Suite.
+    ## Test Methodology
+    Inferno takes a set of bundles, each having its individual resources extracted and checked for conformance to the requisite profiles, as
+    defined in the CCRR [Composition](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/StructureDefinition-ccrr-composition.html).
+
+    ## Current Limitations
+    Inferno does not check MS fields on individual resources, but only the bundle and compositions defined in the IG.
       )
       version VERSION
 
