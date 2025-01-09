@@ -38,7 +38,7 @@ module CancerRegistryReportingTestKit
       '29549-3' => {'MedicationAdministration' => 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration', 'Medication' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication'},
       '10160-0' => {'MedicationAdministration' => 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration', 'MedicationStatement' => 'http://hl7.org/fhir/StructureDefinition/MedicationStatement', 'Medication' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication'},
       '30954-2' => {'Observation' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab', 'DiagnosticReport' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab'},
-      '28650-0' => {'Document' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference', 'DiagnosticReport' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note'},
+      '28650-0' => {'DocumentReference' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference', 'DiagnosticReport' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note'},
       '18776-5' => {'MedicationRequest' => 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-request', 'Medication' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication', 'ServiceRequest' => 'http://hl7.org/fhir/StructureDefinition/ServiceRequest', 'CarePlan' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan'},
     }
     
@@ -74,6 +74,7 @@ module CancerRegistryReportingTestKit
       'http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure' => :procedure_resources,
       'http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus' => :smokingstatus_resources,
       'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/us-ph-patient' => :us_ph_patient_resources,
+      'http://hl7.org/fhir/StructureDefinition/ServiceRequest' => :service_request_resources,
       FIELD_TO_URL_MAP['author'] => :author_resources
     }
 
@@ -82,6 +83,10 @@ module CancerRegistryReportingTestKit
       first_resource = bundle.entry.first.resource
       if first_resource.is_a?(FHIR::Composition)
         parsed_bundle = look_for_references_in_resource(first_resource, bundle)
+        parsed_bundle['http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-content-bundle'] ||= []
+        parsed_bundle['http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-content-bundle'].push(bundle)
+        parsed_bundle['http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-composition'] ||= []
+        parsed_bundle['http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-composition'].push(first_resource)
         if !unresolved_references.empty?
           info "The following references did not resolve, the resources either do not exist in the bundle or are mislabeled: #{unresolved_references}"
         end

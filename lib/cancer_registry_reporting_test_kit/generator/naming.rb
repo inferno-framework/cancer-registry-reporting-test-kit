@@ -14,8 +14,8 @@ module CancerRegistryReportingTestKit
       IMMUNIZATION = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization'
       LOCATION = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-location'
       MEDICATION = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication'
-      MEDICATION_REQUEST = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest'
-      SMOKING_STATUS = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus'
+      MEDICATION_REQUEST = 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-request'
+      SMOKINGSTATUS = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus'
       PEDIATRIC_WEIGHT_FOR_HEIGHT = 'http://hl7.org/fhir/us/core/StructureDefinition/pediatric-weight-for-height'
       OBSERVATION_LAB = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab'
       PEDIATRIC_BMI_FOR_AGE = 'http://hl7.org/fhir/us/core/StructureDefinition/pediatric-bmi-for-age'
@@ -27,6 +27,19 @@ module CancerRegistryReportingTestKit
       PRACTITIONER_ROLE = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole'
       PROCEDURE = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure'
       PROVENANCE = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-provenance'
+      SERVICE_REQUEST = 'http://hl7.org/fhir/StructureDefinition/ServiceRequest'
+
+      ## FOR HDEA
+      COMPOSITION = 'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-composition'
+      CCRR_CONTENT_BUNDLE = 'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-content-bundle'
+      CENTRAL_CANCER_REGISTRY_PRIMARY_CANCER_CONDITION = 'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-primary-cancer-condition'
+      MCODE_SECONDARY_CANCER_CONDITION = 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-secondary-cancer-condition'
+      MCODE_TNM_STAGE_GROUP = 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-stage-group'
+      MCODE_RADIOTHERAPY_COURSE_SUMMARY = 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-course-summary' 
+      ODH_USUAL_WORK = 'http://hl7.org/fhir/us/odh/StructureDefinition/odh-UsualWork'
+      OBSERVATION = 'http://hl7.org/fhir/StructureDefinition/Observation'
+      MEDICATION_ADMINISTRATION = 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration'
+      AUTHOR = ["http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"]
 
       IG_LINKS = {
         'v3.1.1' => 'http://hl7.org/fhir/us/core/STU3.1.1',
@@ -58,6 +71,18 @@ module CancerRegistryReportingTestKit
             .delete_prefix('us_core_')
             .gsub('diagnosticreport', 'diagnostic_report')
             .underscore
+        end
+
+        ## HDEA QUICK PATCH
+        def snake_case_for_url(url)
+          # special case for author
+          if url.is_a?(Array)
+            return 'author'
+          end
+          snake_case = constants.find do |const_name|
+            const_get(const_name) == url
+          end
+          return snake_case.to_s.downcase
         end
 
         def upper_camel_case_for_profile(group_metadata)

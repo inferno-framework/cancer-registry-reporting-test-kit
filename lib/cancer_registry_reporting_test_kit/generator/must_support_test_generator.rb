@@ -31,7 +31,7 @@ module CancerRegistryReportingTestKit
       end
 
       def output_file_directory
-        File.join(base_output_dir, 'must_support')
+        File.join(base_output_dir, profile_identifier)
       end
 
       def output_file_name
