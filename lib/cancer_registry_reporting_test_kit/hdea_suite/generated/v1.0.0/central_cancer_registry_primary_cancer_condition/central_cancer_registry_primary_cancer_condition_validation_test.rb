@@ -30,7 +30,6 @@ fail if their code/system are not found in the valueset.
       end
 
       run do
-        assert scratch_resources[:all].length < 2, "Test currently allows only for 1 resource for this type."
         perform_validation_test(scratch_resources[:all] || [],
                                 'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-primary-cancer-condition',
                                 '1.0.0',
