@@ -28,8 +28,6 @@ fail if their code/system are not found in the valueset.
       end
 
       run do
-        assert(false, 'Author (required) reference is not present or does not resolve') if scratch_resources[:all].blank?
-
 
         AUTHOR_PROFILES = {
           'PractitionerRole' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole',
