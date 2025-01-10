@@ -1,16 +1,18 @@
 require_relative 'fhir_resource_navigation'
+require_relative 'bundle_parse'
 
 module CancerRegistryReportingTestKit
   module MustSupportTest
     extend Forwardable
     include FHIRResourceNavigation
+    include HDEABundleParse
 
     def_delegators 'self.class', :metadata
 
     def all_scratch_resources
-      scratch_resources[:all]
+      scratch_resources[:all]      
     end
-
+    
     def perform_must_support_test(resources)
       skip_if resources.blank?, "No #{resource_type} resources were found"
 
@@ -20,11 +22,8 @@ module CancerRegistryReportingTestKit
 
       handle_must_support_choices if metadata.must_supports[:choices].present?
 
-      if (missing_elements + missing_slices + missing_extensions).length.zero?
-        pass
-      end
-      skip "Could not find #{missing_must_support_strings.join(', ')} in the #{resources.length} " \
-           "provided #{resource_type} resource(s)"
+      assert (missing_elements + missing_slices + missing_extensions).length.zero?, "Could not find #{missing_must_support_strings.join(', ')} in the #{resources.length} " \
+          "provided #{resource_type} resource(s)"
     end
 
     def handle_must_support_choices
@@ -192,7 +191,11 @@ module CancerRegistryReportingTestKit
           when 'String'
             element.is_a? String
           else
-            element.is_a? FHIR.const_get(discriminator[:code])
+            if element.is_a? FHIR::Bundle::Entry
+              element.resource.is_a? FHIR.const_get(discriminator[:code])
+            else
+              element.is_a? FHIR.const_get(discriminator[:code])
+            end
           end
         when 'requiredBinding'
           coding_path = discriminator[:path].present? ? "#{discriminator[:path]}.coding" : 'coding'
@@ -219,7 +222,7 @@ module CancerRegistryReportingTestKit
 
             current_element_values_match =
               current_element_value_definitions
-                .all? { |value_definition| value_definition[:value] == el_found }
+                .all? { |value_definition| value_definition[:value].to_s == el_found.to_s }
 
             child_element_values_match =
               child_element_value_definitions.present? ?

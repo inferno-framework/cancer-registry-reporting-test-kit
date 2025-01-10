@@ -10,24 +10,17 @@ module CancerRegistryReportingTestKit
     [Central Cancer Registry Reporting IG](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/).
     
     ## Scope
-    
-    These tests are a DRAFT intended to allow payer implementers to perform preliminary checks of their systems against CCRR IG requirements.
-    Future versions of these tests may validate other requirements and may change the test validation logic.
+    In addition to US Core resources, all resources referenced as on must support fields in the 
+    CCRR [Composition](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/StructureDefinition-ccrr-composition.html) 
+    are covered in search and subsequent tests. Profiles defined
+    or specified in the IG, but not specifically included or marked MS in the composition are out of scope.
 
     ## Test Methodology
-    
-    Inferno will simulate a health data exchange app, gathering data from an EHR with cancer patient information.
-    The CCRR IG specifies support of the US Core API (v3.0.0) as well as support for particular 
-    [mCode profiles](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/spec.html#mcode-fhir-ig-usage).
-    For US Core resources, the user only provides patient IDs and Inferno searches for each US Core resource, checking for MS elements
-    and profile conformance. mCode resources do not necessarily have specified codes for searching, so the user will provide 
-    search parameters for each resource type. Likewise, the returned resources are checked for MS elements and conformance to 
-    corresponding mCode profiles.
+    Each resource specified in the CCRR [Composition](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/StructureDefinition-ccrr-composition.html) 
+    as must support, is accessed via search by Inferno and then checked for profile conformance and representation of must support fields
 
     ## Current Limitations
-    
-    While no authentication process is currently supported via Inferno, the user must provide an access token to inferno. 
-    With that token, Inferno can make requests to the EHR under test.
+    Full Auth workflows are not currently supported. Instead, Inferno takes an access_token to use to retrieve data from the EHR.
     '
 
     links [

@@ -67,7 +67,7 @@ module CancerRegistryReportingTestKit
     end
 
     def generate_groups
-      SpecialCases.move_ms_and_validation(ig_metadata)
+      # SpecialCases.move_ms_and_validation(ig_metadata)
       GroupGenerator.generate(ig_metadata, base_output_dir)
     end
 

@@ -122,7 +122,11 @@ module CancerRegistryReportingTestKit
             when 'String'
               slice.is_a? String
             else
-              slice.is_a? FHIR.const_get(discriminator[:code])
+              if slice.is_a? FHIR::Bundle::Entry
+                slice.resource.is_a? FHIR.const_get(discriminator[:code])
+              else
+                slice.is_a? FHIR.const_get(discriminator[:code])
+              end
             end
           when 'requiredBinding'
             slice_value = discriminator[:path].present? ? slice.send("#{discriminator[:path]}").coding : slice.coding
@@ -144,10 +148,9 @@ module CancerRegistryReportingTestKit
         find_a_value_at(element, path_prefix) do |el_found|
           child_element_value_definitions, current_element_value_definitions =
             value_definitions_for_path.partition { |value_definition| value_definition[:path].present? }
-
           current_element_values_match =
             current_element_value_definitions
-              .all? { |value_definition| value_definition[:value] == el_found }
+              .all? { |value_definition| value_definition[:value].to_s == el_found.to_s }
 
           child_element_values_match =
             child_element_value_definitions.present? ?
