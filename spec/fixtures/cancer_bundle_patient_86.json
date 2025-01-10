@@ -257,6 +257,190 @@
       }
     },
     {
+      "fullUrl": "example.org/Observation/tnm-clinical-distant-metastases-category-cM0",
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      },
+      "resource": {
+        "resourceType" : "Observation",
+        "id" : "tnm-clinical-distant-metastases-category-cM0",
+        "meta" : {
+          "profile" : ["http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-distant-metastases-category"]
+        },
+        "text" : {
+          "status" : "generated",
+          "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"tnm-clinical-distant-metastases-category-cM0\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;tnm-clinical-distant-metastases-category-cM0&quot; </p><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-mcode-tnm-distant-metastases-category.html\">TNM Distant Metastases Category Profile</a></p></div><p><b>status</b>: final</p><p><b>code</b>: cM category <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#399387003)</span></p><p><b>subject</b>: <a href=\"Patient-cancer-patient-john-anyperson.html\">Patient/cancer-patient-john-anyperson</a> &quot; ANYPERSON&quot;</p><p><b>effective</b>: 2019-04-01</p><p><b>performer</b>: <a href=\"Practitioner-us-core-practitioner-kyle-anydoc.html\">Practitioner/us-core-practitioner-kyle-anydoc</a> &quot; ANYDOC&quot;</p><p><b>value</b>: American Joint Committee on Cancer cM0 (qualifier value) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#1229901006)</span></p><p><b>method</b>: American Joint Commission on Cancer, Cancer Staging Manual, 8th edition neoplasm staging system (tumor staging) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#897275008)</span></p></div>"
+        },
+        "status" : "final",
+        "code" : {
+          "coding" : [{
+            "system" : "http://snomed.info/sct",
+            "code" : "399387003",
+            "display" : "cM category"
+          }]
+        },
+        "subject" : {
+          "reference" : "Patient/cancer-patient-john-anyperson"
+        },
+        "effectiveDateTime" : "2019-04-01",
+        "performer" : [{
+          "reference" : "Practitioner/us-core-practitioner-kyle-anydoc"
+        }],
+        "valueCodeableConcept" : {
+          "coding" : [{
+            "system" : "http://snomed.info/sct",
+            "code" : "1229901006",
+            "display" : "American Joint Committee on Cancer cM0 (qualifier value)"
+          }]
+        },
+        "method" : {
+          "coding" : [{
+            "system" : "http://snomed.info/sct",
+            "code" : "897275008",
+            "display" : "American Joint Commission on Cancer, Cancer Staging Manual, 8th edition neoplasm staging system (tumor staging)"
+          }]
+        }
+      }},
+    {
+      "fullUrl": "example.org/Observation/tnm-clinical-primary-tumor-category-cT3",
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      },
+      "resource": {
+        "resourceType" : "Observation",
+        "id" : "tnm-clinical-primary-tumor-category-cT3",
+        "meta" : {
+          "profile" : ["http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-primary-tumor-category"]
+        },
+        "status" : "final",
+        "code" : {
+          "coding" : [{
+            "system" : "http://snomed.info/sct",
+            "code" : "399504009",
+            "display" : "cT category"
+          }]
+        },
+        "subject" : {
+          "reference" : "Patient/cancer-86"
+        },
+        "effectiveDateTime" : "2019-04-01",
+        "performer" : [{
+          "reference" : "Practitioner/us-core-practitioner-kyle-anydoc"
+        }],
+        "valueCodeableConcept" : {
+          "coding" : [{
+            "system" : "http://snomed.info/sct",
+            "code" : "1228938002",
+            "display" : "American Joint Committee on Cancer cT3 (qualifier value)"
+          }]
+        },
+        "method" : {
+          "coding" : [{
+            "system" : "http://snomed.info/sct",
+            "code" : "897275008",
+            "display" : "American Joint Commission on Cancer, Cancer Staging Manual, 8th edition neoplasm staging system (tumor staging)"
+          }]
+        }
+      }},
+    {
+      "fullUrl": "example.org/Observation/tnm-clinical-regional-nodes-category-cN3",
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      },
+      "resource": {
+        "resourceType" : "Observation",
+        "id" : "tnm-clinical-regional-nodes-category-cN3",
+        "meta" : {
+          "profile" : ["http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-regional-nodes-category"]
+        },
+        "status" : "final",
+        "code" : {
+          "coding" : [{
+            "system" : "http://snomed.info/sct",
+            "code" : "399534004",
+            "display" : "cN category"
+          }]
+        },
+        "subject" : {
+          "reference" : "Patient/cancer-patient-john-anyperson"
+        },
+        "effectiveDateTime" : "2019-04-01",
+        "performer" : [{
+          "reference" : "Practitioner/us-core-practitioner-kyle-anydoc"
+        }],
+        "valueCodeableConcept" : {
+          "coding" : [{
+            "system" : "http://snomed.info/sct",
+            "code" : "1229984001",
+            "display" : "American Joint Committee on Cancer cN3 (qualifier value)"
+          }]
+        },
+        "method" : {
+          "coding" : [{
+            "system" : "http://snomed.info/sct",
+            "code" : "897275008",
+            "display" : "American Joint Commission on Cancer, Cancer Staging Manual, 8th edition neoplasm staging system (tumor staging)"
+          }]
+        }
+      }},
+    {
+      "fullUrl": "example.org/Observation/tnm-clinical-stage-group-3c",
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      },
+      "resource": {
+        "resourceType" : "Observation",
+        "id" : "tnm-clinical-stage-group-3c",
+        "meta" : {
+          "profile" : ["http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-stage-group"]
+        },
+        "status" : "final",
+        "code" : {
+          "coding" : [{
+            "system" : "http://snomed.info/sct",
+            "code" : "399537006",
+            "display" : "Clinical TNM stage grouping"
+          }]
+        },
+        "subject" : {
+          "reference" : "Patient/cancer-patient-john-anyperson"
+        },
+        "focus" : [{
+          "reference" : "Condition/primary-cancer-condition-nsclc"
+        }],
+        "effectiveDateTime" : "2019-04-01",
+        "performer" : [{
+          "reference" : "Practitioner/us-core-practitioner-kyle-anydoc"
+        }],
+        "valueCodeableConcept" : {
+          "coding" : [{
+            "system" : "http://snomed.info/sct",
+            "code" : "1222806003",
+            "display" : "American Joint Committee on Cancer stage IIIC (qualifier value)"
+          }]
+        },
+        "method" : {
+          "coding" : [{
+            "system" : "http://snomed.info/sct",
+            "code" : "897275008",
+            "display" : "American Joint Commission on Cancer, Cancer Staging Manual, 8th edition neoplasm staging system (tumor staging)"
+          }]
+        },
+        "hasMember" : [{
+          "reference" : "Observation/tnm-clinical-primary-tumor-category-cT3"
+        },
+        {
+          "reference" : "Observation/tnm-clinical-regional-nodes-category-cN3"
+        },
+        {
+          "reference" : "Observation/tnm-clinical-distant-metastases-category-cM0"
+        }]
+      }},
+    {
       "fullUrl": "example.org/Condition/primary-cancer-condition-breast-86",
       "request": {
         "method": "POST",
