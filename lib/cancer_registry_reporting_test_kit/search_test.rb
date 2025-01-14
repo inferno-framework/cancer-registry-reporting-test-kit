@@ -17,6 +17,7 @@ module CancerRegistryReportingTestKit
                    :saves_delayed_references?,
                    :first_search?,
                    :fixed_value_search?,
+                   :manual_search_params?,
                    :possible_status_search?,
                    :test_medication_inclusion?,
                    :test_post_search?,
@@ -484,6 +485,20 @@ module CancerRegistryReportingTestKit
     end
 
     def fixed_value_search_params(value, patient_id)
+      search_param_names.each_with_object({}) do |name, params|
+        patient_id_param?(name) ? params[name] = patient_id : params[name] = value
+      end
+    end
+
+    def manual_search_param_name
+      (search_param_names - ['patient']).first
+    end
+
+    def manual_search_param_values
+      metadata.search_definitions[manual_search_param_name.to_sym][:values]
+    end
+
+    def manual_search_params_full(value, patient_id)
       search_param_names.each_with_object({}) do |name, params|
         patient_id_param?(name) ? params[name] = patient_id : params[name] = value
       end

@@ -37,6 +37,7 @@ require 'us_core_test_kit/generated/v3.1.1/practitioner_group'
 require 'us_core_test_kit/generated/v3.1.1/provenance_group'
 
 require_relative './mcode_data_access_resources/primary_cancer_condition_group'
+require_relative './mcode_data_access_resources/medication_administration_group'
 
 module CancerRegistryReportingTestKit
   class EHRDataAccessGroup < Inferno::TestGroup
@@ -111,6 +112,7 @@ module CancerRegistryReportingTestKit
           title 'mCode FHIR API tests'
           id :mcode_fhir_api
           group from: :ehr_primary_cancer_condition
+          group from: :ehr_medication_administration
         end
     end
   end
