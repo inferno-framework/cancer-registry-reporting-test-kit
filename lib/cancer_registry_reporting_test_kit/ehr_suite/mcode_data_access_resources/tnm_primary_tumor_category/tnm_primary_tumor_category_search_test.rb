@@ -27,17 +27,17 @@ module CancerRegistryReportingTestKit
         title: 'Patient IDs',
         description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements'
       
-      input :tnm_primary_tumor_category_category,
-        title: 'Category of TNM Primary Tumor Category'
+      input :tnm_primary_tumor_category_code,
+        title: 'Code of TNM Primary Tumor Category'
 
       def self.properties
           @properties ||= CancerRegistryReportingTestKit::SearchTestProperties.new(
           first_search: true,
           fixed_value_search: false,
           resource_type: 'Observation',
-          search_param_names: ['patient', 'category'],
+          search_param_names: ['patient', 'code'],
           possible_status_search: true,
-          token_search_params: ['category'],
+          token_search_params: ['code'],
           test_reference_variants: true,
           test_post_search: true
           )
@@ -53,7 +53,7 @@ module CancerRegistryReportingTestKit
 
       run do
         # manual params must be in the same order as the param names
-        @manual_search_params = [tnm_primary_tumor_category_category]
+        @manual_search_params = [tnm_primary_tumor_category_code]
         run_search_test
       end
       

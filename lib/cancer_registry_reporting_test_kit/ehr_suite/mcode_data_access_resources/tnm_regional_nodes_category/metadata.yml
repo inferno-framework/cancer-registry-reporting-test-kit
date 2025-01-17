@@ -41,7 +41,7 @@
 - :expectation: SHALL
   :names:
   - patient
-  - category
+  - code
 :search_definitions:
   :patient:
     :paths:
@@ -53,11 +53,11 @@
     :type: Reference
     :contains_multiple: false
     :multiple_or: MAY
-  :category:
+  :code:
     :paths:
-    - category
+    - code
     :full_paths:
-    - Observation.category
+    - Observation.code
     :comparators: {}
     :type: CodeableConcept
     :contains_multiple: true

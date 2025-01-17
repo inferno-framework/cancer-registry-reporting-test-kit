@@ -5,10 +5,10 @@ module CancerRegistryReportingTestKit
     class TNMRegionalNodesCategorySearchTest < Inferno::Test
       include CancerRegistryReportingTestKit::SearchTest
 
-      title 'Server returns valid results for TNM Regional Nodes Category search by patient + category'
+      title 'Server returns valid results for TNM Regional Nodes Category search by patient + code'
       description %(
         A server SHALL support searching by
-        patient + category on the Observation resource. This test
+        patient + code on the Observation resource. This test
         will pass if resources are returned and match the search criteria. If
         none are returned, the test is skipped.
 
@@ -27,17 +27,17 @@ module CancerRegistryReportingTestKit
         title: 'Patient IDs',
         description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements'
       
-      input :tnm_regional_nodes_category_category,
-        title: 'Category of TNM Regional Nodes Category'
+      input :tnm_regional_nodes_category_code,
+        title: 'Code of TNM Regional Nodes Category'
 
       def self.properties
           @properties ||= CancerRegistryReportingTestKit::SearchTestProperties.new(
           first_search: true,
           fixed_value_search: false,
           resource_type: 'Observation',
-          search_param_names: ['patient', 'category'],
+          search_param_names: ['patient', 'code'],
           possible_status_search: true,
-          token_search_params: ['category'],
+          token_search_params: ['code'],
           test_reference_variants: true,
           test_post_search: true
           )
@@ -53,7 +53,7 @@ module CancerRegistryReportingTestKit
 
       run do
         # manual params must be in the same order as the param names
-        @manual_search_params = [tnm_regional_nodes_category_category]
+        @manual_search_params = [tnm_regional_nodes_category_code]
         run_search_test
       end
       
