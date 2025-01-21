@@ -1,14 +1,10 @@
-require 'us_core_test_kit/date_search_validation'
-require 'us_core_test_kit/fhir_resource_navigation'
-require 'us_core_test_kit/resource_search_param_checker'
-require 'us_core_test_kit/search_test_properties'
+require_relative 'fhir_resource_navigation'
+require_relative 'search_test_properties'
 
 module CancerRegistryReportingTestKit
   module SearchTest
     extend Forwardable
-    include USCoreTestKit::DateSearchValidation
-    include USCoreTestKit::FHIRResourceNavigation
-    include USCoreTestKit::ResourceSearchParamChecker
+    include FHIRResourceNavigation
 
     def_delegators 'self.class', :metadata, :provenance_metadata, :properties
     def_delegators 'properties',
@@ -481,7 +477,7 @@ module CancerRegistryReportingTestKit
     end
 
     def fixed_value_search_param_values
-        metadata.search_definitions[fixed_value_search_param_name.to_sym][:values]
+      metadata.search_definitions[fixed_value_search_param_name.to_sym][:values]
     end
 
     def fixed_value_search_params(value, patient_id)
@@ -547,6 +543,8 @@ module CancerRegistryReportingTestKit
       paths = metadata.search_definitions[name.to_sym][:paths]
       if paths.first =='class'
         paths[0] = 'local_class'
+      elsif paths.first =='method'
+        paths[0] = 'local_method'
       end
 
       paths
@@ -663,7 +661,7 @@ module CancerRegistryReportingTestKit
             element.family || element.given&.first || element.text
           when FHIR::Address
             element.text || element.city || element.state || element.postalCode || element.country
-          when USCoreTestKit::PrimitiveType
+          when CancerRegistryReportingTestKit::PrimitiveType
             element.value
           else
             if metadata.version != 'v3.1.1' &&
@@ -712,7 +710,7 @@ module CancerRegistryReportingTestKit
         (element.family || element.given&.first || element.text).present?
       when FHIR::Address
         (element.text || element.city || element.state || element.postalCode || element.country).present?
-      when USCoreTestKit::PrimitiveType
+      when CancerRegistryReportingTestKit::PrimitiveType
         element.value.present?
       else
         true
@@ -729,7 +727,8 @@ module CancerRegistryReportingTestKit
       resources.each do |resource|
         references_to_save(containing_resource_type).each do |reference_to_save|
           resolve_path(resource, reference_to_save[:path])
-            .select { |reference| reference.is_a?(FHIR::Reference) && !reference.contained? }
+            .select { |reference| reference.is_a?(FHIR::Reference) &&
+              !reference.contained? && reference.reference.present? }
             .each do |reference|
               resource_type = reference.resource_class.name.demodulize
               need_to_save = reference_to_save[:resources].include?(resource_type)
@@ -774,7 +773,7 @@ module CancerRegistryReportingTestKit
           values_found <<
             if value.is_a? FHIR::Reference
               value.reference
-            elsif value.is_a? USCoreTestKit::PrimitiveType
+            elsif value.is_a? CancerRegistryReportingTestKit::PrimitiveType
               value.value
             else
               value
