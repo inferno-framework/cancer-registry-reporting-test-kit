@@ -283,6 +283,9 @@
         "subject" : {
           "reference" : "Patient/cancer-86"
         },
+        "focus" : [{
+          "reference" : "Condition/primary-cancer-condition-breast-86"
+        }],
         "effectiveDateTime" : "2019-04-01",
         "performer" : [{
           "reference" : "Practitioner/us-core-practitioner-kyle-anydoc"
@@ -325,6 +328,9 @@
         "subject" : {
           "reference" : "Patient/cancer-86"
         },
+        "focus" : [{
+          "reference" : "Condition/primary-cancer-condition-breast-86"
+        }],
         "effectiveDateTime" : "2019-04-01",
         "performer" : [{
           "reference" : "Practitioner/us-core-practitioner-kyle-anydoc"
@@ -367,6 +373,9 @@
         "subject" : {
           "reference" : "Patient/cancer-86"
         },
+        "focus" : [{
+          "reference" : "Condition/primary-cancer-condition-breast-86"
+        }],
         "effectiveDateTime" : "2019-04-01",
         "performer" : [{
           "reference" : "Practitioner/us-core-practitioner-kyle-anydoc"

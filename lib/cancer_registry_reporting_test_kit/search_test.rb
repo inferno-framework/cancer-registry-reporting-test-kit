@@ -528,6 +528,8 @@ module CancerRegistryReportingTestKit
       paths = metadata.search_definitions[name.to_sym][:paths]
       if paths.first =='class'
         paths[0] = 'local_class'
+      elsif paths.first =='method'
+        paths[0] = 'local_method'
       end
 
       paths
