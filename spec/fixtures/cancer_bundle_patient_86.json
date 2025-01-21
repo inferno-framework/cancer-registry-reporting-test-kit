@@ -301,7 +301,7 @@
           "coding" : [{
             "system" : "http://snomed.info/sct",
             "code" : "897275008",
-            "display" : "American Joint Commission on Cancer, Cancer Staging Manual, 8th edition neoplasm staging system (tumor staging)"
+            "display" : "American Joint Committee on Cancer, Cancer Staging Manual, 8th edition neoplasm staging system (tumor staging)"
           }]
         }
       }},
@@ -346,7 +346,7 @@
           "coding" : [{
             "system" : "http://snomed.info/sct",
             "code" : "897275008",
-            "display" : "American Joint Commission on Cancer, Cancer Staging Manual, 8th edition neoplasm staging system (tumor staging)"
+            "display" : "American Joint Committee on Cancer, Cancer Staging Manual, 8th edition neoplasm staging system (tumor staging)"
           }]
         }
       }},
@@ -391,7 +391,7 @@
           "coding" : [{
             "system" : "http://snomed.info/sct",
             "code" : "897275008",
-            "display" : "American Joint Commission on Cancer, Cancer Staging Manual, 8th edition neoplasm staging system (tumor staging)"
+            "display" : "American Joint Committee on Cancer, Cancer Staging Manual, 8th edition neoplasm staging system (tumor staging)"
           }]
         }
       }},
@@ -436,7 +436,7 @@
           "coding" : [{
             "system" : "http://snomed.info/sct",
             "code" : "897275008",
-            "display" : "American Joint Commission on Cancer, Cancer Staging Manual, 8th edition neoplasm staging system (tumor staging)"
+            "display" : "American Joint Committee on Cancer, Cancer Staging Manual, 8th edition neoplasm staging system (tumor staging)"
           }]
         },
         "hasMember" : [{
