@@ -23,6 +23,13 @@
       "title": "Primary Condition Category",
       "description": "Category of primary condition",
       "value": "problem-list-item"
+    },
+    {
+      "name": "medication_administration",
+      "type": "text",
+      "title": "Medication Administration",
+      "description": "Medication Administration preset",
+      "value": "31675"
     }
 
   ]
