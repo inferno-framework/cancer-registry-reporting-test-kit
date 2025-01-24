@@ -1,6 +1,6 @@
 require_relative 'fixtures/dummy_ms_test'
 RSpec.describe CancerRegistryReportingTestKit::MustSupportTest do
-  let(:suite) { Inferno::Repositories::TestSuites.new.find('ccrr_hdea') }
+  let(:suite) { Inferno::Repositories::TestSuites.new.find('ccrr_v100_report_generation') }
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:test_session) { repo_create(:test_session, test_suite_id: suite.id) }
 
@@ -26,10 +26,27 @@ RSpec.describe CancerRegistryReportingTestKit::MustSupportTest do
   
   describe 'bundle_parse' do
     let(:dummy_must_support_test) { CancerRegistryReportingTestKit::HDEAV100::DummyMustSupportTest}
+    let(:incomplete_bundle) { File.read('spec/fixtures/ccrr_hdea_content_bundle_example_incomplete.json') }
+    let(:complete_bundle) { File.read('spec/fixtures/ccrr_hdea_content_bundle_example_complete.json')}
 
-    it 'reports unresolved references if server suports all MS extensions' do
-      result = run(dummy_must_support_test)
-      expect(result.result).to eq("pass") #TODO: placeholder spec test, currently only tests the method can be called in a test.
+    it 'returns unresolved references if report contains any' do
+      result = run(dummy_must_support_test, {input_bundle: incomplete_bundle})
+      expect(result.result).to eq("fail") 
+      expect(result.result_message).to eq('Reference Missed: ["Observation/tnm-clinical-stage-group-jenny-m"]')
+    end
+
+    it 'reports no unresolved references if report does not contain any' do
+      result = run(dummy_must_support_test, {input_bundle: complete_bundle})
+      expect(result.result).to eq("pass") 
+    end
+
+    it 'does not convolute missing references from different calls' do
+      result = run(dummy_must_support_test, {input_bundle: incomplete_bundle})
+      expect(result.result).to eq("fail") 
+      expect(result.result_message).to eq('Reference Missed: ["Observation/tnm-clinical-stage-group-jenny-m"]')
+
+      result = run(dummy_must_support_test, {input_bundle: complete_bundle})
+      expect(result.result).to eq("pass") 
     end
   end
 end
