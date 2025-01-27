@@ -37,6 +37,7 @@ require 'us_core_test_kit/generated/v3.1.1/practitioner_group'
 require 'us_core_test_kit/generated/v3.1.1/provenance_group'
 
 require_relative './mcode_data_access_resources/primary_cancer_condition_group'
+require_relative './mcode_data_access_resources/medication_administration_group'
 require_relative './mcode_data_access_resources/tnm_distant_metastases_category_group'
 require_relative './mcode_data_access_resources/tnm_primary_tumor_category_group'
 require_relative './mcode_data_access_resources/tnm_regional_nodes_category_group'
@@ -69,9 +70,9 @@ module CancerRegistryReportingTestKit
       end
       
       
-      group do
-        title 'Cancer Patient FHIR API Tests'
-        id :ehr_fhir_api
+      # group do
+      #   title 'Cancer Patient FHIR API Tests'
+      #   id :ehr_fhir_api
 
 
         group do 
@@ -116,12 +117,13 @@ module CancerRegistryReportingTestKit
           title 'mCode FHIR API tests'
           id :mcode_fhir_api
           group from: :ehr_primary_cancer_condition
+          group from: :ehr_medication_administration
           group from: :ehr_tnm_distant_metastases_category 
           group from: :ehr_tnm_primary_tumor_category   
           group from: :ehr_tnm_regional_nodes_category  
           group from: :ehr_tnm_stage_group   
 
         end
-    end
+    # end
   end
 end
