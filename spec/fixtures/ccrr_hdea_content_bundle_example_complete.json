@@ -34,7 +34,7 @@
         }]
       },
       "subject" : {
-        "reference" : "Patient/example-Patient",
+        "reference" : "Patient/example-complete-Patient",
         "display" : "Amy Shaw"
       },
       "encounter" : {
@@ -327,10 +327,10 @@
     }
   },
   {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Patient/example-Patient",
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Patient/example-complete-Patient",
     "resource" : {
       "resourceType" : "Patient",
-      "id" : "example-Patient",
+      "id" : "example-complete-Patient",
       "meta" : {
         "profile" : [
           "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
