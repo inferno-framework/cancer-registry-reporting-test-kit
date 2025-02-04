@@ -43,8 +43,7 @@
       },
       "date" : "2023-01-02T22:13:23Z",
       "author" : [{
-        "reference" : "Practitioner/example-Practitioner",
-        "display" : "Nicholas Joseph"
+        "reference" : "PractitionerRole/example-practitionerrole-incomplete"
       }],
       "title" : "Central Cancer Registry Report",
       "section" : [{
@@ -61,7 +60,7 @@
           "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Primary Cancer Condition Section</p></div>"
         },
         "entry" : [{
-          "reference" : "Condition/primary-cancer-condition-breast"
+          "reference" : "Condition/primary-cancer-condition-incomplete"
         }]
       },
       {
@@ -556,16 +555,12 @@
     }
   },
   {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Condition/primary-cancer-condition-breast",
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Condition/primary-cancer-condition-incomplete",
     "resource" : {
       "resourceType" : "Condition",
-      "id" : "primary-cancer-condition-breast",
+      "id" : "primary-cancer-condition-incomplete",
       "meta" : {
         "profile" : ["http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-primary-cancer-condition"]
-      },
-      "text" : {
-        "status" : "extensions",
-        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Narrative:</b></p><p><b>Condition: </b>primary-cancer-condition-breast</p><p><b>Histology-Morphology-Behavior Extension</b>: Lobular carcinoma in situ (morphologic abnormality) <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT[Intl]</a>#77284006)</p><p><b>clinicalStatus</b>: Active</p><p><b>verificationStatus</b>: Confirmed</p><p><b>category</b>: Problem List Item</p><p><b>code</b>: Malignant neoplastic disease (disorder) <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT[Intl]</a>#363346000)</p><p><b>bodySite</b>: Left breast structure (body structure) <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT[Intl]</a>#80248007)</p><p><b>subject</b>: <a href=\"Patient-example.html\">Patient/example</a> Amy Shaw</p><p><b>onset</b>: 2019-04-01</p><p><b>asserter</b>: <a href=\"Practitioner-1.html\">Practitioner/1</a> Joseph Nichols</p><p><b>Stage: </b>American Joint Committee on Cancer stage IIIC (qualifier value) <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT[Intl]</a>#1222806003)</p></div>"
       },
       "extension" : [{
         "url" : "http://hl7.org/fhir/StructureDefinition/condition-assertedDate",
@@ -644,51 +639,10 @@
     }
   },
   {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Practitioner/example-Practitioner",
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/PractitionerRole/example-practitionerrole-incomplete",
     "resource" : {
-      "resourceType" : "Practitioner",
-      "id" : "example-Practitioner",
-      "meta" : {
-        "profile" : [
-          "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner"
-        ]
-      },
-      "text" : {
-        "status" : "generated",
-        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><p><b>id</b>: practitioner-1</p><p><b>meta</b>: </p><p><b>identifier</b>: id: 9941339108, id: 25456</p><p><b>name</b>: Ronald Bone </p><p><b>address</b>: 1003 Healthcare Drive Amherst MA 01002 (HOME)</p></div>"
-      },
-      "identifier" : [
-        {
-          "system" : "http://hl7.org.fhir/sid/us-npi",
-          "value" : "9941339108"
-        },
-        {
-          "system" : "http://www.acme.org/practitioners",
-          "value" : "25456"
-        }
-      ],
-      "name" : [
-        {
-          "family" : "Bone",
-          "given" : [
-            "Ronald"
-          ],
-          "prefix" : [
-            "Dr"
-          ]
-        }
-      ],
-      "address" : [
-        {
-          "use" : "home",
-          "line" : [
-            "1003 Healthcare Drive"
-          ],
-          "city" : "Amherst",
-          "state" : "MA",
-          "postalCode" : "01002"
-        }
-      ]
+      "resourceType" : "PractitionerRole",
+      "id" : "example-practitionerrole-incomplete"
     }
   },
   {

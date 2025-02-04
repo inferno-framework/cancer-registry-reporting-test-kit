@@ -43,7 +43,7 @@
       },
       "date" : "2023-01-02T22:13:23Z",
       "author" : [{
-        "reference" : "Practitioner/example-Practitioner",
+        "reference" : "Practitioner/example-practitioner-complete",
         "display" : "Nicholas Joseph"
       }],
       "title" : "Central Cancer Registry Report",
@@ -61,7 +61,7 @@
           "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Primary Cancer Condition Section</p></div>"
         },
         "entry" : [{
-          "reference" : "Condition/primary-cancer-condition-breast"
+          "reference" : "Condition/primary-cancer-condition-complete"
         }]
       },
       {
@@ -556,16 +556,12 @@
     }
   },
   {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Condition/primary-cancer-condition-breast",
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Condition/primary-cancer-condition-complete",
     "resource" : {
       "resourceType" : "Condition",
-      "id" : "primary-cancer-condition-breast",
+      "id" : "primary-cancer-condition-complete",
       "meta" : {
         "profile" : ["http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-primary-cancer-condition"]
-      },
-      "text" : {
-        "status" : "extensions",
-        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Narrative:</b></p><p><b>Condition: </b>primary-cancer-condition-breast</p><p><b>Histology-Morphology-Behavior Extension</b>: Lobular carcinoma in situ (morphologic abnormality) <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT[Intl]</a>#77284006)</p><p><b>clinicalStatus</b>: Active</p><p><b>verificationStatus</b>: Confirmed</p><p><b>category</b>: Problem List Item</p><p><b>code</b>: Malignant neoplastic disease (disorder) <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT[Intl]</a>#363346000)</p><p><b>bodySite</b>: Left breast structure (body structure) <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT[Intl]</a>#80248007)</p><p><b>subject</b>: <a href=\"Patient-example.html\">Patient/example</a> Amy Shaw</p><p><b>onset</b>: 2019-04-01</p><p><b>asserter</b>: <a href=\"Practitioner-1.html\">Practitioner/1</a> Joseph Nichols</p><p><b>Stage: </b>American Joint Committee on Cancer stage IIIC (qualifier value) <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT[Intl]</a>#1222806003)</p></div>"
       },
       "extension" : [{
         "url" : "http://hl7.org/fhir/StructureDefinition/condition-assertedDate",
@@ -630,7 +626,7 @@
       },
       "onsetDateTime" : "2019-04-01",
       "asserter" : {
-        "reference" : "Practitioner/example-Practitioner"
+        "reference" : "Practitioner/example-practitioner-complete"
       },
       "stage" : [{
         "summary" : {
@@ -644,10 +640,10 @@
     }
   },
   {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Practitioner/example-Practitioner",
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Practitioner/example-practitioner-complete",
     "resource" : {
       "resourceType" : "Practitioner",
-      "id" : "example-Practitioner",
+      "id" : "example-practitioner-complete",
       "meta" : {
         "profile" : [
           "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner"
