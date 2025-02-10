@@ -55,7 +55,7 @@ module CancerRegistryReportingTestKit
       'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/cancer-patient' => :cancer_patient_resources,
       'http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan' => :care_plan_resources,
       'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-reporting-bundle' => :ccrr_reporting_bundle_resources,
-      'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-primary-cancer-condition' => :central_cancer_registry_primary_cancer_condition_resources,
+      'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-primary-cancer-condition' => :primary_condition_resources,
       'http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference' => :document_reference_resources,
       'http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter' => :encounter_resources,
       'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/us-ph-tribal-affiliation-extension' => :extension_resources,
@@ -94,7 +94,7 @@ module CancerRegistryReportingTestKit
         clear_unresolved_references
         return parsed_bundle, current_bundle_unresolved_references
       else
-        puts 'Error - first entry should be a Composition'
+        info 'The first entry should be a Composition, unable to parse bundle'
       end
     end
     
@@ -107,7 +107,9 @@ module CancerRegistryReportingTestKit
           resource_hash[FIELD_TO_URL_MAP[key]] ||= []
           referenced_resource = find_resource_in_bundle(value.reference, bundle)
           unresolved_references << value.reference if !referenced_resource
-          resource_hash[FIELD_TO_URL_MAP[key]] << referenced_resource if referenced_resource
+          unless resource_hash[FIELD_TO_URL_MAP[key]].include?(referenced_resource)
+            resource_hash[FIELD_TO_URL_MAP[key]] << referenced_resource if referenced_resource
+          end
         elsif value.is_a?(Array) && value.all? { |elmt| elmt.is_a?(FHIR::Composition::Section) }
           resource_hash.merge!(parse_sections(value, bundle))
         elsif value.is_a?(Array) && value.all? { |elmt| elmt.is_a?(FHIR::Reference) }
@@ -115,7 +117,9 @@ module CancerRegistryReportingTestKit
           value.each do |val| 
             referenced_resource = find_resource_in_bundle(val.reference, bundle)
             unresolved_references << val.reference if !referenced_resource
-            resource_hash[FIELD_TO_URL_MAP[key]] << referenced_resource if referenced_resource
+            unless resource_hash[FIELD_TO_URL_MAP[key]].include?(referenced_resource)
+              resource_hash[FIELD_TO_URL_MAP[key]] << referenced_resource if referenced_resource
+            end
           end
         elsif value.is_a?(FHIR::Model)
           resource_hash.merge!(look_for_references_in_resource(value, bundle))
@@ -134,7 +138,9 @@ module CancerRegistryReportingTestKit
             referenced_resource = find_resource_in_bundle(ref.reference, bundle)
             if referenced_resource
               hash[profile_from_resource_type(code, referenced_resource.resourceType)] ||= []
-              hash[profile_from_resource_type(code, referenced_resource.resourceType)] << referenced_resource
+              unless hash[profile_from_resource_type(code, referenced_resource.resourceType)].include?(referenced_resource)
+                hash[profile_from_resource_type(code, referenced_resource.resourceType)] << referenced_resource
+              end
             else
               unresolved_references << ref.reference
             end
@@ -145,7 +151,9 @@ module CancerRegistryReportingTestKit
           sec.entry.each do |ref| 
             referenced_resource = find_resource_in_bundle(ref.reference, bundle)
             unresolved_references << ref.reference if !referenced_resource
-            hash[resource_key] << referenced_resource if referenced_resource
+            unless hash[resource_key].include?(referenced_resource)
+              hash[resource_key] << referenced_resource if referenced_resource
+            end
           end
         end
       end
