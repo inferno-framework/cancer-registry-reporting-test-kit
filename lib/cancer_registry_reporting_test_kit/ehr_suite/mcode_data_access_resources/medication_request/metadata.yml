@@ -1,0 +1,94 @@
+---
+:name: mcode_cancer_related_medication_request
+:class_name: McodeCancerRelatedMedicationRequestSequence
+:version: v1.0.0
+:reformatted_version: v100
+:resource: MedicationRequest
+:profile_url: http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-request
+:profile_name: Cancer-Related Medication Request Profile
+:profile_version: 3.0.0
+:title: Cancer-Related Medication Request
+:short_description: Verify support for the server capabilities required by the Cancer-Related
+  Medication Request Profile.
+:must_supports:
+  :extensions:
+  - :id: MedicationRequest.extension:treatmentIntent
+    :path: extension
+    :url: http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-procedure-intent
+  :slices:
+  - :slice_id: MedicationRequest.category:us-core
+    :slice_name: us-core
+    :path: category
+    :discriminator:
+      :type: requiredBinding
+      :path: ''
+      :values:
+      - :system: http://terminology.hl7.org/CodeSystem/medicationrequest-category
+        :code: inpatient
+      - :system: http://terminology.hl7.org/CodeSystem/medicationrequest-category
+        :code: outpatient
+      - :system: http://terminology.hl7.org/CodeSystem/medicationrequest-category
+        :code: community
+      - :system: http://terminology.hl7.org/CodeSystem/medicationrequest-category
+        :code: discharge
+  :elements:
+  - :path: status
+  - :path: statusReason
+  - :path: intent
+  - :path: category
+  - :path: medication[x]
+    :types:
+    - Reference
+  - :path: subject
+    :types:
+    - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-patient
+  - :path: requester
+    :types:
+    - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner
+  - :path: reasonCode
+  - :path: reasonReference
+    :types:
+    - Reference
+    :target_profiles:
+    - http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition-problems-health-concerns
+:mandatory_elements:
+- MedicationRequest.status
+- MedicationRequest.intent
+- MedicationRequest.medication[x]
+- MedicationRequest.subject
+- MedicationRequest.requester
+- MedicationRequest.substitution.allowed[x]
+:tests: []
+:id: ccrr_v100_medication_request
+:file_name: medication_request_group.rb
+:searches:
+- :expectation: SHALL
+  :names:
+  - patient
+  - intent
+:search_definitions:
+  :patient:
+    :paths:
+    - subject
+    :full_paths:
+    - MedicationRequest.subject
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :multiple_or: MAY
+  :intent:
+    :paths:
+    - intent
+    :full_paths:
+    - MedicationRequest.intent
+    :comparators: {}
+    :values:
+    - order
+    :type: code
+    :contains_multiple: false
+    :multiple_or: SHALL
