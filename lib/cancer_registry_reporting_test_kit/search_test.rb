@@ -169,15 +169,20 @@ module CancerRegistryReportingTestKit
       # HL7 JIRA FHIR-37917. US Core v5.0.1 does not required patient+category.
       # In order to distinguish which resources matches the current profile, Inferno has to manually filter
       # the result of first search, which is searching by patient.
-      selected_category = primary_condition_category
+      selected_categories = []
+        all_search_params.each do |key, array_of_param_hashes|
+          categories = array_of_param_hashes.map { |param_hash| param_hash['category']}
+          selected_categories.concat categories
+        end
+        selected_categories.uniq!
 
-      resources.select! do |resource|
-        resource.category.any? do |category|
-          category.coding.any? do |coding|
-            selected_category.include? coding.code
+        resources.select! do |resource|
+          resource.category.any? do |category|
+            category.coding.any? do |coding|
+              selected_categories.include? coding.code
+            end
           end
         end
-      end
     end
 
     def search_and_check_response(params, resource_type = self.resource_type)

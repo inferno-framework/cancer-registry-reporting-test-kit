@@ -67,7 +67,7 @@ module CancerRegistryReportingTestKit
         @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'secondary_condition', 'metadata.yml'), aliases: true))
       end
       test from: :secondary_cancer_condition_search_test
-      test from: :secondary_cancer_condition_must_support_test
       test from: :secondary_cancer_condition_validation_test
+      test from: :secondary_cancer_condition_must_support_test
       end
 end
