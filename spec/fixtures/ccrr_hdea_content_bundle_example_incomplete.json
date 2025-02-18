@@ -34,7 +34,7 @@
         }]
       },
       "subject" : {
-        "reference" : "Patient/example-complete-Patient",
+        "reference" : "Patient/example-incomplete-Patient",
         "display" : "Amy Shaw"
       },
       "encounter" : {
@@ -43,8 +43,7 @@
       },
       "date" : "2023-01-02T22:13:23Z",
       "author" : [{
-        "reference" : "Practitioner/example-practitioner-complete",
-        "display" : "Nicholas Joseph"
+        "reference" : "PractitionerRole/example-practitionerrole-incomplete"
       }],
       "title" : "Central Cancer Registry Report",
       "section" : [{
@@ -61,7 +60,7 @@
           "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Primary Cancer Condition Section</p></div>"
         },
         "entry" : [{
-          "reference" : "Condition/primary-cancer-condition-complete"
+          "reference" : "Condition/primary-cancer-condition-incomplete"
         }]
       },
       {
@@ -327,10 +326,10 @@
     }
   },
   {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Patient/example-complete-Patient",
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Patient/example-incomplete-Patient",
     "resource" : {
       "resourceType" : "Patient",
-      "id" : "example-complete-Patient",
+      "id" : "example-incomplete-Patient",
       "meta" : {
         "profile" : [
           "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
@@ -556,10 +555,10 @@
     }
   },
   {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Condition/primary-cancer-condition-complete",
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Condition/primary-cancer-condition-incomplete",
     "resource" : {
       "resourceType" : "Condition",
-      "id" : "primary-cancer-condition-complete",
+      "id" : "primary-cancer-condition-incomplete",
       "meta" : {
         "profile" : ["http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-primary-cancer-condition"]
       },
@@ -626,7 +625,7 @@
       },
       "onsetDateTime" : "2019-04-01",
       "asserter" : {
-        "reference" : "Practitioner/example-practitioner-complete"
+        "reference" : "Practitioner/example-Practitioner"
       },
       "stage" : [{
         "summary" : {
@@ -640,51 +639,10 @@
     }
   },
   {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Practitioner/example-practitioner-complete",
+    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/PractitionerRole/example-practitionerrole-incomplete",
     "resource" : {
-      "resourceType" : "Practitioner",
-      "id" : "example-practitioner-complete",
-      "meta" : {
-        "profile" : [
-          "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner"
-        ]
-      },
-      "text" : {
-        "status" : "generated",
-        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><p><b>id</b>: practitioner-1</p><p><b>meta</b>: </p><p><b>identifier</b>: id: 9941339108, id: 25456</p><p><b>name</b>: Ronald Bone </p><p><b>address</b>: 1003 Healthcare Drive Amherst MA 01002 (HOME)</p></div>"
-      },
-      "identifier" : [
-        {
-          "system" : "http://hl7.org.fhir/sid/us-npi",
-          "value" : "9941339108"
-        },
-        {
-          "system" : "http://www.acme.org/practitioners",
-          "value" : "25456"
-        }
-      ],
-      "name" : [
-        {
-          "family" : "Bone",
-          "given" : [
-            "Ronald"
-          ],
-          "prefix" : [
-            "Dr"
-          ]
-        }
-      ],
-      "address" : [
-        {
-          "use" : "home",
-          "line" : [
-            "1003 Healthcare Drive"
-          ],
-          "city" : "Amherst",
-          "state" : "MA",
-          "postalCode" : "01002"
-        }
-      ]
+      "resourceType" : "PractitionerRole",
+      "id" : "example-practitionerrole-incomplete"
     }
   },
   {
@@ -739,61 +697,6 @@
       "asserter" : {
         "reference" : "Practitioner/us-core-practitioner-kyle-anydoc"
       }
-    }
-  },
-  {
-    "fullUrl" : "http://hl7.org/fhir/us/centrral-cancer-registry-reporting/Observation/tnm-clinical-stage-group-jenny-m",
-    "resource" : {
-      "resourceType" : "Observation",
-      "id" : "tnm-clinical-stage-group-jenny-m",
-      "meta" : {
-        "profile" : ["http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-stage-group"]
-      },
-      "text" : {
-        "status" : "generated",
-        "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"tnm-clinical-stage-group-jenny-m\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;tnm-clinical-stage-group-jenny-m&quot; </p><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-mcode-tnm-stage-group.html\">TNM Stage Group Profile</a></p></div><p><b>status</b>: final</p><p><b>code</b>: Clinical TNM stage grouping <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#399537006)</span></p><p><b>subject</b>: <a href=\"Patient-cancer-patient-jenny-m.html\">Patient/cancer-patient-jenny-m</a> &quot; M&quot;</p><p><b>focus</b>: <a href=\"Condition-primary-cancer-condition-jenny-m.html\">Condition/primary-cancer-condition-jenny-m</a></p><p><b>effective</b>: 2018-03-16</p><p><b>performer</b>: <a href=\"Practitioner-us-core-practitioner-owen-oncologist.html\">Practitioner/us-core-practitioner-owen-oncologist</a> &quot; ONCOLOGIST&quot;</p><p><b>value</b>: American Joint Committee on Cancer stage IIB (qualifier value) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#1222769001)</span></p><p><b>method</b>: American Joint Commission on Cancer, Cancer Staging Manual, 8th edition neoplasm staging system (tumor staging) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#897275008)</span></p><p><b>hasMember</b>: </p><ul><li><a href=\"Observation-tnm-pathologic-primary-tumor-category-jenny-m.html\">Observation/tnm-pathologic-primary-tumor-category-jenny-m</a></li><li><a href=\"Observation-tnm-pathologic-regional-nodes-category-jenny-m.html\">Observation/tnm-pathologic-regional-nodes-category-jenny-m</a></li><li><a href=\"Observation-tnm-pathologic-distant-metastases-category-jenny-m.html\">Observation/tnm-pathologic-distant-metastases-category-jenny-m</a></li></ul></div>"
-      },
-      "status" : "final",
-      "code" : {
-        "coding" : [{
-          "system" : "http://snomed.info/sct",
-          "code" : "399537006",
-          "display" : "Clinical TNM stage grouping"
-        }]
-      },
-      "subject" : {
-        "reference" : "Patient/cancer-patient-jenny-m"
-      },
-      "focus" : [{
-        "reference" : "Condition/primary-cancer-condition-jenny-m"
-      }],
-      "effectiveDateTime" : "2018-03-16",
-      "performer" : [{
-        "reference" : "Practitioner/us-core-practitioner-owen-oncologist"
-      }],
-      "valueCodeableConcept" : {
-        "coding" : [{
-          "system" : "http://snomed.info/sct",
-          "code" : "1222769001",
-          "display" : "American Joint Committee on Cancer stage IIB (qualifier value)"
-        }]
-      },
-      "method" : {
-        "coding" : [{
-          "system" : "http://snomed.info/sct",
-          "code" : "897275008",
-          "display" : "American Joint Commission on Cancer, Cancer Staging Manual, 8th edition neoplasm staging system (tumor staging)"
-        }]
-      },
-      "hasMember" : [{
-        "reference" : "Observation/tnm-pathologic-primary-tumor-category-jenny-m"
-      },
-      {
-        "reference" : "Observation/tnm-pathologic-regional-nodes-category-jenny-m"
-      },
-      {
-        "reference" : "Observation/tnm-pathologic-distant-metastases-category-jenny-m"
-      }]
     }
   },
   {

@@ -38,6 +38,7 @@ require 'us_core_test_kit/generated/v3.1.1/provenance_group'
 
 require_relative './mcode_data_access_resources/primary_cancer_condition_group'
 require_relative './mcode_data_access_resources/secondary_cancer_condition_group'
+require_relative './mcode_data_access_resources/medication_request_group'
 require_relative './mcode_data_access_resources/medication_administration_group'
 require_relative './mcode_data_access_resources/tnm_distant_metastases_category_group'
 require_relative './mcode_data_access_resources/tnm_primary_tumor_category_group'
@@ -119,12 +120,12 @@ module CancerRegistryReportingTestKit
           id :mcode_fhir_api
           group from: :ehr_primary_cancer_condition
           group from: :ehr_secondary_cancer_condition
+          group from: :ehr_medication_request
           group from: :ehr_medication_administration
           group from: :ehr_tnm_distant_metastases_category 
           group from: :ehr_tnm_primary_tumor_category   
           group from: :ehr_tnm_regional_nodes_category  
           group from: :ehr_tnm_stage_group   
-
         end
     # end
   end

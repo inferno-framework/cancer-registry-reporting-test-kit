@@ -32,7 +32,7 @@ module CancerRegistryReportingTestKit
       ## FOR HDEA
       COMPOSITION = 'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-composition'
       CCRR_CONTENT_BUNDLE = 'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-content-bundle'
-      CENTRAL_CANCER_REGISTRY_PRIMARY_CANCER_CONDITION = 'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-primary-cancer-condition'
+      PRIMARY_CONDITION = 'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-primary-cancer-condition'
       MCODE_SECONDARY_CANCER_CONDITION = 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-secondary-cancer-condition'
       MCODE_TNM_STAGE_GROUP = 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-stage-group'
       MCODE_RADIOTHERAPY_COURSE_SUMMARY = 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-course-summary' 
