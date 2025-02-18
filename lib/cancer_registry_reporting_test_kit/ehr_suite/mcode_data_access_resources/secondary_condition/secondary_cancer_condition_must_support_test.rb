@@ -1,14 +1,14 @@
 require_relative '../../../must_support_test'
 
 module CancerRegistryReportingTestKit
-    class PatientMustSupportTest < Inferno::Test
-      include USCoreTestKit::MustSupportTest
+    class SecondaryCancerConditionMustSupportTest < Inferno::Test
+      include CancerRegistryReportingTestKit::MustSupportTest
 
-      title 'All must support elements are provided in the primary condition resources returned'
+      title 'All must support elements are provided in the Secondary Cancer Condition resources returned'
       description %(
       )
 
-      id :primary_condition_must_support_test
+      id :secondary_cancer_condition_must_support_test
 
       def resource_type
         'Condition'
@@ -19,7 +19,7 @@ module CancerRegistryReportingTestKit
       end
 
       def scratch_resources
-        scratch[:primary_condition_resources] ||= {}
+        scratch[:secondary_condition_resources] ||= {}
       end
 
       run do

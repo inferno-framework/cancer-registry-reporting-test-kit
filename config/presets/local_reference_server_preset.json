@@ -69,6 +69,12 @@
       "value": "problem-list-item"
     },
     {
+      "name": "secondary_condition_category",
+      "type": "text",
+      "title": "Secondary Condition Category",
+      "value": "problem-list-item"
+    },
+    {
       "name": "tnm_distant_metastases_category_code",
       "type": "text",
       "title": "Code of TNM Distant Metastases Category",

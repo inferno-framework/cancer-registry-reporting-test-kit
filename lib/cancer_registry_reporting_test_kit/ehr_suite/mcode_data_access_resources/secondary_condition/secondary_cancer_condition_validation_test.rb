@@ -1,14 +1,14 @@
 require_relative '../../../validation_test'
 
 module CancerRegistryReportingTestKit
-    class PrimaryConditionValidationTest < Inferno::Test
+    class SecondaryCancerConditionValidationTest < Inferno::Test
       include CancerRegistryReportingTestKit::ValidationTest
 
-      id :primary_condition_validation_test
-      title 'Condition resources returned during previous tests conform to the primary cancer condition'
+      id :secondary_cancer_condition_validation_test
+      title 'Condition resources returned during previous tests conform to the Secondary Cancer Condition'
       description %(
         This test verifies resources returned from the first search conform to
-        the primary cancer condition.
+        the [secondary cancer condition](http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-secondary-cancer-condition).
         Systems must demonstrate at least one valid example in order to pass this test.
 
         It verifies the presence of mandatory elements and that elements with
@@ -25,7 +25,7 @@ module CancerRegistryReportingTestKit
       end
 
       def scratch_resources
-        scratch[:primary_condition_resources] ||= {}
+        scratch[:secondary_condition_resources] ||= {}
       end
 
       run do
