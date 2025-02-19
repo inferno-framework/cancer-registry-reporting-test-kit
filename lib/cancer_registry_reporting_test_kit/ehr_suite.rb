@@ -1,4 +1,5 @@
 require_relative 'ehr_suite/ehr_data_access_group'
+require_relative 'ehr_suite/ehr_capability_statement_group'
 module CancerRegistryReportingTestKit
   class EHRSuite < Inferno::TestSuite
     id :ccrr_ehr
@@ -78,6 +79,7 @@ module CancerRegistryReportingTestKit
       end
     end
 
+    group from: :ehr_capability_statement_group
     group from: :ccrr_ehr_data_access
 
   end
