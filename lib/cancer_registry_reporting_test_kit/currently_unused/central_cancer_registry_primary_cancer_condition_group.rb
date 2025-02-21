@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'central_cancer_registry_primary_cancer_condition/central_cancer_registry_primary_cancer_condition_must_support_test'
 require_relative 'central_cancer_registry_primary_cancer_condition/central_cancer_registry_primary_cancer_condition_validation_test'
 
@@ -66,11 +68,14 @@ read succeeds.
       run_as_group
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'central_cancer_registry_primary_cancer_condition', 'metadata.yml'), aliases: true))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(
+                                                     File.join(__dir__,
+                                                               'central_cancer_registry_primary_cancer_condition', 'metadata.yml'), aliases: true
+                                                   ))
       end
-      
-        test from: :ccrr_v100_central_cancer_registry_primary_cancer_condition_must_support_test
-        test from: :ccrr_v100_central_cancer_registry_primary_cancer_condition_validation_test
+
+      test from: :ccrr_v100_central_cancer_registry_primary_cancer_condition_must_support_test
+      test from: :ccrr_v100_central_cancer_registry_primary_cancer_condition_validation_test
     end
   end
 end

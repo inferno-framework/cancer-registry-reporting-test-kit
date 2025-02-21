@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../../validation_test'
 require_relative '../../../../generator/naming'
 require_relative '../../../../bundle_parse'
@@ -40,7 +42,7 @@ fail if their code/system are not found in the valueset.
       end
 
       def url_keys_to_group_keys(report_hash)
-        report_hash.transform_keys { |key| "#{Generator::Naming.snake_case_for_url(key)}_resources".to_sym}
+        report_hash.transform_keys { |key| :"#{Generator::Naming.snake_case_for_url(key)}_resources" }
       end
 
       def resource_type
@@ -53,7 +55,7 @@ fail if their code/system are not found in the valueset.
 
       run do
         init_scratch
-        add_ms_resources_to_scratch(JSON.parse("[" + reports + "]"))
+        add_ms_resources_to_scratch(JSON.parse("[#{reports}]"))
         perform_validation_test(scratch_resources[:all] || [],
                                 'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-content-bundle',
                                 '1.0.0',

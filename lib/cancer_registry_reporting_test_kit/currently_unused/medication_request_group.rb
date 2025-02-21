@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'medication_request/medication_request_must_support_test'
 require_relative 'medication_request/medication_request_validation_test'
 
@@ -67,11 +69,14 @@ read succeeds.
       run_as_group
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'medication_request', 'metadata.yml'), aliases: true))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(
+                                                     File.join(__dir__, 'medication_request',
+                                                               'metadata.yml'), aliases: true
+                                                   ))
       end
-      
-        test from: :ccrr_v100_medication_request_must_support_test
-        test from: :ccrr_v100_medication_request_validation_test
+
+      test from: :ccrr_v100_medication_request_must_support_test
+      test from: :ccrr_v100_medication_request_validation_test
     end
   end
 end

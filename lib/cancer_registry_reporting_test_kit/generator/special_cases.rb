@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CancerRegistryReportingTestKit
   class Generator
     module SpecialCases
@@ -24,9 +26,9 @@ module CancerRegistryReportingTestKit
       end
 
       IGNORE_FOR_GENERATION = ['http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-reporting-messageheader',
-                               'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-reporting-bundle']
+                               'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-reporting-bundle'].freeze
       IGNORE_FOR_VALIDATION = ['http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-content-bundle',
-                               'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-composition']
+                               'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-composition'].freeze
     end
   end
 end

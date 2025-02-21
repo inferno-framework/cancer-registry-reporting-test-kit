@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CancerRegistryReportingTestKit
   class Generator
     module Naming
@@ -35,11 +37,12 @@ module CancerRegistryReportingTestKit
       PRIMARY_CONDITION = 'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-primary-cancer-condition'
       MCODE_SECONDARY_CANCER_CONDITION = 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-secondary-cancer-condition'
       MCODE_TNM_STAGE_GROUP = 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-stage-group'
-      MCODE_RADIOTHERAPY_COURSE_SUMMARY = 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-course-summary' 
+      MCODE_RADIOTHERAPY_COURSE_SUMMARY = 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-course-summary'
       ODH_USUAL_WORK = 'http://hl7.org/fhir/us/odh/StructureDefinition/odh-UsualWork'
       OBSERVATION = 'http://hl7.org/fhir/StructureDefinition/Observation'
       MEDICATION_ADMINISTRATION = 'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration'
-      AUTHOR = ["http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner", "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"]
+      AUTHOR = ['http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole',
+                'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner', 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization'].freeze
 
       IG_LINKS = {
         'v3.1.1' => 'http://hl7.org/fhir/us/core/STU3.1.1',
@@ -52,7 +55,7 @@ module CancerRegistryReportingTestKit
       class << self
         def resources_with_multiple_profiles
           # ['Condition', 'DiagnosticReport', 'Observation']
-          ['Patient', 'Encounter', 'Bundle', 'Observation', 'DiagnosticReport', 'Condition', 'Procedure']
+          %w[Patient Encounter Bundle Observation DiagnosticReport Condition Procedure]
         end
 
         def resource_has_multiple_profiles?(resource)
@@ -76,13 +79,12 @@ module CancerRegistryReportingTestKit
         ## HDEA QUICK PATCH
         def snake_case_for_url(url)
           # special case for author
-          if url.is_a?(Array)
-            return 'author'
-          end
+          return 'author' if url.is_a?(Array)
+
           snake_case = constants.find do |const_name|
             const_get(const_name) == url
           end
-          return snake_case.to_s.downcase
+          snake_case.to_s.downcase
         end
 
         def upper_camel_case_for_profile(group_metadata)

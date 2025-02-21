@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'fhir_resource_navigation'
 require_relative 'search_test_properties'
 
@@ -151,7 +153,7 @@ module CancerRegistryReportingTestKit
       search_variant_test_records[:post_variant] = true
 
       assert get_resource_count == post_resource_count,
-             "Expected search by POST to return the same results as search by GET, " \
+             'Expected search by POST to return the same results as search by GET, ' \
              "but GET search returned #{get_resource_count} resources, and POST search " \
              "returned #{post_resource_count} resources."
     end
@@ -255,7 +257,7 @@ module CancerRegistryReportingTestKit
 
           search_and_check_response(params_with_comparator)
 
-          comparator_resources = fetch_all_bundled_resources(params: params_with_comparator).each do |resource|
+          fetch_all_bundled_resources(params: params_with_comparator).each do |resource|
             check_resource_against_params(resource, params_with_comparator) if resource.resourceType == resource_type
           end
         end
@@ -265,7 +267,7 @@ module CancerRegistryReportingTestKit
     end
 
     def perform_reference_with_type_search(params, resource_count)
-      return if resource_count == 0
+      return if resource_count.zero?
       return if search_variant_test_records[:reference_variants]
 
       new_search_params = params.merge('patient' => "Patient/#{params['patient']}")
@@ -301,18 +303,18 @@ module CancerRegistryReportingTestKit
         fetch_all_bundled_resources(params: search_params)
           .select { |resource| resource.resourceType == resource_type }
 
-      assert resources_returned.present?, "No resources were returned when searching by `system|code`"
+      assert resources_returned.present?, 'No resources were returned when searching by `system|code`'
 
       search_variant_test_records[:token_variants] = true
     end
 
     def perform_search_with_status(
-          original_params,
-          patient_id,
-          status_search_values: self.status_search_values,
-          resource_type: self.resource_type
-        )
-      assert resource.is_a?(FHIR::OperationOutcome), "Server returned a status of 400 without an OperationOutcome"
+      original_params,
+      _patient_id,
+      status_search_values: self.status_search_values,
+      resource_type: self.resource_type
+    )
+      assert resource.is_a?(FHIR::OperationOutcome), 'Server returned a status of 400 without an OperationOutcome'
       # TODO: warn about documenting status requirements
       status_search_values.flat_map do |status_value|
         search_params = original_params.merge("#{status_search_param_name}": status_value)
@@ -344,7 +346,6 @@ module CancerRegistryReportingTestKit
       definition[:multiple_or] == 'SHALL' ? [definition[:values].join(',')] : Array.wrap(definition[:values])
     end
 
-
     def perform_multiple_or_search_test
       resolved_one = false
 
@@ -357,8 +358,9 @@ module CancerRegistryReportingTestKit
 
         multiple_or_search_params.each do |param_name|
           search_value = default_search_values(param_name.to_sym)
-          search_params = search_params.merge("#{param_name}" => search_value)
-          existing_values[param_name.to_sym] = scratch_resources_for_patient(patient_id).map(&param_name.to_sym).compact.uniq
+          search_params = search_params.merge(param_name.to_s => search_value)
+          existing_values[param_name.to_sym] =
+            scratch_resources_for_patient(patient_id).map(&param_name.to_sym).compact.uniq
         end
 
         # skip patient without multiple-or values
@@ -373,7 +375,8 @@ module CancerRegistryReportingTestKit
             .select { |resource| resource.resourceType == resource_type }
 
         multiple_or_search_params.each do |param_name|
-          missing_values[param_name.to_sym] = existing_values[param_name.to_sym] - resources_returned.map(&param_name.to_sym)
+          missing_values[param_name.to_sym] =
+            existing_values[param_name.to_sym] - resources_returned.map(&param_name.to_sym)
         end
 
         missing_value_message = missing_values
@@ -381,7 +384,8 @@ module CancerRegistryReportingTestKit
           .map { |param_name, missing_value| "#{missing_value.join(',')} values from #{param_name}" }
           .join(' and ')
 
-        assert missing_value_message.blank?, "Could not find #{missing_value_message} in any of the resources returned for Patient/#{patient_id}"
+        assert missing_value_message.blank?,
+               "Could not find #{missing_value_message} in any of the resources returned for Patient/#{patient_id}"
 
         break if resolved_one
       end
@@ -436,7 +440,8 @@ module CancerRegistryReportingTestKit
       end
 
       not_matched_included_medications_string = not_matched_included_medications.join(',')
-      assert not_matched_included_medications.empty?, "No #{resource_type} references #{not_matched_included_medications_string} in the search result."
+      assert not_matched_included_medications.empty?,
+             "No #{resource_type} references #{not_matched_included_medications_string} in the search result."
 
       medications.uniq!(&:id)
 
@@ -446,8 +451,8 @@ module CancerRegistryReportingTestKit
       search_variant_test_records[:medication_inclusion] = true
     end
 
-    def is_reference_match? (reference, local_reference)
-      regex_pattern = /^(#{Regexp.escape(local_reference)}|\S+\/#{Regexp.escape(local_reference)}(?:[\/|]\S+)*)$/
+    def is_reference_match?(reference, local_reference)
+      regex_pattern = %r{^(#{Regexp.escape(local_reference)}|\S+/#{Regexp.escape(local_reference)}(?:[/|]\S+)*)$}
       reference.match?(regex_pattern)
     end
 
@@ -474,7 +479,7 @@ module CancerRegistryReportingTestKit
       single_patient_manual_search_params = [patient_id] + manual_search_params
       split_values = single_patient_manual_search_params.map { |value| value.split(',') }
 
-      combinations = split_values[0].product(*split_values[1..-1])
+      combinations = split_values[0].product(*split_values[1..])
 
       combinations.map do |combination|
         search_param_names.zip(combination).to_h
@@ -487,7 +492,7 @@ module CancerRegistryReportingTestKit
 
     def fixed_value_search_params(value, patient_id)
       search_param_names.each_with_object({}) do |name, params|
-        patient_id_param?(name) ? params[name] = patient_id : params[name] = value
+        params[name] = patient_id_param?(name) ? patient_id : value
       end
     end
 
@@ -501,7 +506,7 @@ module CancerRegistryReportingTestKit
 
     def manual_search_params_full(value, patient_id)
       search_param_names.each_with_object({}) do |name, params|
-        patient_id_param?(name) ? params[name] = patient_id : params[name] = value
+        params[name] = patient_id_param?(name) ? patient_id : value
       end
     end
 
@@ -515,9 +520,14 @@ module CancerRegistryReportingTestKit
         end
       end
 
-      params_with_partial_value = resources.each_with_object({}) do |resource, outer_params|
+      resources.each_with_object({}) do |resource, outer_params|
         results_from_one_resource = search_param_names.each_with_object({}) do |name, params|
-          value = patient_id_param?(name) ? patient_id : search_param_value(name, resource, include_system: include_system)
+          value = if patient_id_param?(name)
+                    patient_id
+                  else
+                    search_param_value(name, resource,
+                                       include_system: include_system)
+                  end
           params[name] = value
         end
 
@@ -526,8 +536,6 @@ module CancerRegistryReportingTestKit
         # stop if all parameter values are found
         return outer_params if outer_params.all? { |_key, value| value.present? }
       end
-
-      params_with_partial_value
     end
 
     def patient_id_list
@@ -546,9 +554,9 @@ module CancerRegistryReportingTestKit
 
     def search_param_paths(name)
       paths = metadata.search_definitions[name.to_sym][:paths]
-      if paths.first =='class'
+      if paths.first == 'class'
         paths[0] = 'local_class'
-      elsif paths.first =='method'
+      elsif paths.first == 'method'
         paths[0] = 'local_method'
       end
 
@@ -574,20 +582,20 @@ module CancerRegistryReportingTestKit
     def no_resources_skip_message(resource_type = self.resource_type)
       msg = "No #{resource_type} resources appear to be available"
 
-      if (resource_type == 'Device' && implantable_device_codes.present?)
+      if resource_type == 'Device' && implantable_device_codes.present?
         msg.concat(" with the following Device Type Code filter: #{implantable_device_codes}")
       end
 
-      msg + ". Please use patients with more information"
+      "#{msg}. Please use patients with more information"
     end
 
     def fetch_all_bundled_resources(
-          reply_handler: nil,
-          max_pages: 20,
-          additional_resource_types: [],
-          resource_type: self.resource_type,
-          params: nil
-        )
+      reply_handler: nil,
+      max_pages: 20,
+      additional_resource_types: [],
+      resource_type: self.resource_type,
+      params: nil
+    )
       page_count = 1
       resources = []
       bundle = resource
@@ -613,17 +621,17 @@ module CancerRegistryReportingTestKit
       end
 
       valid_resource_types = [resource_type, 'OperationOutcome'].concat(additional_resource_types)
-      valid_resource_types << 'Medication' if ['MedicationRequest', 'MedicationDispense'].include?(resource_type)
+      valid_resource_types << 'Medication' if %w[MedicationRequest MedicationDispense].include?(resource_type)
 
       invalid_resource_types =
         resources.reject { |entry| valid_resource_types.include? entry.resourceType }
-                 .map(&:resourceType)
-                 .uniq
+          .map(&:resourceType)
+          .uniq
 
       if invalid_resource_types.any?
         info "Received resource type(s) #{invalid_resource_types.join(', ')} in search bundle, " \
-             "but only expected resource types #{valid_resource_types.join(', ')}. " + \
-             "This is unusual but allowed if the server believes additional resource types are relevant."
+             "but only expected resource types #{valid_resource_types.join(', ')}. " \
+             'This is unusual but allowed if the server believes additional resource types are relevant.'
       end
 
       resources
@@ -643,10 +651,10 @@ module CancerRegistryReportingTestKit
           case element
           when FHIR::Period
             if element.start.present?
-              'gt' + (DateTime.xmlschema(element.start) - 1).xmlschema
+              "gt#{(DateTime.xmlschema(element.start) - 1).xmlschema}"
             else
               end_datetime = get_fhir_datetime_range(element.end)[:end]
-              'lt' + (end_datetime + 1).xmlschema
+              "lt#{(end_datetime + 1).xmlschema}"
             end
           when FHIR::Reference
             element.reference
@@ -678,8 +686,8 @@ module CancerRegistryReportingTestKit
               #   Goal.target-date has day precision
               #   All others have second + time offset precision
               if /^\d{4}(-\d{2})?$/.match?(element) || # YYYY or YYYY-MM
-                (/^\d{4}-\d{2}-\d{2}$/.match?(element) && resource_type != "Goal") # YYY-MM-DD AND Resource is NOT Goal
-                "gt#{(DateTime.xmlschema(element)-1).xmlschema}"
+                 (/^\d{4}-\d{2}-\d{2}$/.match?(element) && resource_type != 'Goal') # YYY-MM-DD AND Resource is NOT Goal
+                "gt#{(DateTime.xmlschema(element) - 1).xmlschema}"
               else
                 element
               end
@@ -691,8 +699,7 @@ module CancerRegistryReportingTestKit
         break if search_value.present?
       end
 
-      escaped_value = search_value&.gsub(',', '\\,')
-      escaped_value
+      search_value&.gsub(',', '\\,')
     end
 
     def element_has_valid_value?(element, include_system)
@@ -728,12 +735,14 @@ module CancerRegistryReportingTestKit
       scratch[:references][resource_type] << reference
     end
 
-    def save_delayed_references(resources, containing_resource_type = self.resource_type)
+    def save_delayed_references(resources, containing_resource_type = resource_type)
       resources.each do |resource|
         references_to_save(containing_resource_type).each do |reference_to_save|
           resolve_path(resource, reference_to_save[:path])
-            .select { |reference| reference.is_a?(FHIR::Reference) &&
-              !reference.contained? && reference.reference.present? }
+            .select do |reference|
+            reference.is_a?(FHIR::Reference) &&
+              !reference.contained? && reference.reference.present?
+          end
             .each do |reference|
               resource_type = reference.resource_class.name.demodulize
               need_to_save = reference_to_save[:resources].include?(resource_type)
@@ -838,14 +847,14 @@ module CancerRegistryReportingTestKit
               values_found.any? { |identifier| identifier.value == search_value }
             end
           when 'string'
-            searched_values = search_value.downcase.split(/(?<!\\\\),/).map{ |string| string.gsub('\\,', ',') }
+            searched_values = search_value.downcase.split(/(?<!\\\\),/).map { |string| string.gsub('\\,', ',') }
             values_found.any? do |value_found|
               searched_values.any? { |searched_value| value_found.downcase.starts_with? searched_value }
             end
           else
             # searching by patient requires special case because we are searching by a resource identifier
             # references can also be URLs, so we may need to resolve those URLs
-            if ['subject', 'patient'].include? search_param_name.to_s
+            if %w[subject patient].include? search_param_name.to_s
               id = search_value.split('Patient/').last
               possible_values = [id, "Patient/#{id}", "#{url}/Patient/#{id}"]
               values_found.any? do |reference|
@@ -868,7 +877,7 @@ module CancerRegistryReportingTestKit
 
       return nil if params.blank?
 
-      if ['Condition', 'DiagnosticReport', 'DocumentReference', 'Observation', 'ServiceRequest'].include? resource_type
+      if %w[Condition DiagnosticReport DocumentReference Observation ServiceRequest].include? resource_type
         return [search_params_tag(params)]
       end
 

@@ -8,12 +8,11 @@ module InfernoRequirementsTools
     # This class manages the collection of requirements details from
     # requirements planning excel workbooks into a CSV representation.
     # Currently splits out Requirements and Planned Not Tested Requirements
-    # into two separate files. 
-    # 
+    # into two separate files.
+    #
     # The `run` method will generate the files
     # The `run_check` method will check whether the previously generated files are up-to-date.
     class CollectRequirements
-
       # Update these constants based on the test kit.
       TEST_KIT_ID = 'inferno-template'
       INPUT_SETS = ['inferno-template_req-tools'].freeze
@@ -217,7 +216,7 @@ module InfernoRequirementsTools
       end
 
       def spreadsheet_value_falsy?(str)
-        str&.downcase == 'no' || str&.downcase == 'false'
+        %w[no false].include?(str&.downcase)
       end
     end
   end

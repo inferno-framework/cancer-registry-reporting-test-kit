@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require_relative '../../../validation_test'
 
 module CancerRegistryReportingTestKit
-    class TNMDistantMetastasesCategoryValidationTest < Inferno::Test
-      include CancerRegistryReportingTestKit::ValidationTest
+  class TNMDistantMetastasesCategoryValidationTest < Inferno::Test
+    include CancerRegistryReportingTestKit::ValidationTest
 
-      id :tnm_distant_metastases_category_validation_test
-      title 'Observation resources returned during previous tests conform to the TNM Distant Metastases Category profile'
-      description %(
+    id :tnm_distant_metastases_category_validation_test
+    title 'Observation resources returned during previous tests conform to the TNM Distant Metastases Category profile'
+    description %(
         This test verifies resources returned from the first search conform to
         the TNM Distant Metastases Category profile.
         Systems must demonstrate at least one valid example in order to pass this test.
@@ -18,22 +20,21 @@ module CancerRegistryReportingTestKit
         fail if their code/system are not found in the valueset.
 
       )
-      output :dar_code_found, :dar_extension_found
+    output :dar_code_found, :dar_extension_found
 
-      def resource_type
-        'Observation'
-      end
+    def resource_type
+      'Observation'
+    end
 
-      def scratch_resources
-        scratch[:tnm_distant_metastases_category_resources] ||= {}
-      end
+    def scratch_resources
+      scratch[:tnm_distant_metastases_category_resources] ||= {}
+    end
 
-      run do
-        perform_validation_test(scratch_resources[:all] || [],
-                                'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-distant-metastases-category',
-                                '3.0.0',
-                                skip_if_empty: true)
-      end
+    run do
+      perform_validation_test(scratch_resources[:all] || [],
+                              'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-distant-metastases-category',
+                              '3.0.0',
+                              skip_if_empty: true)
     end
   end
-
+end

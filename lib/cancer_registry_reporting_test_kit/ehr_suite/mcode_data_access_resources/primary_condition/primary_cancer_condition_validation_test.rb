@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require_relative '../../../validation_test'
 
 module CancerRegistryReportingTestKit
-    class PrimaryCancerConditionValidationTest < Inferno::Test
-      include CancerRegistryReportingTestKit::ValidationTest
+  class PrimaryCancerConditionValidationTest < Inferno::Test
+    include CancerRegistryReportingTestKit::ValidationTest
 
-      id :primary_cancer_condition_validation_test
-      title 'Condition resources returned during previous tests conform to the Primary Cancer Condition'
-      description %(
+    id :primary_cancer_condition_validation_test
+    title 'Condition resources returned during previous tests conform to the Primary Cancer Condition'
+    description %(
         This test verifies resources returned from the first search conform to
         the [primary cancer condition](http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-primary-cancer-condition).
         Systems must demonstrate at least one valid example in order to pass this test.
@@ -18,22 +20,21 @@ module CancerRegistryReportingTestKit
         fail if their code/system are not found in the valueset.
 
       )
-      output :dar_code_found, :dar_extension_found
+    output :dar_code_found, :dar_extension_found
 
-      def resource_type
-        'Condition'
-      end
+    def resource_type
+      'Condition'
+    end
 
-      def scratch_resources
-        scratch[:primary_condition_resources] ||= {}
-      end
+    def scratch_resources
+      scratch[:primary_condition_resources] ||= {}
+    end
 
-      run do
-        perform_validation_test(scratch_resources[:all] || [],
-                                'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-primary-cancer-condition',
-                                '3.0.0',
-                                skip_if_empty: true)
-      end
+    run do
+      perform_validation_test(scratch_resources[:all] || [],
+                              'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-primary-cancer-condition',
+                              '3.0.0',
+                              skip_if_empty: true)
     end
   end
-
+end

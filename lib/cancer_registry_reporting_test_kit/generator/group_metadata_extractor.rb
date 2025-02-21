@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'group_metadata'
 require_relative 'ig_metadata'
 require_relative 'must_support_metadata_extractor'
@@ -34,7 +36,7 @@ module CancerRegistryReportingTestKit
             title: title,
             short_description: short_description,
             must_supports: must_supports,
-            mandatory_elements: mandatory_elements,
+            mandatory_elements: mandatory_elements
           }
 
         @group_metadata_hash
@@ -83,9 +85,9 @@ module CancerRegistryReportingTestKit
       ### END SPECIAL CASES ###
 
       def profile
-        if resource_capabilities.title == "Must Support"
+        if resource_capabilities.title == 'Must Support'
           SpecialCases.MUST_SUPPORT_GROUP_PROFILE
-        elsif resource_capabilities.title == "Validation"
+        elsif resource_capabilities.title == 'Validation'
           SpecialCases.VALIDATION_GROUP_PROFILE
         else
           @profile ||= ig_resources.profile_by_url(profile_url)
@@ -136,8 +138,8 @@ module CancerRegistryReportingTestKit
       def title
         title = profile.title.gsub(/\s*Profile/, '').strip
 
-        if (Naming.resources_with_multiple_profiles.include?(resource)) && !title.start_with?(resource) && version != 'v3.1.1'
-          title = resource + ' ' + title.split(resource).map(&:strip).join(' ')
+        if Naming.resources_with_multiple_profiles.include?(resource) && !title.start_with?(resource) && version != 'v3.1.1'
+          title = "#{resource} #{title.split(resource).map(&:strip).join(' ')}"
         end
 
         title
@@ -183,7 +185,7 @@ module CancerRegistryReportingTestKit
         @mandatory_elements ||=
           profile_elements
             .select { |element| element.min.positive? }
-            .map { |element| element.path }
+            .map(&:path)
             .uniq
       end
 
@@ -192,11 +194,11 @@ module CancerRegistryReportingTestKit
           profile_elements
             .select { |element| element.type&.first&.code == 'Reference' }
             .map do |reference_definition|
-              {
-                path: reference_definition.path,
-                profiles: reference_definition.type.first.targetProfile
-              }
-            end
+            {
+              path: reference_definition.path,
+              profiles: reference_definition.type.first.targetProfile
+            }
+          end
       end
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Inferno
   module DSL
     # This module contains the DSL for defining child entities in the test

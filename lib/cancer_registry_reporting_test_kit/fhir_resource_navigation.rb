@@ -1,8 +1,10 @@
-require_relative './primitive_type'
+# frozen_string_literal: true
+
+require_relative 'primitive_type'
 
 module CancerRegistryReportingTestKit
   module FHIRResourceNavigation
-    DAR_EXTENSION_URL = 'http://hl7.org/fhir/StructureDefinition/data-absent-reason'.freeze
+    DAR_EXTENSION_URL = 'http://hl7.org/fhir/StructureDefinition/data-absent-reason'
     PRIMITIVE_DATA_TYPES = FHIR::PRIMITIVES.keys
 
     def resolve_path(elements, path)
@@ -19,29 +21,32 @@ module CancerRegistryReportingTestKit
       end.compact
     end
 
-    def find_a_value_at(element, path, include_dar: false)
+    def find_a_value_at(element, path, include_dar: false, &block)
       return nil if element.nil?
 
       elements = Array.wrap(element)
       if path.empty?
         unless include_dar
           elements = elements.reject do |el|
-            el.respond_to?(:extension) && el.extension.any? { |ext| ext.url == DAR_EXTENSION_URL}
+            el.respond_to?(:extension) && el.extension.any? { |ext| ext.url == DAR_EXTENSION_URL }
           end
         end
 
-        return elements.find { |el| yield(el) } if block_given?
+        return elements.find(&block) if block_given?
+
         return elements.first
       end
 
       path_segments = path.split(/(?<!hl7)\./)
 
-      segment = path_segments.shift.delete_suffix('[x]').gsub(/^class$/, 'local_class').gsub(/^method$/, 'local_method').gsub(/\[x\]:/, ':').to_sym
+      segment = path_segments.shift.delete_suffix('[x]').gsub(/^class$/, 'local_class').gsub(/^method$/, 'local_method').gsub(
+        '[x]:', ':'
+      ).to_sym
       no_elements_present =
         elements.none? do |element|
-        child = get_next_value(element, segment)
-        child.present? || child == false
-      end
+          child = get_next_value(element, segment)
+          child.present? || child == false
+        end
       return nil if no_elements_present
 
       remaining_path = path_segments.join('.')
@@ -49,7 +54,7 @@ module CancerRegistryReportingTestKit
         child = get_next_value(element, segment)
         element_found =
           if block_given?
-            find_a_value_at(child, remaining_path, include_dar: include_dar) { |value_found| yield(value_found) }
+            find_a_value_at(child, remaining_path, include_dar: include_dar, &block)
           else
             find_a_value_at(child, remaining_path, include_dar: include_dar)
           end
@@ -64,8 +69,8 @@ module CancerRegistryReportingTestKit
       if extension_url.present?
         element.url == extension_url ? element : nil
       elsif property.to_s.include?(':') && !property.to_s.include?('url')
-        slice = find_slice_via_discriminator(element, property)
-        slice
+        find_slice_via_discriminator(element, property)
+
       else
         value = element.send(property)
         primitive_value = get_primitive_type_value(element, property, value)
@@ -89,14 +94,16 @@ module CancerRegistryReportingTestKit
       element_name = property.to_s.split(':')[0].gsub(/^class$/, 'local_class').gsub(/^method$/, 'local_method')
       slice_name = property.to_s.split(':')[1].gsub(/^class$/, 'local_class').gsub(/^method$/, 'local_method')
       if metadata.present?
-        slice_by_name = metadata.must_supports[:slices].find{ |slice| slice[:slice_name] == slice_name }
+        slice_by_name = metadata.must_supports[:slices].find { |slice| slice[:slice_name] == slice_name }
         discriminator = slice_by_name[:discriminator]
         slices = Array.wrap(element.send(element_name))
         slices.find do |slice|
           case discriminator[:type]
           when 'patternCodeableConcept'
-            slice_value = discriminator[:path].present? ? slice.send("#{discriminator[:path]}")&.coding : slice.coding
-            slice_value&.any? { |coding| coding.code == discriminator[:code] && coding.system == discriminator[:system] }
+            slice_value = discriminator[:path].present? ? slice.send(discriminator[:path].to_s)&.coding : slice.coding
+            slice_value&.any? do |coding|
+              coding.code == discriminator[:code] && coding.system == discriminator[:system]
+            end
           when 'patternCoding'
             slice_value = discriminator[:path].present? ? slice.send(discriminator[:path]) : slice
             slice_value&.code == discriminator[:code] && slice_value&.system == discriminator[:system]
@@ -129,12 +136,12 @@ module CancerRegistryReportingTestKit
               end
             end
           when 'requiredBinding'
-            slice_value = discriminator[:path].present? ? slice.send("#{discriminator[:path]}").coding : slice.coding
-            slice_value {|coding| discriminator[:values].include?(coding.code) }
+            discriminator[:path].present? ? slice.send(discriminator[:path].to_s).coding : slice.coding
+            slice_value { |coding| discriminator[:values].include?(coding.code) }
           end
         end
       else
-        #TODO: Error handling for if this file doesn't have access to metadata for some reason (begin/rescue with StandardError?)
+        # TODO: Error handling for if this file doesn't have access to metadata for some reason (begin/rescue with StandardError?)
       end
     end
 
@@ -153,8 +160,11 @@ module CancerRegistryReportingTestKit
               .all? { |value_definition| value_definition[:value].to_s == el_found.to_s }
 
           child_element_values_match =
-            child_element_value_definitions.present? ?
-              verify_slice_by_values(el_found, child_element_value_definitions) : true
+            if child_element_value_definitions.present?
+              verify_slice_by_values(el_found, child_element_value_definitions)
+            else
+              true
+            end
           current_element_values_match && child_element_values_match
         end
       end
