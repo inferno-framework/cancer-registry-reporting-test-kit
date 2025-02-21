@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../must_support_test'
 require_relative '../../generator/group_metadata'
 
@@ -38,13 +40,13 @@ module CancerRegistryReportingTestKit
         scratch[:author_resources] ||= {}
       end
 
-      run do
-        AUTHOR_PROFILES = {
-          'PractitionerRole' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole',
-          'Practitioner' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner',
-          'Organization' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization'
-        }
+      AUTHOR_PROFILES = {
+        'PractitionerRole' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole',
+        'Practitioner' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner',
+        'Organization' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization'
+      }.freeze
 
+      run do
         resources_by_type = {
           'PractitionerRole' => [],
           'Practitioner' => [],

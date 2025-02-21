@@ -1,33 +1,35 @@
+# frozen_string_literal: true
+
 module CancerRegistryReportingTestKit
   class Generator
     class GroupMetadata
-      ATTRIBUTES = [
-        :name,
-        :class_name,
-        :version,
-        :reformatted_version,
-        :resource,
-        :profile_url,
-        :profile_name,
-        :profile_version,
-        :title,
-        :short_description,
-        :is_delayed,
-        :interactions,
-        :operations,
-        :searches,
-        :search_definitions,
-        :include_params,
-        :revincludes,
-        :required_concepts,
-        :must_supports,
-        :mandatory_elements,
-        :bindings,
-        :references,
-        :tests,
-        :id,
-        :file_name,
-        :delayed_references
+      ATTRIBUTES = %i[
+        name
+        class_name
+        version
+        reformatted_version
+        resource
+        profile_url
+        profile_name
+        profile_version
+        title
+        short_description
+        is_delayed
+        interactions
+        operations
+        searches
+        search_definitions
+        include_params
+        revincludes
+        required_concepts
+        must_supports
+        mandatory_elements
+        bindings
+        references
+        tests
+        id
+        file_name
+        delayed_references
       ].freeze
 
       ATTRIBUTES.each { |name| attr_accessor name }
@@ -50,7 +52,7 @@ module CancerRegistryReportingTestKit
           id: id,
           file_name: file_name
         }
-          self.tests << test_metadata
+        self.tests << test_metadata
       end
 
       def add_granular_scope_test(id:, file_name:)
@@ -71,13 +73,13 @@ module CancerRegistryReportingTestKit
           references
             .select { |reference| (reference[:profiles] & delayed_profiles).present? }
             .map do |reference|
-              profile_urls = (reference[:profiles] & delayed_profiles)
-              delayed_resources = profile_urls.map { |url| ig_resources.resource_for_profile(url) }
-              {
-                path: reference[:path].gsub("#{resource}.", ''),
-                resources: delayed_resources
-              }
-            end
+            profile_urls = (reference[:profiles] & delayed_profiles)
+            delayed_resources = profile_urls.map { |url| ig_resources.resource_for_profile(url) }
+            {
+              path: reference[:path].gsub("#{resource}.", ''),
+              resources: delayed_resources
+            }
+          end
       end
     end
   end

@@ -1,5 +1,6 @@
-require_relative 'value_extractor'
+# frozen_string_literal: true
 
+require_relative 'value_extractor'
 
 module CancerRegistryReportingTestKit
   class Generator
@@ -20,19 +21,18 @@ module CancerRegistryReportingTestKit
           elements: must_support_elements
         }
 
-
         @must_supports
       end
 
       def is_uscdi_requirement_element?(element)
         element.extension.any? do |extension|
           extension.url == 'http://hl7.org/fhir/us/core/StructureDefinition/uscdi-requirement' &&
-          extension.valueBoolean
+            extension.valueBoolean
         end && !element.mustSupport
       end
 
       def all_must_support_elements
-        profile_elements.select { |element| (element.mustSupport || is_uscdi_requirement_element?(element))}
+        profile_elements.select { |element| element.mustSupport || is_uscdi_requirement_element?(element) }
       end
 
       def must_support_extension_elements
@@ -46,19 +46,21 @@ module CancerRegistryReportingTestKit
             path: element.path.gsub("#{resource}.", ''),
             url: element.type.first.profile.first
           }.tap do |metadata|
-            if is_uscdi_requirement_element?(element)
-              metadata[:uscdi_only] = true
-            end
+            metadata[:uscdi_only] = true if is_uscdi_requirement_element?(element)
           end
         end
       end
 
       def must_support_slice_elements
-        all_must_support_elements.select { |element| !element.path.end_with?('extension') && element.sliceName.present? }
+        all_must_support_elements.select do |element|
+          !element.path.end_with?('extension') && element.sliceName.present?
+        end
       end
 
       def sliced_element(slice)
-        profile_elements.find { |element| element.id == slice.path || element.id == slice.id.sub(":#{slice.sliceName}", '') }
+        profile_elements.find do |element|
+          element.id == slice.path || element.id == slice.id.sub(":#{slice.sliceName}", '')
+        end
       end
 
       def discriminators(slice)
@@ -125,9 +127,7 @@ module CancerRegistryReportingTestKit
                 raise StandardError, 'Unsupported discriminator pattern type'
               end
 
-            if is_uscdi_requirement_element?(current_element)
-              metadata[:uscdi_only] = true
-            end
+            metadata[:uscdi_only] = true if is_uscdi_requirement_element?(current_element)
           end
         end
       end
@@ -161,9 +161,7 @@ module CancerRegistryReportingTestKit
               code: type_code.upcase_first
             }
           }.tap do |metadata|
-            if is_uscdi_requirement_element?(current_element)
-              metadata[:uscdi_only] = true
-            end
+            metadata[:uscdi_only] = true if is_uscdi_requirement_element?(current_element)
           end
         end
       end
@@ -196,9 +194,7 @@ module CancerRegistryReportingTestKit
               }
             end
 
-            if is_uscdi_requirement_element?(current_element)
-              metadata[:uscdi_only] = true
-            end
+            metadata[:uscdi_only] = true if is_uscdi_requirement_element?(current_element)
           end
         end
       end
@@ -208,13 +204,12 @@ module CancerRegistryReportingTestKit
       end
 
       def plain_must_support_elements
-        plain_must_supports = all_must_support_elements - must_support_extension_elements - must_support_slice_elements
+        all_must_support_elements - must_support_extension_elements - must_support_slice_elements
       end
 
       def element_part_of_slice_discrimination?(element)
         must_support_slice_elements.any? { |ms_slice| element.id.include?(ms_slice.id) }
       end
-
 
       def handle_fixed_values(metadata, element)
         if element.fixedUri.present?
@@ -233,27 +228,27 @@ module CancerRegistryReportingTestKit
       def type_must_support_extension?(extensions)
         extensions&.any? do |extension|
           extension.url == 'http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support' &&
-          extension.valueBoolean
+            extension.valueBoolean
         end
       end
 
       def save_type_code?(type)
-        'Reference' == type.code
+        type.code == 'Reference'
       end
 
       def get_type_must_support_metadata(current_metadata, current_element)
         current_element.type.map do |type|
-          if type_must_support_extension?(type.extension)
-            metadata =
+          next unless type_must_support_extension?(type.extension)
+
+          metadata =
             {
               path: "#{current_metadata[:path].delete_suffix('[x]')}#{type.code.upcase_first}",
               original_path: current_metadata[:path]
             }
-            metadata[:types] = [type.code] if save_type_code?(type)
-            handle_type_must_support_target_profiles(type, metadata) if type.code == 'Reference'
+          metadata[:types] = [type.code] if save_type_code?(type)
+          handle_type_must_support_target_profiles(type, metadata) if type.code == 'Reference'
 
-            metadata
-          end
+          metadata
         end.compact
       end
 
@@ -276,20 +271,21 @@ module CancerRegistryReportingTestKit
         end
 
         # remove target_profile for FHIR Base resource type.
-        target_profiles.delete_if { |reference| reference.start_with?('http://hl7.org/fhir/StructureDefinition')}
+        target_profiles.delete_if { |reference| reference.start_with?('http://hl7.org/fhir/StructureDefinition') }
         metadata[:target_profiles] = target_profiles if target_profiles.present?
       end
 
       def handle_choice_type_in_sliced_element(current_metadata, must_support_elements_metadata)
         choice_element_metadata = must_support_elements_metadata.find do |metadata|
           metadata[:original_path].present? &&
-          current_metadata[:path].include?( metadata[:original_path] )
+            current_metadata[:path].include?(metadata[:original_path])
         end
 
-        if choice_element_metadata.present?
-          current_metadata[:original_path] = current_metadata[:path]
-          current_metadata[:path] = current_metadata[:path].sub(choice_element_metadata[:original_path], choice_element_metadata[:path])
-        end
+        return unless choice_element_metadata.present?
+
+        current_metadata[:original_path] = current_metadata[:path]
+        current_metadata[:path] =
+          current_metadata[:path].sub(choice_element_metadata[:original_path], choice_element_metadata[:path])
       end
 
       def must_support_elements
@@ -297,9 +293,7 @@ module CancerRegistryReportingTestKit
           {
             path: current_element.id.gsub("#{resource}.", '')
           }.tap do |current_metadata|
-            if is_uscdi_requirement_element?(current_element)
-              current_metadata[:uscdi_only] = true
-            end
+            current_metadata[:uscdi_only] = true if is_uscdi_requirement_element?(current_element)
 
             type_must_support_metadata = get_type_must_support_metadata(current_metadata, current_element)
 
@@ -308,10 +302,13 @@ module CancerRegistryReportingTestKit
             else
               handle_choice_type_in_sliced_element(current_metadata, must_support_elements_metadata)
 
-              supported_types = current_element.type.select { |type| save_type_code?(type) }.map { |type| type.code }
+              supported_types = current_element.type.select { |type| save_type_code?(type) }.map(&:code)
               current_metadata[:types] = supported_types if supported_types.present?
 
-              handle_type_must_support_target_profiles(current_element.type.first, current_metadata) if current_element.type.first&.code == 'Reference'
+              if current_element.type.first&.code == 'Reference'
+                handle_type_must_support_target_profiles(current_element.type.first,
+                                                         current_metadata)
+              end
 
               handle_fixed_values(current_metadata, current_element)
 
@@ -335,17 +332,17 @@ module CancerRegistryReportingTestKit
       end
 
       def is_blood_pressure?
-        ['bp', 'us-core-blood-pressure', 'us-core-average-blood-pressure'].include?(profile.id)
+        %w[bp us-core-blood-pressure us-core-average-blood-pressure].include?(profile.id)
       end
 
       # Exclude Observation.component from vital sign profiles except observation-bp and observation-pulse-ox
       def remove_vital_sign_component
         return if is_blood_pressure? || profile.name == 'USCorePulseOximetryProfile'
 
-        if is_vital_sign?
-          @must_supports[:elements].delete_if do |element|
-            element[:path].start_with?('component')
-          end
+        return unless is_vital_sign?
+
+        @must_supports[:elements].delete_if do |element|
+          element[:path].start_with?('component')
         end
       end
 
@@ -357,11 +354,11 @@ module CancerRegistryReportingTestKit
 
         @must_supports[:elements].delete_if do |element|
           element[:path].start_with?('value[x]') ||
-          element[:original_path]&.start_with?('value[x]') ||
-          element[:path] == ('dataAbsentReason') ||
-          (
-            pattern.match?(element[:path]) && ['3.1.1', '4.0.0'].include?(ig_resources.ig.version)
-          )
+            element[:original_path]&.start_with?('value[x]') ||
+            element[:path] == ('dataAbsentReason') ||
+            (
+              pattern.match?(element[:path]) && ['3.1.1', '4.0.0'].include?(ig_resources.ig.version)
+            )
         end
 
         @must_supports[:slices].delete_if do |slice|
@@ -379,10 +376,10 @@ module CancerRegistryReportingTestKit
 
         pattern = /(component(:[^.]+)?\.)?dataAbsentReason/
 
-        if profile.type == 'Observation'
-          @must_supports[:elements].delete_if do |element|
-            pattern.match?(element[:path])
-          end
+        return unless profile.type == 'Observation'
+
+        @must_supports[:elements].delete_if do |element|
+          pattern.match?(element[:path])
         end
       end
     end

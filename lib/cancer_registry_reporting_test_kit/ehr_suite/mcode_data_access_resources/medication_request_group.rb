@@ -1,6 +1,8 @@
-require_relative './medication_request/medication_request_search_test'
-require_relative './medication_request/medication_request_must_support_test'
-require_relative './medication_request/medication_request_validation_test'
+# frozen_string_literal: true
+
+require_relative 'medication_request/medication_request_search_test'
+require_relative 'medication_request/medication_request_must_support_test'
+require_relative 'medication_request/medication_request_validation_test'
 
 module CancerRegistryReportingTestKit
   class EHRMedicationRequestTests < Inferno::TestGroup
@@ -20,7 +22,7 @@ module CancerRegistryReportingTestKit
     * patient + intent (order)
 
     ### Search Parameters
-    The first search uses the selected patient(s). Any subsequent searches 
+    The first search uses the selected patient(s). Any subsequent searches
     will look for its parameter values
     from the results of the first search. For example, the `identifier`
     search in the patient sequence is performed by looking for an existing
@@ -46,8 +48,8 @@ module CancerRegistryReportingTestKit
 
     ## Profile Validation
     Each resource returned from the first search is expected to conform to
-    the [mCode Medication Request Profile](http://hl7.org/fhir/us/mcode/STU3/StructureDefinition-mcode-cancer-related-medication-request.html). Each element is checked against
-    teminology binding and cardinality requirements.
+    the [mCode Medication Request Profile](http://hl7.org/fhir/us/mcode/STU3/StructureDefinition-mcode-cancer-related-medication-request.html).
+    Each element is checked against terminology binding and cardinality requirements.
 
     Elements with a required binding are validated against their bound
     ValueSet. If the code/system in the element is not part of the ValueSet,
@@ -60,14 +62,17 @@ module CancerRegistryReportingTestKit
     read succeeds.
 
      )
-      id :ehr_medication_request   
-      run_as_group
+    id :ehr_medication_request
+    run_as_group
 
-      def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'medication_request', 'metadata.yml'), aliases: true))
-      end
-      test from: :medication_request_search_test
-      test from: :medication_request_must_support_test
-      test from: :medication_request_validation_test
-      end
+    def self.metadata
+      @metadata ||= Generator::GroupMetadata.new(YAML.load_file(
+                                                   File.join(__dir__, 'medication_request',
+                                                             'metadata.yml'), aliases: true
+                                                 ))
+    end
+    test from: :medication_request_search_test
+    test from: :medication_request_must_support_test
+    test from: :medication_request_validation_test
+  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'odh_usual_work/odh_usual_work_must_support_test'
 require_relative 'odh_usual_work/odh_usual_work_validation_test'
 
@@ -66,11 +68,12 @@ read succeeds.
       run_as_group
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'odh_usual_work', 'metadata.yml'), aliases: true))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'odh_usual_work', 'metadata.yml'),
+                                                                  aliases: true))
       end
-      
-        test from: :ccrr_v100_odh_usual_work_must_support_test
-        test from: :ccrr_v100_odh_usual_work_validation_test
+
+      test from: :ccrr_v100_odh_usual_work_must_support_test
+      test from: :ccrr_v100_odh_usual_work_validation_test
     end
   end
 end

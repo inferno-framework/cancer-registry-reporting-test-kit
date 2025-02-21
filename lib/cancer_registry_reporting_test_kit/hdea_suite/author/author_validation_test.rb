@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../validation_test'
 
 module CancerRegistryReportingTestKit
@@ -8,7 +10,7 @@ module CancerRegistryReportingTestKit
       id :ccrr_v100_author_validation_test
       title 'Author resources returned during previous tests conform to the US Core Practitioner Role, Practitioner, or Organization Profile'
       description %(
-This test verifies that author resources referenced in the provided cancer report conform to 
+This test verifies that author resources referenced in the provided cancer report conform to
 the [US Core PractitionerRole Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole),
 [US Core Practitioner Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner), or
 [US Core Organization Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization).
@@ -27,14 +29,13 @@ fail if their code/system are not found in the valueset.
         scratch[:author_resources] ||= {}
       end
 
+      AUTHOR_PROFILES = {
+        'PractitionerRole' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole',
+        'Practitioner' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner',
+        'Organization' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization'
+      }.freeze
+
       run do
-
-        AUTHOR_PROFILES = {
-          'PractitionerRole' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole',
-          'Practitioner' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner',
-          'Organization' => 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization'
-        }
-
         resources_by_type = {
           'PractitionerRole' => [],
           'Practitioner' => [],
@@ -47,11 +48,13 @@ fail if their code/system are not found in the valueset.
 
         resources_by_type.each do |resource_type, resources|
           next if resources.blank?
+
           perform_validation_test(
             resource_type,
             resources,
             AUTHOR_PROFILES[resource_type],
-            '3.1.1')
+            '3.1.1'
+          )
         end
       end
     end

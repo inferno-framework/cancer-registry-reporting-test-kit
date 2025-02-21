@@ -1,6 +1,6 @@
-require_relative './secondary_condition/secondary_cancer_condition_search_test'
-require_relative './secondary_condition/secondary_cancer_condition_must_support_test'
-require_relative './secondary_condition/secondary_cancer_condition_validation_test'
+require_relative 'secondary_condition/secondary_cancer_condition_search_test'
+require_relative 'secondary_condition/secondary_cancer_condition_must_support_test'
+require_relative 'secondary_condition/secondary_cancer_condition_validation_test'
 
 module CancerRegistryReportingTestKit
   class EHRSecondaryConditionTests < Inferno::TestGroup
@@ -20,7 +20,7 @@ module CancerRegistryReportingTestKit
     * patient + category
 
     ### Search Parameters
-    The first search uses the selected patient(s). Any subsequent searches 
+    The first search uses the selected patient(s). Any subsequent searches
     will look for its parameter values
     from the results of the first search. For example, the `identifier`
     search in the patient sequence is performed by looking for an existing
@@ -46,8 +46,8 @@ module CancerRegistryReportingTestKit
 
     ## Profile Validation
     Each resource returned from the first search is expected to conform to
-    the [mCode Secondary Cancer Condition Profile](http://hl7.org/fhir/us/mcode/STU3/StructureDefinition-mcode-secondary-cancer-condition.html). Each element is checked against
-    teminology binding and cardinality requirements.
+    the [mCode Secondary Cancer Condition Profile](http://hl7.org/fhir/us/mcode/STU3/StructureDefinition-mcode-secondary-cancer-condition.html).
+    Each element is checked against terminology binding and cardinality requirements.
 
     Elements with a required binding are validated against their bound
     ValueSet. If the code/system in the element is not part of the ValueSet,
@@ -60,14 +60,14 @@ module CancerRegistryReportingTestKit
     read succeeds.
 
      )
-      id :ehr_secondary_cancer_condition     
-      run_as_group
+    id :ehr_secondary_cancer_condition
+    run_as_group
 
-      def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'secondary_condition', 'metadata.yml'), aliases: true))
-      end
-      test from: :secondary_cancer_condition_search_test
-      test from: :secondary_cancer_condition_validation_test
-      test from: :secondary_cancer_condition_must_support_test
-      end
+    def self.metadata
+      @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'secondary_condition', 'metadata.yml'), aliases: true))
+    end
+    test from: :secondary_cancer_condition_search_test
+    test from: :secondary_cancer_condition_validation_test
+    test from: :secondary_cancer_condition_must_support_test
+  end
 end

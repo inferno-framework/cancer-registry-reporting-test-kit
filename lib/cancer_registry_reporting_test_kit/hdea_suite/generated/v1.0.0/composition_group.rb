@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'composition/composition_must_support_test'
 
 module CancerRegistryReportingTestKit
@@ -65,10 +67,11 @@ read succeeds.
       run_as_group
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'composition', 'metadata.yml'), aliases: true))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'composition', 'metadata.yml'),
+                                                                  aliases: true))
       end
-      
-        test from: :ccrr_v100_composition_must_support_test
+
+      test from: :ccrr_v100_composition_must_support_test
     end
   end
 end

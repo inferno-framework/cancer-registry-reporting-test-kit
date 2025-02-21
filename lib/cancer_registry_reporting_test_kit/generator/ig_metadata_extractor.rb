@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'ig_metadata'
 require_relative 'group_metadata_extractor'
 
@@ -28,7 +30,7 @@ module CancerRegistryReportingTestKit
       end
 
       def resources_in_structure_definitions
-        ig_resources.resources_by_type["StructureDefinition"].map
+        ig_resources.resources_by_type['StructureDefinition'].map
       end
 
       def add_missing_supported_profiles
@@ -38,21 +40,21 @@ module CancerRegistryReportingTestKit
           # required vital signs profiles, so they need to be added
           ig_resources.capability_statement.rest.first.resource
             .find { |resource| resource.type == 'Observation' }
-            .supportedProfile.concat [
-              'http://hl7.org/fhir/StructureDefinition/bodyheight',
-              'http://hl7.org/fhir/StructureDefinition/bodytemp',
-              'http://hl7.org/fhir/StructureDefinition/bp',
-              'http://hl7.org/fhir/StructureDefinition/bodyweight',
-              'http://hl7.org/fhir/StructureDefinition/heartrate',
-              'http://hl7.org/fhir/StructureDefinition/resprate'
-            ]
+            .supportedProfile.push 
+                        'http://hl7.org/fhir/StructureDefinition/bodyheight',
+                        'http://hl7.org/fhir/StructureDefinition/bodytemp',
+                        'http://hl7.org/fhir/StructureDefinition/bp',
+                        'http://hl7.org/fhir/StructureDefinition/bodyweight',
+                        'http://hl7.org/fhir/StructureDefinition/heartrate',
+                        'http://hl7.org/fhir/StructureDefinition/resprate'
+                      
         when '3.1.1'
           # The US Core v5.0.1 Server Capability Statement does not have supported-profile for Encounter
           ig_resources.capability_statement.rest.first.resource
             .find { |resource| resource.type == 'Encounter' }
-            .supportedProfile.concat [
-              'http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter'
-            ]
+            .supportedProfile.push 
+                        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter'
+                      
         end
       end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'ccrr_content_bundle/ccrr_content_bundle_must_support_test'
 require_relative 'ccrr_content_bundle/ccrr_content_bundle_validation_test'
 
@@ -45,11 +47,14 @@ read succeeds.
       run_as_group
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'ccrr_content_bundle', 'metadata.yml'), aliases: true))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(
+                                                     File.join(__dir__, 'ccrr_content_bundle',
+                                                               'metadata.yml'), aliases: true
+                                                   ))
       end
-        
-        test from: :ccrr_v100_ccrr_content_bundle_validation_test
-        test from: :ccrr_v100_ccrr_content_bundle_must_support_test 
+
+      test from: :ccrr_v100_ccrr_content_bundle_validation_test
+      test from: :ccrr_v100_ccrr_content_bundle_must_support_test
     end
   end
 end
