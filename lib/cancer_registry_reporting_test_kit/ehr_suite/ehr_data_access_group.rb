@@ -36,6 +36,7 @@ require 'us_core_test_kit/generated/v3.1.1/organization_group'
 require 'us_core_test_kit/generated/v3.1.1/practitioner_group'
 require 'us_core_test_kit/generated/v3.1.1/provenance_group'
 
+require_relative 'ehr_capability_statement_group'
 require_relative './mcode_data_access_resources/primary_cancer_condition_group'
 require_relative './mcode_data_access_resources/medication_request_group'
 require_relative './mcode_data_access_resources/medication_administration_group'
@@ -117,6 +118,7 @@ module CancerRegistryReportingTestKit
         group do
           title 'mCode FHIR API tests'
           id :mcode_fhir_api
+          group from: :ehr_capability_statement_group
           group from: :ehr_primary_cancer_condition
           group from: :ehr_medication_request
           group from: :ehr_medication_administration
