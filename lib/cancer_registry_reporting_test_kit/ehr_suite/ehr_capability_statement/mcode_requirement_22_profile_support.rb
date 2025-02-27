@@ -2,11 +2,10 @@
 # rubocop:disable Layout/HeredocIndentation
 module CancerRegistryReportingTestKit
   class AttestationTestMcodeRequirement22 < Inferno::Test
-    title 'Listing Profiles'
+    title 'Capability Statement lists support for required Profiles'
     description <<~DESCRIPTION
-Attest that the following [mCode](https://hl7.org/fhir/us/mcode/STU3/index.html) [requirement](https://hl7.org/fhir/us/mcode/STU3/conformance-profiles.html#profile-level-conformance-expectations) is met:
-
->The list of implemented profiles SHALL be published in a CapabilityStatement.
+    This test checks the following SHALL requirements:
+    >  The list of implemented profiles SHALL be published in a CapabilityStatement.
     DESCRIPTION
     id :mcode_requirement_22_profile_support
 

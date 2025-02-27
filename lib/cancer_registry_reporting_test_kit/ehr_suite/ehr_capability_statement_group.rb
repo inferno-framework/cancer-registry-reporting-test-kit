@@ -23,7 +23,7 @@ module CancerRegistryReportingTestKit
         `GET` request. It parses the Capability Statement and verifies that:
 
         * The endpoint is secured by an appropriate cryptographic protocol
-        * The server claims support for all required prodiles
+        * The server claims support for all required profiles
 
         It collects the following information that is saved in the testing session
         for use by later tests:

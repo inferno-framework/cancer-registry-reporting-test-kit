@@ -4,16 +4,24 @@ module CancerRegistryReportingTestKit
   class AttestationTestMcodeRequirement103 < Inferno::Test
     title 'FHIR Server supports the conformance interaction'
     description <<~DESCRIPTION
-Attest that the following [mCode](https://hl7.org/fhir/us/mcode/STU3/index.html) [requirement](https://hl7.org/fhir/us/mcode/STU3/conformance-general.html#publish-a-capabilitystatement-identifying-supported-profiles-and-operations) is met:
+      This test checks the following SHALL requirement:
+      > The CapabilityStatement SHALL be returned in response to a GET [base]/metadata request.
 
->The CapabilityStatement SHALL be returned in response to a GET [base]/metadata request.
+      It does this by checking that the server responds with an HTTP OK 200
+      status code and that the body of the response contains a valid
+      [CapabilityStatement
+      resource](http://hl7.org/fhir/R4/capabilitystatement.html). This test
+      does not inspect the content of the CapabilityStatement to see if it
+      contains the required information. It only checks to see if the RESTful
+      interaction is supported and returns a valid CapabilityStatement
+      resource.
     DESCRIPTION
     id :mcode_requirement_103_conformance_interaction
 
     makes_request :capability_statement
     
     run do
-      fhir_client.set_no_auth
+      fhir_client
       fhir_get_capability_statement(name: :capability_statement)
 
       assert_response_status(200)
