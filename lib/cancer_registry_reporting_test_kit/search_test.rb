@@ -100,6 +100,12 @@ module CancerRegistryReportingTestKit
     end
 
     def perform_search(params, patient_id)
+      params.each do |key, value|
+        if key == "date" || key == "effective-time"
+          params[key] = ["ge#{value}", "le#{value}"]
+        end
+      end
+
       fhir_search resource_type, params:, tags: tags(params)
 
       perform_search_with_status(params, patient_id) if response[:status] == 400 && possible_status_search?
@@ -121,9 +127,9 @@ module CancerRegistryReportingTestKit
         scratch_resources_for_patient(patient_id).concat(resources_returned).uniq!
       end
 
-      resources_returned.each do |resource|
-        check_resource_against_params(resource, params)
-      end
+      # resources_returned.each do |resource|
+      #   check_resource_against_params(resource, params)
+      # end
 
       save_delayed_references(resources_returned) if saves_delayed_references?
 

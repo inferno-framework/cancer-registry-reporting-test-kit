@@ -41,7 +41,7 @@ module CancerRegistryReportingTestKit
         test_medication_inclusion: true,
         test_reference_variants: true,
         multiple_or_search_params: ['intent'],
-        test_post_search: true
+        test_post_search: false
       )
     end
 

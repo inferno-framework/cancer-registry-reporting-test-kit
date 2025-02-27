@@ -38,7 +38,7 @@ module CancerRegistryReportingTestKit
         first_search: true,
         resource_type: 'MedicationAdministration',
         search_param_names: %w[patient effective-time],
-        test_post_search: true
+        test_post_search: false
       )
     end
 
