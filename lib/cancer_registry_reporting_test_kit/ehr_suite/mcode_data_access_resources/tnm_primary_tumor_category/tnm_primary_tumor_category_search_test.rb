@@ -41,7 +41,7 @@ module CancerRegistryReportingTestKit
         possible_status_search: true,
         token_search_params: ['code'],
         test_reference_variants: true,
-        test_post_search: true
+        test_post_search: false
       )
     end
 

@@ -46,6 +46,7 @@ require_relative 'mcode_data_access_resources/tnm_distant_metastases_category_gr
 require_relative 'mcode_data_access_resources/tnm_primary_tumor_category_group'
 require_relative 'mcode_data_access_resources/tnm_regional_nodes_category_group'
 require_relative 'mcode_data_access_resources/tnm_stage_group_group'
+require_relative 'mcode_data_access_resources/radiotherapy_procedure_group'
 
 module CancerRegistryReportingTestKit
   class EHRDataAccessGroup < Inferno::TestGroup
@@ -126,6 +127,7 @@ module CancerRegistryReportingTestKit
       group from: :ehr_tnm_primary_tumor_category
       group from: :ehr_tnm_regional_nodes_category
       group from: :ehr_tnm_stage_group
+      group from: :ehr_radiotherapy_procedure
     end
     # end
   end
