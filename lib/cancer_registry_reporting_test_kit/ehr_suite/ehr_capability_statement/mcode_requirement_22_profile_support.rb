@@ -4,8 +4,7 @@ module CancerRegistryReportingTestKit
   class AttestationTestMcodeRequirement22 < Inferno::Test
     title 'Capability Statement lists support for required Profiles'
     description <<~DESCRIPTION
-    This test checks the following SHALL requirements:
-    >  The list of implemented profiles SHALL be published in a CapabilityStatement.
+    This test verifies that the list of implemented profiles required by the Cancer Registry IG (link) SHALL be published in the returned CapbilityStatement.
     DESCRIPTION
     id :mcode_requirement_22_profile_support
 
