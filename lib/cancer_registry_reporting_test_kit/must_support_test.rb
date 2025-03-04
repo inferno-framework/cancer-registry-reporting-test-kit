@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'fhir_resource_navigation'
 require_relative 'bundle_parse'
 
@@ -10,9 +12,9 @@ module CancerRegistryReportingTestKit
     def_delegators 'self.class', :metadata
 
     def all_scratch_resources
-      scratch_resources[:all]      
+      scratch_resources[:all]
     end
-    
+
     def perform_must_support_test(resources)
       skip_if resources.blank?, "No #{resource_type} resources were found"
 
@@ -22,8 +24,8 @@ module CancerRegistryReportingTestKit
 
       handle_must_support_choices if metadata.must_supports[:choices].present?
 
-      assert (missing_elements + missing_slices + missing_extensions).length.zero?, "Could not find #{missing_must_support_strings.join(', ')} in the #{resources.length} " \
-          "provided #{resource_type} resource(s)"
+      assert (missing_elements + missing_slices + missing_extensions).empty?, "Could not find #{missing_must_support_strings.join(', ')} in the #{resources.length} " \
+                                                                              "provided #{resource_type} resource(s)"
     end
 
     def handle_must_support_choices
@@ -43,19 +45,23 @@ module CancerRegistryReportingTestKit
       end
     end
 
-    def is_any_choice_supported? (choices)
+    def is_any_choice_supported?(choices)
       choices.present? &&
-      (
-        choices[:paths]&.any? { |path| missing_elements.none? { |element| element[:path] == path } } ||
-        choices[:extension_ids]&.any? { |extension_id| missing_extensions.none? { |extension| extension[:id] == extension_id} } ||
-        choices[:slice_names]&.any? { |slice_name| missing_slices.none? { |slice| slice[:name] == slice_name} }
-      )
+        (
+          choices[:paths]&.any? { |path| missing_elements.none? { |element| element[:path] == path } } ||
+          choices[:extension_ids]&.any? do |extension_id|
+            missing_extensions.none? do |extension|
+              extension[:id] == extension_id
+            end
+          end ||
+          choices[:slice_names]&.any? { |slice_name| missing_slices.none? { |slice| slice[:name] == slice_name } }
+        )
     end
 
     def missing_must_support_strings
       missing_elements.map { |element_definition| missing_element_string(element_definition) } +
-      missing_slices.map { |slice_definition| slice_definition[:slice_id] } +
-      missing_extensions.map { |extension_definition| extension_definition[:id] }
+        missing_slices.map { |slice_definition| slice_definition[:slice_id] } +
+        missing_extensions.map { |extension_definition| extension_definition[:id] }
     end
 
     def missing_element_string(element_definition)
@@ -72,7 +78,7 @@ module CancerRegistryReportingTestKit
 
     def must_support_extensions
       if exclude_uscdi_only_test?
-        metadata.must_supports[:extensions].reject{ |extension| extension[:uscdi_only] }
+        metadata.must_supports[:extensions].reject { |extension| extension[:uscdi_only] }
       else
         metadata.must_supports[:extensions]
       end
@@ -99,7 +105,7 @@ module CancerRegistryReportingTestKit
 
     def must_support_elements
       if exclude_uscdi_only_test?
-        metadata.must_supports[:elements].reject{ |element| element[:uscdi_only] }
+        metadata.must_supports[:elements].reject { |element| element[:uscdi_only] }
       else
         metadata.must_supports[:elements]
       end
@@ -126,7 +132,7 @@ module CancerRegistryReportingTestKit
             unless has_ms_extension
               value = value.value if value.instance_of?(CancerRegistryReportingTestKit::PrimitiveType)
               value_without_extensions =
-                value.respond_to?(:to_hash) ? value.to_hash.reject { |key, _| key == 'extension' } : value
+                value.respond_to?(:to_hash) ? value.to_hash.except('extension') : value
             end
 
             (has_ms_extension || value_without_extensions.present? || value_without_extensions == false) &&
@@ -140,7 +146,7 @@ module CancerRegistryReportingTestKit
 
     def must_support_slices
       if exclude_uscdi_only_test?
-        metadata.must_supports[:slices].reject{ |slice| slice[:uscdi_only] }
+        metadata.must_supports[:slices].reject { |slice| slice[:uscdi_only] }
       else
         metadata.must_supports[:slices]
       end
@@ -225,8 +231,11 @@ module CancerRegistryReportingTestKit
                 .all? { |value_definition| value_definition[:value].to_s == el_found.to_s }
 
             child_element_values_match =
-              child_element_value_definitions.present? ?
-                find_slice_by_values(el_found, child_element_value_definitions) : true
+              if child_element_value_definitions.present?
+                find_slice_by_values(el_found, child_element_value_definitions)
+              else
+                true
+              end
 
             current_element_values_match && child_element_values_match
           end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'observation/observation_must_support_test'
 require_relative 'observation/observation_validation_test'
 
@@ -67,11 +69,12 @@ read succeeds.
       run_as_group
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'observation', 'metadata.yml'), aliases: true))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'observation', 'metadata.yml'),
+                                                                  aliases: true))
       end
-      
-        test from: :ccrr_v100_observation_must_support_test
-        test from: :ccrr_v100_observation_validation_test
+
+      test from: :ccrr_v100_observation_must_support_test
+      test from: :ccrr_v100_observation_validation_test
     end
   end
 end

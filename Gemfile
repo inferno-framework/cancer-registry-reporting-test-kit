@@ -1,14 +1,23 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 gemspec
 
-gem 'us_core_test_kit'
 gem 'smart_app_launch_test_kit'
-
 
 group :development, :test do
   gem 'debug'
-  gem 'rspec_junit_formatter', require: false  # required for gitlab CI
+  gem 'rspec_junit_formatter', require: false # required for gitlab CI
+  gem 'rubocop', '~> 1.9'
+  gem 'rubocop-rspec', require: false
+end
+
+group :test do
+  gem 'database_cleaner-sequel', '~> 1.8'
+  gem 'factory_bot', '~> 6.1'
+  gem 'rack-test'
+  gem 'rspec', '~> 3.10'
+  gem 'simplecov', '0.21.2', require: false
+  gem 'webmock', '~> 3.11'
 end

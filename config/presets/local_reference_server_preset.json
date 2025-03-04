@@ -69,6 +69,12 @@
       "value": "problem-list-item"
     },
     {
+      "name": "secondary_condition_category",
+      "type": "text",
+      "title": "Secondary Condition Category",
+      "value": "problem-list-item"
+    },
+    {
       "name": "tnm_distant_metastases_category_code",
       "type": "text",
       "title": "Code of TNM Distant Metastases Category",
@@ -97,6 +103,12 @@
       "type": "text",
       "title": "Effective Date Time of Medication Administration",
       "value": "2018-04-22"
+    },
+    {
+      "name": "radiotherapy_procedure_performed_date",
+      "type": "text",
+      "title": "Date Time of Radiotherapy Procedure",
+      "value": "2018-08-15"
     }
   ]
 }

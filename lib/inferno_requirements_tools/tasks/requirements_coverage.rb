@@ -15,7 +15,7 @@ module InfernoRequirementsTools
     # Requirements that are out of scope can be listed in a companion file
     # `lib/[test kit id]/requirements/[test kit id]_out_of_scope_requirements.csv`.
     #
-    # The `run` method generates a CSV file at 
+    # The `run` method generates a CSV file at
     # `lib/[test kit id]/requirements/generated/[test kit id]_requirements_coverage.csv``.
     # This file will be identical to the input spreadsheet, plus an additional column which holds a comma separated
     # list of inferno test IDs that test each requirement. These test IDs are Inferno short form IDs that represent the
@@ -24,7 +24,6 @@ module InfernoRequirementsTools
     #
     # The `run_check` method will check whether the previously generated file is up-to-date.
     class RequirementsCoverage
-      
       # Update these constants based on the test kit.
       TEST_KIT_ID = 'inferno-template'
       TEST_SUITES = [InfernoTemplate::Suite].freeze # list of suite classes, including modules
@@ -98,7 +97,6 @@ module InfernoRequirementsTools
         end
       end
 
-      # rubocop:disable Metrics/CyclomaticComplexity
       def new_csv
         @new_csv ||=
           CSV.generate(+"\xEF\xBB\xBF") do |csv|
@@ -132,7 +130,6 @@ module InfernoRequirementsTools
             end
           end
       end
-      # rubocop:enable Metrics/CyclomaticComplexity
 
       def input_requirement_ids
         @input_requirement_ids ||= input_rows.map { |row| "#{row['Req Set']}@#{row['ID']}" }
@@ -235,7 +232,6 @@ module InfernoRequirementsTools
       # req-id-1       | short-id-1 | full-id-1
       # req-id-2       | short-id-2 | full-id-2
       #
-      # rubocop:disable Metrics/CyclomaticComplexity
       def output_requirements_map_table(requirements_map)
         headers = %w[requirement_id short_id full_id]
         col_widths = headers.map(&:length)
@@ -261,7 +257,6 @@ module InfernoRequirementsTools
         end
         puts
       end
-      # rubocop:enable Metrics/CyclomaticComplexity
     end
   end
 end

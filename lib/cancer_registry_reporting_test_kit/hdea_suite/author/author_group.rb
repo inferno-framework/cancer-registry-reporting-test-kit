@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'author_validation_test'
 # require_relative 'author_must_support_test'
 require_relative 'practitioner_must_support_test'
@@ -13,7 +15,7 @@ module CancerRegistryReportingTestKit
   # Background
 
 The Central Cancer Registry Reporting Author sequence verifies that the system under test is
-able to provide a report including a valid author. An author may be represented by an organization, practitioner, or practitioner role. 
+able to provide a report including a valid author. An author may be represented by an organization, practitioner, or practitioner role.
 
 
 ## Must Support
@@ -25,8 +27,8 @@ elements.
 
 ## Profile Validation
 Each resource returned from the first search is expected to conform to
-the [Central Cancer Registry Reporting Primary Cancer Condition](http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-primary-cancer-condition). Each element is checked against
-teminology binding and cardinality requirements.
+the [Central Cancer Registry Reporting Primary Cancer Condition](http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-primary-cancer-condition).
+ Each element is checked against terminology binding and cardinality requirements.
 
 Elements with a required binding are validated against their bound
 ValueSet. If the code/system in the element is not part of the ValueSet,
@@ -44,13 +46,16 @@ read succeeds.
       run_as_group
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'central_cancer_registry_primary_cancer_condition', 'metadata.yml'), aliases: true))
+        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(
+                                                     File.join(__dir__,
+                                                               'central_cancer_registry_primary_cancer_condition', 'metadata.yml'), aliases: true
+                                                   ))
       end
-      
-        test from: :ccrr_v100_author_validation_test
-        # test from: :ccrr_v100_practitioner_must_support_test
-        # test from: :ccrr_v100_practitioner_role_must_support_test
-        # test from: :ccrr_v100_organization_must_support_test
+
+      test from: :ccrr_v100_author_validation_test
+      # test from: :ccrr_v100_practitioner_must_support_test
+      # test from: :ccrr_v100_practitioner_role_must_support_test
+      # test from: :ccrr_v100_organization_must_support_test
     end
   end
 end

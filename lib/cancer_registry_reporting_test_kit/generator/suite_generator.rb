@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'naming'
 require_relative 'special_cases'
 
@@ -63,7 +65,7 @@ module CancerRegistryReportingTestKit
       end
 
       def generate
-        File.open(output_file_name, 'w') { |f| f.write(output) }
+        File.write(output_file_name, output)
       end
 
       def groups
@@ -73,13 +75,13 @@ module CancerRegistryReportingTestKit
       def group_id_list
         @group_id_list ||=
           groups.reject { |group| group.file_name.nil? }
-          .map(&:id)
+            .map(&:id)
       end
 
       def group_file_list
         @group_file_list ||=
           groups.reject { |group| group.file_name.nil? }
-          .map { |group| group.file_name.delete_suffix('.rb') }
+            .map { |group| group.file_name.delete_suffix('.rb') }
       end
 
       def capability_statement_file_name

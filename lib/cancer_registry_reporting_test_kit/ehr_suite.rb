@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'ehr_suite/ehr_data_access_group'
 module CancerRegistryReportingTestKit
   class EHRSuite < Inferno::TestSuite
@@ -5,18 +7,18 @@ module CancerRegistryReportingTestKit
     title 'Cancer Registry Reporting Electronic Health Record (EHR) Test Suite'
     short_title 'CCRR Electronic Health Record (EHR)'
     description '
-    The Cancer Registry Reporting EHR Test Suite verifies the 
-    conformance of EHRs to the STU 1.0.0 version of the HL7® FHIR® 
+    The Cancer Registry Reporting EHR Test Suite verifies the
+    conformance of EHRs to the STU 1.0.0 version of the HL7® FHIR®
     [Central Cancer Registry Reporting IG](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/).
-    
+
     ## Scope
-    In addition to US Core resources, all resources referenced as on must support fields in the 
-    CCRR [Composition](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/StructureDefinition-ccrr-composition.html) 
+    In addition to US Core resources, all resources referenced as on must support fields in the
+    CCRR [Composition](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/StructureDefinition-ccrr-composition.html)
     are covered in search and subsequent tests. Profiles defined
     or specified in the IG, but not specifically included or marked MS in the composition are out of scope.
 
     ## Test Methodology
-    Each resource specified in the CCRR [Composition](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/StructureDefinition-ccrr-composition.html) 
+    Each resource specified in the CCRR [Composition](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/StructureDefinition-ccrr-composition.html)
     as must support, is accessed via search by Inferno and then checked for profile conformance and representation of must support fields
 
     ## Current Limitations
@@ -47,11 +49,14 @@ module CancerRegistryReportingTestKit
       %r{Sub-extension url 'revoke' is not defined by the Extension http://fhir-registry\.smarthealthit\.org/StructureDefinition/oauth-uris},
       /Observation\.effective\.ofType\(Period\): .*vs-1:/, # Invalid invariant in FHIR v4.0.1
       /Observation\.effective\.ofType\(Period\): .*us-core-1:/, # Invalid invariant in US Core v3.1.1
-      /Provenance.agent\[\d*\]: Constraint failed: provenance-1/, #Invalid invariant in US Core v5.0.1
-      %r{Unknown Code System 'http://hl7.org/fhir/us/core/CodeSystem/us-core-tags'}, # Validator has an issue with this US Core 5 code system in US Core 6 resource
-      %r{URL value 'http://hl7.org/fhir/us/core/CodeSystem/us-core-tags' does not resolve}, # Validator has an issue with this US Core 5 code system in US Core 6 resource
+      /Provenance.agent\[\d*\]: Constraint failed: provenance-1/, # Invalid invariant in US Core v5.0.1
+      %r{Unknown Code System 'http://hl7.org/fhir/us/core/CodeSystem/us-core-tags'}, # Validator has an issue
+      # with this US Core 5 code system in US Core 6 resource
+      %r{URL value 'http://hl7.org/fhir/us/core/CodeSystem/us-core-tags' does not resolve}, # Validator has an issue with
+      # this US Core 5 code system in US Core 6 resource
       /\A\S+: \S+: URL value '.*' does not resolve/,
-      %r{Observation.component\[\d+\].value.ofType\(Quantity\): The code provided \(http://unitsofmeasure.org#L/min\) was not found in the value set 'Vital Signs Units'} # Known issue with the Pulse Oximetry Profile
+      %r{Observation.component\[\d+\].value.ofType\(Quantity\): The code provided \(http://unitsofmeasure.org#L/min\) was not found in the value set
+      'Vital Signs Units'} # Known issue with the Pulse Oximetry Profile
     ].freeze
 
     VERSION_SPECIFIC_MESSAGE_FILTERS = [].freeze
@@ -60,8 +65,8 @@ module CancerRegistryReportingTestKit
 
     def self.metadata
       @metadata ||= YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true)[:groups].map do |raw_metadata|
-          Generator::GroupMetadata.new(raw_metadata)
-        end
+        Generator::GroupMetadata.new(raw_metadata)
+      end
     end
 
     fhir_resource_validator do
@@ -69,16 +74,14 @@ module CancerRegistryReportingTestKit
       message_filters = VALIDATION_MESSAGE_FILTERS
 
       exclude_message do |message|
-
         message_filters.any? { |filter| filter.match? message.message }
       end
 
-      perform_additional_validation do |resource, profile_url|
+      perform_additional_validation do |resource, _profile_url|
         USCoreTestKit::ProvenanceValidator.validate(resource) if resource.instance_of?(FHIR::Provenance)
       end
     end
 
     group from: :ccrr_ehr_data_access
-
   end
 end

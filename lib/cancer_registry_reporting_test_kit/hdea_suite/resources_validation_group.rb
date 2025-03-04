@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 require_relative 'author/author_validation_test'
 require_relative 'generated/v1.0.0/allergy_intolerance/allergy_intolerance_validation_test'
@@ -32,7 +33,7 @@ module CancerRegistryReportingTestKit
 
     Tests verify that the system under test is
     able to provide cancer reports with profile conformant resources. The bundles must include compositions that reference the resources
-    to be tested, as specified in the [Central Cancer Registry IG v1.0.0](https://hl7.org/fhir/us/cancer-reporting/STU1.0.1). 
+    to be tested, as specified in the [Central Cancer Registry IG v1.0.0](https://hl7.org/fhir/us/cancer-reporting/STU1.0.1).
 
 
     # Testing Methodology
@@ -54,7 +55,7 @@ module CancerRegistryReportingTestKit
 
     id :ccrr_report_resources_validation
     run_as_group
-    
+
     test from: :ccrr_v100_patient_validation_test
     test from: :ccrr_v100_encounter_validation_test
     test from: :ccrr_v100_author_validation_test

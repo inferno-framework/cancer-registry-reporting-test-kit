@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'fhir_models'
 require 'inferno/ext/fhir_models'
 
@@ -44,9 +46,7 @@ module CancerRegistryReportingTestKit
     end
 
     def write_metadata
-      File.open(File.join(base_output_dir, 'metadata.yml'), 'w') do |file|
-        file.write(YAML.dump(ig_metadata.to_hash))
-      end
+      File.write(File.join(base_output_dir, 'metadata.yml'), YAML.dump(ig_metadata.to_hash))
     end
 
     def base_output_dir
@@ -54,7 +54,7 @@ module CancerRegistryReportingTestKit
     end
 
     def load_ig_package
-      FHIR.logger = Logger.new('/dev/null')
+      FHIR.logger = Logger.new(File::NULL)
       self.ig_resources = IGLoader.new(ig_file_name).load
     end
 
