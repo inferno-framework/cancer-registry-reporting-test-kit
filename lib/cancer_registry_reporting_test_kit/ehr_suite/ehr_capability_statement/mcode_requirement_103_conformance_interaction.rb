@@ -4,8 +4,7 @@ module CancerRegistryReportingTestKit
   class AttestationTestMcodeRequirement103 < Inferno::Test
     title 'FHIR Server supports the conformance interaction'
     description <<~DESCRIPTION
-      This test checks the following SHALL requirement:
-      > The CapabilityStatement SHALL be returned in response to a GET [base]/metadata request.
+      This test checks that the CapabilityStatement SHALL be returned in response to a GET [base]/metadata request.
 
       It does this by checking that the server responds with an HTTP OK 200
       status code and that the body of the response contains a valid
