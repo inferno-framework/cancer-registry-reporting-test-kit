@@ -18,7 +18,7 @@ module CancerRegistryReportingTestKit
     id :mcode_requirement_103_conformance_interaction
 
     makes_request :capability_statement
-    
+
     run do
       fhir_client
       fhir_get_capability_statement(name: :capability_statement)

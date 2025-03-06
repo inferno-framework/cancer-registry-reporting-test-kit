@@ -25,15 +25,13 @@ module CancerRegistryReportingTestKit
       missing_profiles = required_profiles - supported_profiles
 
       missing_profiles_list =
-          missing_profiles
-            .map { |resource| "`#{resource}`" }
-            .join(', ')
+        missing_profiles
+          .map { |resource| "`#{resource}`" }
+          .join(', ')
 
-        assert missing_profiles.empty?,
-               'The CapabilityStatement does not list support for the following' \
-               "profiles: #{missing_profiles_list}"
-
-      
+      assert missing_profiles.empty?,
+             'The CapabilityStatement does not list support for the following' \
+             "profiles: #{missing_profiles_list}"
     end
   end
 end

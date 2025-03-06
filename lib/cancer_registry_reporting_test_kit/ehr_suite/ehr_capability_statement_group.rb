@@ -3,7 +3,6 @@ require_relative 'ehr_capability_statement/mcode_requirement_103_conformance_int
 
 module CancerRegistryReportingTestKit
   class EHRCapabilityStatementGroup < Inferno::TestGroup
-
     id :ehr_capability_statement_group
     title 'EHR Capability Statement'
     description "
@@ -112,9 +111,8 @@ module CancerRegistryReportingTestKit
 
     test from: :mcode_requirement_22_profile_support do
       config(
-        options: { required_profiles: [US_CORE_PROFILES.values, M_CODE_PROFILES.values].flatten}
+        options: { required_profiles: [US_CORE_PROFILES.values, M_CODE_PROFILES.values].flatten }
       )
     end
-
   end
 end

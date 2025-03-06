@@ -49,7 +49,6 @@ require_relative 'mcode_data_access_resources/tnm_regional_nodes_category_group'
 require_relative 'mcode_data_access_resources/tnm_stage_group_group'
 require_relative 'mcode_data_access_resources/radiotherapy_procedure_group'
 
-
 module CancerRegistryReportingTestKit
   class EHRDataAccessGroup < Inferno::TestGroup
     id :ccrr_ehr_data_access
