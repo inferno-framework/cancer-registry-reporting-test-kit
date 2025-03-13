@@ -70,7 +70,7 @@ module CancerRegistryReportingTestKit
                                                  ))
     end
     test from: :medication_administration_search_test
-    test from: :medication_administration_must_support_test
     test from: :medication_administration_validation_test
+    test from: :medication_administration_must_support_test
   end
 end

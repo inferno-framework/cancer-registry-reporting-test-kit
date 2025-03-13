@@ -6,24 +6,7 @@ module CancerRegistryReportingTestKit
     id :ccrr_ehr
     title 'Cancer Registry Reporting Electronic Health Record (EHR) Test Suite'
     short_title 'CCRR Electronic Health Record (EHR)'
-    description '
-    The Cancer Registry Reporting EHR Test Suite verifies the
-    conformance of EHRs to the STU 1.0.0 version of the HL7® FHIR®
-    [Central Cancer Registry Reporting IG](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/).
-
-    ## Scope
-    In addition to US Core resources, all resources referenced as on must support fields in the
-    CCRR [Composition](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/StructureDefinition-ccrr-composition.html)
-    are covered in search and subsequent tests. Profiles defined
-    or specified in the IG, but not specifically included or marked MS in the composition are out of scope.
-
-    ## Test Methodology
-    Each resource specified in the CCRR [Composition](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/StructureDefinition-ccrr-composition.html)
-    as must support, is accessed via search by Inferno and then checked for profile conformance and representation of must support fields
-
-    ## Current Limitations
-    Full Auth workflows are not currently supported. Instead, Inferno takes an access_token to use to retrieve data from the EHR.
-    '
+    description File.read(File.join(__dir__, 'docs', 'ehr_suite_description.md'))
 
     links [
       # {

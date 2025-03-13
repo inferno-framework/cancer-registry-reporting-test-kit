@@ -72,7 +72,7 @@ module CancerRegistryReportingTestKit
                                                  ))
     end
     test from: :primary_cancer_condition_search_test
-    test from: :primary_cancer_condition_must_support_test
     test from: :primary_cancer_condition_validation_test
+    test from: :primary_cancer_condition_must_support_test
   end
 end

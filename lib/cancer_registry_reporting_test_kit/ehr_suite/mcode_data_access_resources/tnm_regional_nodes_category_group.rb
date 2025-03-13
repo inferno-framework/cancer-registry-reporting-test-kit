@@ -22,7 +22,7 @@ module CancerRegistryReportingTestKit
                                                  ))
     end
     test from: :tnm_regional_nodes_category_search_test
-    test from: :tnm_regional_nodes_category_must_support_test
     test from: :tnm_regional_nodes_category_validation_test
+    test from: :tnm_regional_nodes_category_must_support_test
   end
 end
