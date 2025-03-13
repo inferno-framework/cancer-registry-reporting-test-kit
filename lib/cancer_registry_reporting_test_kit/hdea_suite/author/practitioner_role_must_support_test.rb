@@ -53,7 +53,7 @@ module CancerRegistryReportingTestKit
           'Organization' => []
         }
 
-        scratch_resources.each do |author|
+        scratch_resources[:all].each do |author|
           resources_by_type[author.resourceType] << author
         end
 
