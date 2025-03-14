@@ -1,12 +1,12 @@
 # rubocop:disable Lint/RedundantCopDisableDirective
 # rubocop:disable Layout/HeredocIndentation
 module CancerRegistryReportingTestKit
-  class AttestationTestMcodeRequirement22 < Inferno::Test
-    title 'Capability Statement lists support for required Profiles'
+  class MCodeCapabilityStatementProfileSupport < Inferno::Test
+    title 'Capability Statement lists support for required mCode Profiles'
     description <<~DESCRIPTION
     This test verifies that the list of implemented profiles required by the Cancer Registry IG (link) SHALL be published in the returned CapbilityStatement.
     DESCRIPTION
-    id :mcode_requirement_22_profile_support
+    id :mcode_capability_statement_profile_support
 
     uses_request :capability_statement
     run do
