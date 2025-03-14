@@ -78,7 +78,6 @@ module CancerRegistryReportingTestKit
       'Procedure' => ['http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-course-summary'].freeze
     }.freeze
 
-
     input :url,
           title: 'FHIR Endpoint',
           description: 'URL of the FHIR endpoint'
