@@ -2,8 +2,8 @@
 
 require 'inferno/dsl/oauth_credentials'
 require 'us_core_test_kit/version'
-require 'us_core_test_kit/custom_groups/v3.1.1/capability_statement_group'
 require 'us_core_test_kit/custom_groups/v3.1.1/clinical_notes_guidance_group'
+require 'us_core_test_kit/custom_groups/v3.1.1/capability_statement_group'
 require 'us_core_test_kit/custom_groups/data_absent_reason_group'
 require 'us_core_test_kit/provenance_validator'
 require 'us_core_test_kit/us_core_options'
@@ -91,10 +91,6 @@ module CancerRegistryReportingTestKit
       url :url
       oauth_credentials :smart_credentials
     end
-
-    # group do
-    #   title 'Cancer Patient FHIR API Tests'
-    #   id :ehr_fhir_api
 
     group from: :us_core_v311_capability_statement do
       test from: :mcode_capability_statement_profile_support do

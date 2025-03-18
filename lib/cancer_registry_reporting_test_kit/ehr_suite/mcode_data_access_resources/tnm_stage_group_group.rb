@@ -21,7 +21,7 @@ module CancerRegistryReportingTestKit
                                                  ))
     end
     test from: :tnm_stage_group_search_test
-    test from: :tnm_stage_group_must_support_test
     test from: :tnm_stage_group_validation_test
+    test from: :tnm_stage_group_must_support_test
   end
 end
