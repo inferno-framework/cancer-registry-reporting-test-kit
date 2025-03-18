@@ -30,7 +30,7 @@ module CancerRegistryReportingTestKit
           .join(', ')
 
       assert missing_profiles.empty?,
-             'The CapabilityStatement does not list support for the following' \
+             'The CapabilityStatement does not list support for the following ' \
              "profiles: #{missing_profiles_list}"
     end
   end
