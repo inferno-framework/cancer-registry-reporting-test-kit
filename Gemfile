@@ -11,6 +11,10 @@ group :development, :test do
   gem 'rspec_junit_formatter', require: false # required for gitlab CI
   gem 'rubocop', '~> 1.9'
   gem 'rubocop-rspec', require: false
+  gem 'database_cleaner-sequel', '~> 1.8'
+  gem 'factory_bot', '~> 6.1'
+  gem 'rspec', '~> 3.10'
+  gem'webmock', '~> 3.11'
 end
 
 group :test do
