@@ -3,6 +3,7 @@
 require 'inferno/dsl/oauth_credentials'
 require 'us_core_test_kit/version'
 require 'us_core_test_kit/custom_groups/v3.1.1/clinical_notes_guidance_group'
+require 'us_core_test_kit/custom_groups/v3.1.1/capability_statement_group'
 require 'us_core_test_kit/custom_groups/data_absent_reason_group'
 require 'us_core_test_kit/provenance_validator'
 require 'us_core_test_kit/us_core_options'
@@ -37,6 +38,7 @@ require 'us_core_test_kit/generated/v3.1.1/organization_group'
 require 'us_core_test_kit/generated/v3.1.1/practitioner_group'
 require 'us_core_test_kit/generated/v3.1.1/provenance_group'
 
+require_relative 'ehr_capability_statement/mcode_capability_statement_profile_support'
 require_relative 'mcode_data_access_resources/primary_cancer_condition_group'
 require_relative 'mcode_data_access_resources/secondary_cancer_condition_group'
 require_relative 'mcode_data_access_resources/medication_request_group'
@@ -59,6 +61,23 @@ module CancerRegistryReportingTestKit
 
 
     )
+
+    M_CODE_PROFILES = {
+      'Condition' => [
+        'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-secondary-cancer-condition',
+        'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-primary-cancer-condition'
+      ].freeze,
+      'MedicationAdministration' => ['http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration'].freeze,
+      'MedicationRequest' => ['http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-request'].freeze,
+      'Observation' => [
+        'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-stage-group',
+        'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-distant-metastases-category',
+        'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-primary-tumor-category',
+        'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-regional-nodes-category'
+      ].freeze,
+      'Procedure' => ['http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-course-summary'].freeze
+    }.freeze
+
     input :url,
           title: 'FHIR Endpoint',
           description: 'URL of the FHIR endpoint'
@@ -73,10 +92,17 @@ module CancerRegistryReportingTestKit
       oauth_credentials :smart_credentials
     end
 
+    group from: :us_core_v311_capability_statement do
+      test from: :mcode_capability_statement_profile_support do
+        config(
+          options: { required_profiles: [M_CODE_PROFILES.values].flatten }
+        )
+      end
+    end
+
     group do
       title 'US Core FHIR API Tests'
       id :us_core_fhir_api
-
       group from: :us_core_v311_patient
       group from: :us_core_v311_allergy_intolerance
       group from: :us_core_v311_care_plan
