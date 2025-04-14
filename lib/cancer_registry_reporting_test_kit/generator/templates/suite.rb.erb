@@ -1,6 +1,3 @@
-require 'inferno/dsl/oauth_credentials'
-require_relative '../../version'
-
 <% group_file_list.each do |file_name| %>require_relative '<%= file_name %>'
 <% end %>
 module CancerRegistryReportingTestKit
@@ -65,12 +62,12 @@ module CancerRegistryReportingTestKit
       group do
         input :smart_credentials,
           title: 'OAuth Credentials',
-          type: :oauth_credentials,
+          type: :auth_info,
           optional: true
 
         fhir_client do
           url :url
-          oauth_credentials :smart_credentials
+          auth_info :smart_credentials
         end
 
         title 'US Core FHIR API'

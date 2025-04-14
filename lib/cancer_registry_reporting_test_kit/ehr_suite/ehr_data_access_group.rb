@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'inferno/dsl/oauth_credentials'
 require 'us_core_test_kit/version'
 require 'us_core_test_kit/custom_groups/v3.1.1/clinical_notes_guidance_group'
 require 'us_core_test_kit/custom_groups/v3.1.1/capability_statement_group'
@@ -84,12 +83,12 @@ module CancerRegistryReportingTestKit
 
     input :smart_credentials,
           title: 'OAuth Credentials',
-          type: :oauth_credentials,
+          type: :auth_info,
           optional: false
 
     fhir_client do
       url :url
-      oauth_credentials :smart_credentials
+      auth_info :smart_credentials
     end
 
     group from: :us_core_v311_capability_statement do

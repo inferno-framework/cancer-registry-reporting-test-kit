@@ -12,7 +12,7 @@ module CancerRegistryReportingTestKit
 
       input :granular_scopes_<%= group_number %>_credentials,
             title: 'SMART Credentials for Granular Scopes <%= group_number %>',
-            type: :oauth_credentials,
+            type: :auth_info,
             locked: true
 
       config(
@@ -31,7 +31,7 @@ module CancerRegistryReportingTestKit
       )
 
       fhir_client do
-        oauth_credentials :granular_scopes_<%= group_number %>_credentials
+        auth_info :granular_scopes_<%= group_number %>_credentials
         url :url
       end
 <% group_id_list.each do |group_id| %>
