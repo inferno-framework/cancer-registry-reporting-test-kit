@@ -9,18 +9,18 @@ module CancerRegistryReportingTestKit
     description File.read(File.join(__dir__, 'docs', 'ehr_suite_description.md'))
 
     links [
-      # {
-      #   label: 'Report Issue',
-      #   url: 'https://github.com/inferno-framework/cancer-registry-reporting-test-kit/issues'
-      # },
-      # {
-      #   label: 'Open Source',
-      #   url: 'https://github.com/inferno-framework/cancer-registry-reporting-test-kit'
-      # },
-      # {
-      #   label: 'Download',
-      #   url: 'https://github.com/inferno-framework/cancer-registry-reporting-test-kit/releases'
-      # },
+      {
+        label: 'Report Issue',
+        url: 'https://github.com/inferno-framework/cancer-registry-reporting-test-kit/issues'
+      },
+      {
+        label: 'Open Source',
+        url: 'https://github.com/inferno-framework/cancer-registry-reporting-test-kit'
+      },
+      {
+        label: 'Download',
+        url: 'https://github.com/inferno-framework/cancer-registry-reporting-test-kit/releases'
+      },
       {
         label: 'Implementation Guide',
         url: 'https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/'

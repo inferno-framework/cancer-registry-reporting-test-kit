@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'inferno/dsl/oauth_credentials'
-require_relative 'version'
-
 require_relative 'hdea_suite/generated/v1.0.0/composition_group'
 require_relative 'hdea_suite/generated/v1.0.0/ccrr_content_bundle_group'
 require_relative 'hdea_suite/bundle_resources_group'
@@ -30,7 +27,24 @@ module CancerRegistryReportingTestKit
     ## Current Limitations
 
       )
-      version VERSION
+      links [
+        {
+          label: 'Report Issue',
+          url: 'https://github.com/inferno-framework/cancer-registry-reporting-test-kit/issues'
+        },
+        {
+          label: 'Open Source',
+          url: 'https://github.com/inferno-framework/cancer-registry-reporting-test-kit'
+        },
+        {
+          label: 'Download',
+          url: 'https://github.com/inferno-framework/cancer-registry-reporting-test-kit/releases'
+        },
+        {
+          label: 'Implementation Guide',
+          url: 'https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/'
+        }
+      ]
 
       GENERAL_MESSAGE_FILTERS = [
         %r{Sub-extension url 'introspect' is not defined by the Extension http://fhir-registry\.smarthealthit\.org/StructureDefinition/oauth-uris},

@@ -14,14 +14,10 @@ group :development, :test do
   gem 'database_cleaner-sequel', '~> 1.8'
   gem 'factory_bot', '~> 6.1'
   gem 'rspec', '~> 3.10'
-  gem'webmock', '~> 3.11'
+  gem 'webmock', '~> 3.11'
 end
 
 group :test do
-  gem 'database_cleaner-sequel', '~> 1.8'
-  gem 'factory_bot', '~> 6.1'
   gem 'rack-test'
-  gem 'rspec', '~> 3.10'
   gem 'simplecov', '0.21.2', require: false
-  gem 'webmock', '~> 3.11'
 end

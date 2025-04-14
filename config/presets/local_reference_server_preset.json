@@ -12,40 +12,13 @@
     },
     {
       "name": "smart_credentials",
-      "type": "oauth_credentials",
+      "type": "auth_info",
       "title": "OAuth Credentials",
       "optional": true,
-      "value": "{\"access_token\":\"SAMPLE_TOKEN\"}"
-    },
-    {
-      "name": "standalone_client_id",
-      "type": "text",
-      "title": "Standalone Client ID",
-      "description": "Client ID provided during registration of Inferno as a standalone application",
-      "value": "SAMPLE_CONFIDENTIAL_CLIENT_ID"
-    },
-    {
-      "name": "standalone_client_secret",
-      "type": "text",
-      "title": "Standalone Client Secret",
-      "description": "Client Secret provided during registration of Inferno as a standalone application",
-      "value": "SAMPLE_CONFIDENTIAL_CLIENT_SECRET"
-    },
-    {
-      "name": "ehr_client_id",
-      "type": "text",
-      "value": "SAMPLE_CONFIDENTIAL_CLIENT_ID"
-    },
-    {
-      "name": "ehr_client_secret",
-      "type": "text",
-      "optional": false,
-      "value": "SAMPLE_CONFIDENTIAL_CLIENT_SECRET"
-    },
-    {
-      "name": "client_auth_type",
-      "type": "text",
-      "value": "confidential_symmetric"
+      "value": {
+        "auth_type": "public",
+        "access_token": "SAMPLE_TOKEN"
+      }
     },
     {
       "name": "patient_ids",
