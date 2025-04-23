@@ -69,8 +69,8 @@
         "code" : {
           "coding" : [{
             "system" : "http://snomed.info/sct",
-            "code" : "94225005",
-            "display" : "Secondary malignant neoplasm of brain"
+            "code" : "128462008",
+            "display" : "Metastatic malignant neoplasm"
           }]
         },
         "text" : {

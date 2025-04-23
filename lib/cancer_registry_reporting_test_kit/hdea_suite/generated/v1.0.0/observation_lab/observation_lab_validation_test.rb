@@ -8,20 +8,13 @@ module CancerRegistryReportingTestKit
       include CancerRegistryReportingTestKit::ValidationTest
 
       id :ccrr_v100_observation_lab_validation_test
-      title 'Observation resources returned during previous tests conform to the US Core Laboratory Result Observation Profile profile'
+      title 'US Core Laboratory Result Observation profile conformance'
       description %(
-This test verifies resources returned from the first search conform to
-the [US Core Laboratory Result Observation Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab).
-Systems must demonstrate at least one valid example in order to pass this test.
-
-It verifies the presence of mandatory elements and that elements with
-required bindings contain appropriate values. CodeableConcept element
-bindings will fail if none of their codings have a code/system belonging
-to the bound ValueSet. Quantity, Coding, and code element bindings will
-fail if their code/system are not found in the valueset.
-
+        This test verifies that Observation instances
+        found in the Results sections of the provided reports conform to the
+        [US Core Laboratory Result Observation profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab|5.0.1).
       )
-      output :dar_code_found, :dar_extension_found
+      
 
       def resource_type
         'Observation'

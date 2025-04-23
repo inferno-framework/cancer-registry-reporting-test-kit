@@ -19,7 +19,7 @@ AllCops:
     - spec/fixtures/dummy_ms_test.rb
     - lib/cancer_registry_reporting_test_kit/currently_unused/**/*
     - lib/cancer_registry_reporting_test_kit/hdea_suite/generated/**/*
-    - lib/cancer_registry_reporting_test_kit/generator/*
+    - lib/cancer_registry_reporting_test_kit/hdea_generator/*
 
 Layout/LineLength:
   Max: 150

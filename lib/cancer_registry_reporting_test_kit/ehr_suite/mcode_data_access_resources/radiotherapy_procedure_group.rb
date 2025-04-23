@@ -4,15 +4,13 @@ require_relative 'radiotherapy_procedure/radiotherapy_procedure_validation_test'
 
 module CancerRegistryReportingTestKit
   class RadiotherapyProcedureGroup < Inferno::TestGroup
-    title 'Procedure Radiotherapy Course Summary Tests'
-    short_description 'Verify support for the server capabilities required by the Radiotherapy Course Summary Profile.'
-    description "
+    title 'mCODE Radiotherapy Course Summary'
+    description %(
       # Background
-
-      The US Core Procedure Radiotherapy Course Summary sequence verifies that the system under test is
-      able to provide correct responses for Procedure queries. These queries
-      must contain resources conforming to the Radiotherapy Course Summary Profile as
-      specified in the US Core v1.0.0 Implementation Guide.
+      The mCODE Radiotherapy Course Summary group verifies that the system under test is
+      able to provide correct responses for Radiotherapy Procedure queries. These queries
+      must return resources conforming to the [mCODE Radiotherapy Course Summary Profile](https://hl7.org/fhir/us/mcode/STU3/StructureDefinition-mcode-radiotherapy-course-summary.html)
+      as specified in the mCODE v3.0.0 Implementation Guide.
 
       # Testing Methodology
       ## Searching
@@ -20,13 +18,21 @@ module CancerRegistryReportingTestKit
       with this resource. This sequence will perform searches with the
       following parameters:
 
+      * patient + code
+
+      Note that US Core requires support for the patient search parameter
+      for the [Procedure resource](https://www.hl7.org/fhir/us/core/STU3.1.1/StructureDefinition-us-core-procedure.html#quick-start).
+      Since mCODE requires support for the code parameter for [Radiotherapy treatment searches](https://hl7.org/fhir/us/mcode/STU3/conformance-general.html#support-querying-mcode-conforming-resources),
+      the patient + code combination is required by these tests.
 
       ### Search Parameters
-      The first search uses the selected patient(s) from the prior launch
-      sequence. Any subsequent searches will look for its parameter values
+      The first search uses values from the **Patient IDs** input plus
+      a fixed value of `http://snomed.info/sct|1217123003` for the code
+      as specified in the [mCODE Radiotherapy Course Summary Profile](https://hl7.org/fhir/us/mcode/STU3/StructureDefinition-mcode-radiotherapy-course-summary.html).
+      Any subsequent searches will look for its parameter values
       from the results of the first search. For example, the `identifier`
       search in the patient sequence is performed by looking for an existing
-      `Patient.identifier` from any of the resources returned in the `_id`
+      `Patient.identifier` from any of the resources returned in the first
       search. If a value cannot be found this way, the search is skipped.
       This search test also searches by date.  When a single date is inputted,
       the test will return any results that occurred on that date or contain
@@ -51,8 +57,7 @@ module CancerRegistryReportingTestKit
 
       ## Profile Validation
       Each resource returned from the first search is expected to conform to
-      the [Radiotherapy Course Summary Profile]
-      (http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-course-summary).
+      the [mCODE Radiotherapy Course Summary Profile](http://hl7.org/fhir/us/mcode/STU3/StructureDefinition/mcode-radiotherapy-course-summary).
       Each element is checked against
       teminology binding and cardinality requirements.
 
@@ -60,23 +65,19 @@ module CancerRegistryReportingTestKit
       ValueSet. If the code/system in the element is not part of the ValueSet,
       then the test will fail.
 
-      ## Reference Validation
-      At least one instance of each external reference in elements marked as
-      'must support' within the resources provided by the system must resolve.
-      The test will attempt to read each reference found and will fail if no
-      read succeeds."
+    )
 
-    id :ehr_radiotherapy_procedure
+    id :ccrr_ehr_radiotherapy_procedure
     run_as_group
 
     def self.metadata
-      @metadata ||= Generator::GroupMetadata.new(
+      @metadata ||= HdeaGenerator::GroupMetadata.new(
         YAML.load_file(File.join(__dir__, 'radiotherapy_procedure', 'metadata.yml'), aliases: true)
       )
     end
 
-    test from: :radiotherapy_procedure_search_test
-    test from: :radiotherapy_procedure_must_support_test
-    test from: :radiotherapy_procedure_validation_test
+    test from: :ccrr_radiotherapy_procedure_search_test
+    test from: :ccrr_radiotherapy_procedure_validation_test
+    test from: :ccrr_radiotherapy_procedure_must_support_test
   end
 end

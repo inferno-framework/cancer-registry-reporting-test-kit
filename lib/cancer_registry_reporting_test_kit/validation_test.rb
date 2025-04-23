@@ -10,6 +10,18 @@ module CancerRegistryReportingTestKit
                                 profile_url,
                                 profile_version,
                                 skip_if_empty: true)
+      find_validation_errors(resourceType, resources, profile_url, profile_version, skip_if_empty: )
+      errors_found = messages.any? { |message| message[:type] == 'error' }
+
+      profile_with_version = "#{profile_url}|#{profile_version}"
+      assert !errors_found, "Resource does not conform to the profile #{profile_with_version}"
+    end
+
+    def find_validation_errors(resourceType = resource_type,
+                          resources,
+                          profile_url,
+                          profile_version,
+                          skip_if_empty: true)
       skip_if skip_if_empty && resources.blank?,
               "No #{resourceType} resources conforming to the #{profile_url} profile were returned"
 
@@ -19,13 +31,11 @@ module CancerRegistryReportingTestKit
       profile_with_version = "#{profile_url}|#{profile_version}"
       resources.each do |resource|
         resource_is_valid?(resource: resource, profile_url: profile_with_version)
-        check_for_dar(resource)
+        # DAR checks are a SHOULD requirement in CCRR 1.0.1
+        # check_for_dar(resource)
       end
-
-      errors_found = messages.any? { |message| message[:type] == 'error' }
-
-      assert !errors_found, "Resource does not conform to the profile #{profile_with_version}"
     end
+
 
     def check_for_dar(resource)
       unless scratch[:dar_code_found]

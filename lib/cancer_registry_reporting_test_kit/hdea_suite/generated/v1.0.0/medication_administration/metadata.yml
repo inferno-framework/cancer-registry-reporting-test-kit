@@ -12,9 +12,6 @@
   Medication Administration Profile.
 :must_supports:
   :extensions:
-  - :id: MedicationAdministration.extension
-    :path: extension
-    :url: 
   - :id: MedicationAdministration.extension:treatmentIntent
     :path: extension
     :url: http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-procedure-intent
@@ -49,4 +46,3 @@
 - :id: ccrr_v100_medication_administration_validation_test
   :file_name: medication_administration_validation_test.rb
 :id: ccrr_v100_medication_administration
-:file_name: medication_administration_group.rb

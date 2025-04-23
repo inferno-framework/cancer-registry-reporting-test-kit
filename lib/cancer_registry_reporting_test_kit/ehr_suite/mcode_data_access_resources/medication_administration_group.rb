@@ -6,11 +6,13 @@ require_relative 'medication_administration/medication_administration_validation
 
 module CancerRegistryReportingTestKit
   class EHRMedicationAdministrationTests < Inferno::TestGroup
-    title 'Medication Administration Search Tests'
+    title 'mCODE Cancer-Related Medication Administration'
     description %(
-      Tests verify that the EHR allows apps to access patient data defined in mCode and specified
-      via searches [specified by Central Cancer Registry IG v1.0.0](https://build.fhir.org/ig/HL7/fhir-central-cancer-registry-reporting-ig/spec.html#mcode-fhir-ig-usage).
-      These resources are searchable by parameters defined in the [mCode IG](http://hl7.org/fhir/us/mcode/STU3/index.html).
+      # Background
+      The mCODE Cancer-Related Medication Administration group verifies that the system under test is
+      able to provide correct responses for Cancer-Related MedicationAdministration queries. These queries
+      return resources conforming to the [mCODE Cancer-Related Medication Administration Profile](https://hl7.org/fhir/us/mcode/STU3/StructureDefinition-mcode-cancer-related-medication-administration.html)
+      as specified in the mCODE v3.0.0 Implementation Guide.
 
       # Testing Methodology
       ## Searching
@@ -18,14 +20,14 @@ module CancerRegistryReportingTestKit
       with this resource. This sequence will perform searches with the
       following parameters:
 
-      * patient + effective date
+      * patient
 
       ### Search Parameters
-      The first search uses the selected patient(s). Any subsequent searches
-      will look for its parameter values
+      The first search uses values from the **Patient IDs** input as provided by the tester.
+      Any subsequent searches will look for its parameter values
       from the results of the first search. For example, the `identifier`
       search in the patient sequence is performed by looking for an existing
-      `Patient.identifier` from any of the resources returned in the `_id`
+      `Patient.identifier` from any of the resources returned in the first
       search. If a value cannot be found this way, the search is skipped.
 
       ### Search Validation
@@ -46,31 +48,25 @@ module CancerRegistryReportingTestKit
 
       ## Profile Validation
       Each resource returned from the first search is expected to conform to
-      the [mCode Cancer-Related Medication Administration Profile](http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration).
+      the [mCODE Cancer-Related Medication Administration Profile](http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration).
       Each element is checked against terminology binding and cardinality requirements.
 
       Elements with a required binding are validated against their bound
       ValueSet. If the code/system in the element is not part of the ValueSet,
       then the test will fail.
-
-      ## Reference Validation
-      At least one instance of each external reference in elements marked as
-      "must support" within the resources provided by the system must resolve.
-      The test will attempt to read each reference found and will fail if no
-      read succeeds.
     )
 
-    id :ehr_medication_administration
+    id :ccrr_ehr_medication_administration
     run_as_group
 
     def self.metadata
-      @metadata ||= Generator::GroupMetadata.new(YAML.load_file(
-                                                   File.join(__dir__, 'medication_administration',
-                                                             'metadata.yml'), aliases: true
-                                                 ))
+      @metadata ||= HdeaGenerator::GroupMetadata.new(YAML.load_file(
+                                                       File.join(__dir__, 'medication_administration',
+                                                                 'metadata.yml'), aliases: true
+                                                     ))
     end
-    test from: :medication_administration_search_test
-    test from: :medication_administration_validation_test
-    test from: :medication_administration_must_support_test
+    test from: :ccrr_medication_administration_search_test
+    test from: :ccrr_medication_administration_validation_test
+    test from: :ccrr_medication_administration_must_support_test
   end
 end

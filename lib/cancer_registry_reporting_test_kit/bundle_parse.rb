@@ -59,37 +59,8 @@ module CancerRegistryReportingTestKit
                    'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner', 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization']
     }.freeze
 
-    PROFILE_TO_RESOURCE_KEY_MAP = {
-      'http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance' => :allergy_intolerance_resources,
-      'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/cancer-encounter' => :cancer_encounter_resources,
-      'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/cancer-patient' => :cancer_patient_resources,
-      'http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan' => :care_plan_resources,
-      'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-reporting-bundle' => :ccrr_reporting_bundle_resources,
-      'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-primary-cancer-condition' => :primary_condition_resources,
-      'http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference' => :document_reference_resources,
-      'http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter' => :encounter_resources,
-      'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/us-ph-tribal-affiliation-extension' => :extension_resources,
-      'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-radiotherapy-course-summary' => :mcode_radiotherapy_course_summary_resources,
-      'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-secondary-cancer-condition' => :mcode_secondary_cancer_condition_resources,
-      'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tnm-stage-group' => :mcode_tnm_stage_group_resources,
-      'http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-administration' => :medication_administration_resources,
-      'http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication' => :medication_resources,
-      'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-reporting-messageheader' => :message_header_resources,
-      'http://hl7.org/fhir/us/odh/StructureDefinition/odh-UsualWork' => :odh_usual_work_resources,
-      'http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization' => :organization_resources,
-      'http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient' => :patient_resources,
-      'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-plandefinition' => :plan_definition_resources,
-      'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole' => :practitioner_role_resources,
-      'http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner' => :practitioner_resources,
-      'http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure' => :procedure_resources,
-      'http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus' => :smokingstatus_resources,
-      'http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/us-ph-patient' => :us_ph_patient_resources,
-      'http://hl7.org/fhir/StructureDefinition/ServiceRequest' => :service_request_resources,
-      FIELD_TO_URL_MAP['author'] => :author_resources
-    }.freeze
-
     # Method for translating received bundle into a hash of resources.  Use for MS and Validation testing
-    def parse_bundle(bundle)
+    def parse_bundle(bundle, index)
       first_resource = bundle.entry.first.resource
       if first_resource.is_a?(FHIR::Composition)
         parsed_bundle = look_for_references_in_resource(first_resource, bundle)
@@ -98,13 +69,15 @@ module CancerRegistryReportingTestKit
         parsed_bundle['http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-composition'] ||= []
         parsed_bundle['http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/ccrr-composition'].push(first_resource)
         unless unresolved_references.empty?
-          info "The following references did not resolve, the resources either do not exist in the bundle or are mislabeled: #{unresolved_references}"
+          warning "The following references did not resolve, the resources either do not exist in the bundle or are mislabeled: #{unresolved_references}"
         end
         current_bundle_unresolved_references = unresolved_references
         clear_unresolved_references
         [parsed_bundle, current_bundle_unresolved_references]
       else
-        info 'The first entry should be a Composition, unable to parse bundle'
+        add_message('error', "Unable to parse bundle #{index + 1}: " \
+                             "the first entry must be a Composition but got #{first_resource.resourceType}.")
+        [nil, nil]
       end
     end
 

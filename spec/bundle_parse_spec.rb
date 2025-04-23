@@ -7,11 +7,34 @@ RSpec.describe CancerRegistryReportingTestKit::MustSupportTest do
     @suite.test.repository.insert(CancerRegistryReportingTestKit::HDEAV100::DummyMustSupportTest)
     @suite.groups.first.test(from: :ccrr_v100_dummy_must_support_test)
   end
-  
+  let(:validator_url) { ENV.fetch('FHIR_RESOURCE_VALIDATOR_URL') }
   let(:suite) { @suite }
   let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:test_scratch) { {} }
   let(:test_session) { repo_create(:test_session, test_suite_id: suite.id) }
+  let(:two_reports_second_no_composition) do
+    File.read(File.join(__dir__, 'fixtures', 'two_reports_second_no_composition.txt'))
+  end
+  let(:operation_outcome_failure) do
+    {
+      outcomes: [{
+        issues: [{
+          level: 'ERROR',
+          message: "Bundle/ccrr-content-bundle-examplexx: Bundle.entry[0]: The fullUrl 'http://hl7.org/fhir/us/central-cancer-registry-reporting/Composition/ccrr-composition-content-example' looks like a RESTful server URL, so it must end with the correct type and id (/Composition/ccrr-composition-content-examplex)"
+        },
+        {
+          level: 'ERROR',
+          message: "Bundle/ccrr-content-bundle-examplexx: Bundle.entry[0].resource.status: something bad in here"
+        },
+        {
+          level: 'ERROR',
+          message: "Bundle/ccrr-content-bundle-examplexx: Bundle.entry[5].resource/Encounter/patient: something bad in here"
+        }
+      ]
+      }],
+      sessionId: 'b8cf5547-1dc7-4714-a797-dc2347b93fe2'
+    }
+  end
 
   def run(runnable, inputs = {})
     test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
@@ -30,14 +53,32 @@ RSpec.describe CancerRegistryReportingTestKit::MustSupportTest do
   describe 'bundle_parse' do
     let(:dummy_must_support_test) { CancerRegistryReportingTestKit::HDEAV100::DummyMustSupportTest }
     let(:validation_test) do 
-      Class.new(CancerRegistryReportingTestKit::HDEAV100::CcrrContentBundleValidationTest) do
+      Class.new(CancerRegistryReportingTestKit::HDEAV100::CcrrContentBundleParseAndValidationTest) do
         input :reports,
-          type: 'textarea'        
+          type: 'textarea'    
+          
+        fhir_resource_validator do
+          url ENV.fetch('FHIR_RESOURCE_VALIDATOR_URL')
+  
+          cli_context do
+            txServer nil
+            displayWarnings true
+            disableDefaultResourceFetcher true
+          end
+  
+          igs 'hl7.fhir.us.central-cancer-registry-reporting#1.0.0'
+        end
       end
     end 
-    let(:incomplete_bundle) { File.read('spec/fixtures/ccrr_hdea_content_bundle_example_incomplete.json') }
-    let(:complete_bundle) { File.read('spec/fixtures/ccrr_hdea_content_bundle_example_complete.json') }
-    let(:validation_ok_response) { File.read('spec/fixtures/validation_ok.json') }
+    let(:incomplete_bundle) do
+      File.read(File.join(__dir__, 'fixtures', 'ccrr_hdea_content_bundle_example_incomplete.json'))
+    end
+    let(:complete_bundle) do
+      File.read(File.join(__dir__, 'fixtures', 'ccrr_hdea_content_bundle_example_complete.json'))
+    end
+    let(:validation_ok_response) do
+      File.read(File.join(__dir__, 'fixtures', 'validation_ok.json'))
+    end
 
     it 'returns unresolved references if report contains any' do
       result = run(dummy_must_support_test, { input_bundle: incomplete_bundle })
@@ -67,8 +108,8 @@ RSpec.describe CancerRegistryReportingTestKit::MustSupportTest do
                                                                                    headers: { 'Content-Type' =>
                                                                                     'application/fhir+json' })
         run(validation_test, { reports: "#{incomplete_bundle},#{complete_bundle}" })
-        patient_ids = test_scratch[:patient_resources][:all].map(&:id)
-        primary_condition_ids = test_scratch[:primary_condition_resources][:all].map(&:id)
+        patient_ids = test_scratch.dig(:patient_resources,:all)&.map(&:id)
+        primary_condition_ids = test_scratch.dig(:central_cancer_registry_primary_cancer_condition_resources, :all)&.map(&:id)
         expect(patient_ids).to eq(%w[example-incomplete-Patient example-complete-Patient])
         expect(primary_condition_ids).to eq(%w[primary-cancer-condition-incomplete
                                                primary-cancer-condition-complete])
@@ -81,7 +122,7 @@ RSpec.describe CancerRegistryReportingTestKit::MustSupportTest do
                                                                                    headers: { 'Content-Type' =>
                                                                                     'application/fhir+json' })
         run(validation_test, { reports: "#{incomplete_bundle},#{complete_bundle}" })
-        practitioner_ids = test_scratch[:author_resources][:all].map(&:id)
+        practitioner_ids = test_scratch.dig(:author_resources, :all)&.map(&:id)
         expect(practitioner_ids).to eq(%w[example-practitionerrole-incomplete example-practitioner-complete])
       end
 
@@ -93,10 +134,49 @@ RSpec.describe CancerRegistryReportingTestKit::MustSupportTest do
                                                                                    { 'Content-Type' =>
                                                                                     'application/fhir+json' })
         run(validation_test, { reports: complete_bundle })
-        medication_ids = test_scratch[:medication_resources][:all].map(&:id)
-        medication_administration_ids = test_scratch[:medication_administration_resources][:all].map(&:id)
+        medication_ids = test_scratch.dig(:medication_resources, :all)&.map(&:id)
+        medication_administration_ids = test_scratch.dig(:medication_administration_resources, :all)&.map(&:id)
         expect(medication_ids).to eq(['uscore-med1'])
         expect(medication_administration_ids).to eq(['cancer-related-medication-admin-cyclophosphamide-jenny-m'])
+      end
+
+      it 'filters errors on entry resources' do
+        allow_any_instance_of(validation_test).to receive(:scratch).and_return(test_scratch)
+        stub_request(:post, 'https://example.com/validatorapi/validate').to_return(
+          status: 200,
+            body: operation_outcome_failure.to_json,
+            headers: { 'Content-Type' =>
+            'application/fhir+json' }
+          )
+        result = run(validation_test, { reports: complete_bundle })
+        expect(result.result).to eq('fail')
+
+        result_messages = Inferno::Repositories::Messages.new.messages_for_result(result.id)
+        expect(result_messages.length).to be(1)
+        expect(result_messages[0].message).to match(
+          /Bundle\/ccrr-content-bundle-examplexx: Bundle.entry\[0\]: The fullUrl/
+        )
+      end
+
+      it 'uses well-formed reports and logs errors for bad ones' do
+        allow_any_instance_of(validation_test).to receive(:scratch).and_return(test_scratch)
+        stub_request(:post, 'https://example.com/validatorapi/validate').to_return(
+          status: 200,
+            body: validation_ok_response,
+            headers: { 'Content-Type' =>
+            'application/fhir+json' }
+          )
+        result = run(validation_test, { reports: two_reports_second_no_composition })
+        expect(result.result).to eq('fail')
+
+        result_messages = Inferno::Repositories::Messages.new.messages_for_result(result.id)
+        expect(result_messages.length).to be(1)
+        expect(result_messages.find do |message|
+          /Unable to parse bundle 2: the first entry must be a Composition/.match(message.message)
+        end).to_not be_nil
+
+        patient_ids = test_scratch.dig(:patient_resources,:all)&.map(&:id)
+        expect(patient_ids).to_not be_nil
       end
     end
   end

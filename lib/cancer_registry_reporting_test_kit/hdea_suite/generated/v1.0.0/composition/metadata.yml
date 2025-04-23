@@ -267,5 +267,6 @@
 :tests:
 - :id: ccrr_v100_composition_must_support_test
   :file_name: composition_must_support_test.rb
+- :id: ccrr_v100_composition_validation_test
+  :file_name: composition_validation_test.rb
 :id: ccrr_v100_composition
-:file_name: composition_group.rb

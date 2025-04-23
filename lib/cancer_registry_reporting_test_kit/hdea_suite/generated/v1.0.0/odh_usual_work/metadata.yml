@@ -19,28 +19,36 @@
     :discriminator:
       :type: requiredBinding
       :path: ''
-      :values: []
+      :values:
+      - :system: 2.16.840.1.114222.4.11.7186
+        :code: ''
   - :slice_id: Observation.value[x]:valueCodeableConcept.coding:occupationONETSOCDetailODH
     :slice_name: occupationONETSOCDetailODH
     :path: value[x].coding
     :discriminator:
       :type: requiredBinding
       :path: ''
-      :values: []
+      :values: 
+      - :system: 2.16.840.1.114222.4.11.7901
+        :code: ''
   - :slice_id: Observation.component:odh-UsualIndustry.value[x].coding:industryCDCCensus2010
     :slice_name: industryCDCCensus2010
     :path: component.value[x].coding
     :discriminator:
       :type: requiredBinding
-      :path: ''
-      :values: []
+      :path: component.value[x]
+      :values: 
+      - :system: 2.16.840.1.114222.4.11.7187
+        :code: ''
   - :slice_id: Observation.component:odh-UsualIndustry.value[x].coding:industryONETSOCDetailODH
     :slice_name: industryONETSOCDetailODH
     :path: component.value[x].coding
     :discriminator:
       :type: requiredBinding
       :path: ''
-      :values: []
+      :values: 
+      - :system: 2.16.840.1.114222.4.11.7900
+        :code: ''
   - :slice_id: Observation.value[x]:valueCodeableConcept
     :slice_name: valueCodeableConcept
     :path: value[x]
@@ -48,8 +56,8 @@
       :type: type
       :code: CodeableConcept
   :elements:
-  - :path: value[x]:valueCodeableConcept.coding
   - :path: component:odh-UsualIndustry.value[x].coding
+  - :path: value[x]:valueCodeableConcept.coding
 :mandatory_elements:
 - Observation.status
 - Observation.category.coding
@@ -71,4 +79,3 @@
 - :id: ccrr_v100_odh_usual_work_validation_test
   :file_name: odh_usual_work_validation_test.rb
 :id: ccrr_v100_odh_usual_work
-:file_name: odh_usual_work_group.rb

@@ -23,7 +23,6 @@ to the bound ValueSet. Quantity, Coding, and code element bindings will
 fail if their code/system are not found in the valueset.
 
       )
-      output :dar_code_found, :dar_extension_found
 
       def scratch_resources
         scratch[:author_resources] ||= {}
@@ -42,7 +41,7 @@ fail if their code/system are not found in the valueset.
           'Organization' => []
         }
 
-        scratch_resources[:all].each do |author|
+        scratch_resources[:all]&.each do |author|
           resources_by_type[author.resourceType] << author
         end
 

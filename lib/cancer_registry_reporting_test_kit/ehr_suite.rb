@@ -5,17 +5,16 @@ module CancerRegistryReportingTestKit
   class EHRSuite < Inferno::TestSuite
     id :ccrr_ehr
     title 'Cancer Registry Reporting Electronic Health Record (EHR) Test Suite'
-    short_title 'CCRR Electronic Health Record (EHR)'
+    short_title 'EHR Cancer Registry Reporting'
     description File.read(File.join(__dir__, 'docs', 'ehr_suite_description.md'))
-
     links [
       {
         label: 'Report Issue',
-        url: 'https://github.com/inferno-framework/cancer-registry-reporting-test-kit/issues'
+        url: 'https://github.com/inferno-framework/cancer-registry-reporting-test-kit/issues/'
       },
       {
         label: 'Open Source',
-        url: 'https://github.com/inferno-framework/cancer-registry-reporting-test-kit'
+        url: 'https://github.com/inferno-framework/cancer-registry-reporting-test-kit/'
       },
       {
         label: 'Download',
@@ -48,12 +47,12 @@ module CancerRegistryReportingTestKit
 
     def self.metadata
       @metadata ||= YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true)[:groups].map do |raw_metadata|
-        Generator::GroupMetadata.new(raw_metadata)
+        HdeaGenerator::GroupMetadata.new(raw_metadata)
       end
     end
 
     fhir_resource_validator do
-      igs('hl7.fhir.us.core#3.1.1', 'hl7.fhir.us.mcode#3.0.0')
+      igs 'hl7.fhir.us.central-cancer-registry-reporting#1.0.0'
       message_filters = VALIDATION_MESSAGE_FILTERS
 
       exclude_message do |message|

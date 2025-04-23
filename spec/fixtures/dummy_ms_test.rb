@@ -26,7 +26,7 @@ module CancerRegistryReportingTestKit
       end
 
       run do
-        report_results, missed_references = parse_bundle(FHIR.from_contents(input_bundle))
+        report_results, missed_references = parse_bundle(FHIR.from_contents(input_bundle), 1)
         assert report_results, 'No resources resolved or found'
         assert missed_references.empty?, "Reference Missed: #{missed_references}"
       end

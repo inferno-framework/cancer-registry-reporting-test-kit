@@ -6,11 +6,11 @@ module CancerRegistryReportingTestKit
   class PrimaryCancerConditionValidationTest < Inferno::Test
     include CancerRegistryReportingTestKit::ValidationTest
 
-    id :primary_cancer_condition_validation_test
-    title 'Condition resources returned during previous tests conform to the Primary Cancer Condition'
+    id :ccrr_primary_cancer_condition_validation_test
+    title 'Condition resources returned during previous tests conform to the mCODE Primary Cancer Condition Profile'
     description %(
         This test verifies resources returned from the first search conform to
-        the [primary cancer condition](http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-primary-cancer-condition).
+        the [mCODE Primary Cancer Condition Profile](http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-primary-cancer-condition).
         Systems must demonstrate at least one valid example in order to pass this test.
 
         It verifies the presence of mandatory elements and that elements with
@@ -20,7 +20,6 @@ module CancerRegistryReportingTestKit
         fail if their code/system are not found in the valueset.
 
       )
-    output :dar_code_found, :dar_extension_found
 
     def resource_type
       'Condition'

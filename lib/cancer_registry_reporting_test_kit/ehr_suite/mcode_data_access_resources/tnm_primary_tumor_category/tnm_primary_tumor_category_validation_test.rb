@@ -6,7 +6,7 @@ module CancerRegistryReportingTestKit
   class TNMPrimaryTumorCategoryValidationTest < Inferno::Test
     include CancerRegistryReportingTestKit::ValidationTest
 
-    id :tnm_primary_tumor_category_validation_test
+    id :ccrr_tnm_primary_tumor_category_validation_test
     title 'Observation resources returned during previous tests conform to the TNM Primary Tumor Category profile'
     description %(
         This test verifies resources returned from the first search conform to
@@ -20,7 +20,6 @@ module CancerRegistryReportingTestKit
         fail if their code/system are not found in the valueset.
 
       )
-    output :dar_code_found, :dar_extension_found
 
     def resource_type
       'Observation'

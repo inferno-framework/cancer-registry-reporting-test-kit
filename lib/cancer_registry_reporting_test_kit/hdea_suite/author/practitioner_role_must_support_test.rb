@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../must_support_test'
-require_relative '../../generator/group_metadata'
+require_relative '../../hdea_generator/group_metadata'
 
 module CancerRegistryReportingTestKit
   module HDEAV100
@@ -33,7 +33,7 @@ module CancerRegistryReportingTestKit
       end
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
+        @metadata ||= HdeaGenerator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
       end
 
       def scratch_resources
@@ -53,7 +53,7 @@ module CancerRegistryReportingTestKit
           'Organization' => []
         }
 
-        scratch_resources[:all].each do |author|
+        scratch_resources[:all]&.each do |author|
           resources_by_type[author.resourceType] << author
         end
 

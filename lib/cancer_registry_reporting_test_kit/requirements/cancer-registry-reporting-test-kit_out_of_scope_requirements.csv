@@ -1,0 +1,77 @@
+﻿Req Set,ID,Reason,Details
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,15,Not Verifiable,Broken link meaning that specific requirements are not known.
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,16,Not Tested,"Transport of data outside of US Core API use, including the use of MedMorph, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,17,Not Tested,"Transport of data outside of US Core API use, including the use of MedMorph, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,18,Not Tested,"Transport of data outside of US Core API use, including the use of MedMorph, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,22,Not Tested,"Requirement 101 nearly the same, but 101 goes into more detail."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,23,Not Tested,Attestation
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,36,Not Tested,"Use of the MedMorph framework, including the use of Subscriptions, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,37,Not Tested,"Use of the MedMorph framework, including the use of Subscriptions, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,38,Not Tested,"Use of the MedMorph framework, including the use of Subscriptions, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,39,Not Tested,"Use of the MedMorph framework, including the use of Subscriptions, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,40,Not Tested,"Use of the MedMorph framework, including the use of Subscriptions, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,41,Not Tested,"Use of the MedMorph framework, including the use of Subscriptions, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,42,Not Tested,"Use of the MedMorph framework, including the use of Subscriptions, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,44,Not Tested,
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,46,Not Tested,"Use of the MedMorph framework, including the use of Subscriptions, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,47,Not Tested,"Use of the MedMorph framework, including the use of Subscriptions, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,48,Not Tested,"Use of the MedMorph framework, including the use of Subscriptions, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,49,Not Tested,"Use of the MedMorph framework, including the use of Subscriptions, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,50,Not Tested,"Use of the MedMorph framework, including the use of Subscriptions, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,51,Not Tested,"Use of the MedMorph framework, including the use of Subscriptions, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,52,Not Tested,"Use of the MedMorph framework, including the use of Subscriptions, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,53,Not Tested,"Use of the MedMorph framework, including the use of Subscriptions, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,56,Not Tested,"Use of the MedMorph framework, including the use of Subscriptions, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,57,Not Tested,"Use of the MedMorph framework, including the use of Subscriptions, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,58,Not Tested,"Use of the MedMorph framework, including the use of Subscriptions, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,59,Not Tested,Use of the MedMorph framework is not yet mature enough to test.
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,60,Not Tested,Use of the MedMorph framework is not yet mature enough to test.
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,61,Not Tested,"Use of the MedMorph framework, including the use of Subscriptions, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,62,Not Tested,"Use of the MedMorph framework, including the use of Subscriptions, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,63,Not Tested,"Use of the MedMorph framework, including the use of Subscriptions, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,64,Not Tested,Use of the MedMorph framework is not yet mature enough to test.
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,65,Not Tested,Use of the MedMorph framework is not yet mature enough to test.
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,67,Not Tested,Use of the EHR's APIs to access data will not be tested at this time.
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,69,Not Tested,"Use of the MedMorph framework, including its use of FHIR Messaging, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,70,Not Tested,"Use of the MedMorph framework, including its use of FHIR Messaging, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,71,Not Tested,"Use of the MedMorph framework, including its use of FHIR Messaging, is not yet mature enough to test."
+hl7.fhir.us.central-cancer-registry-reporting_1.0.0,72,Not Tested,Use of the MedMorph framework is not yet mature enough to test.
+hl7.fhir.us.mcode_3.0.0,2,Not Verifiable,"Cannot know from testing whether the resource ""should"" be for a primary or secondary cancer"
+hl7.fhir.us.mcode_3.0.0,4,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,5,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,7,Not Verifiable,
+hl7.fhir.us.mcode_3.0.0,8,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,10,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,13,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,14,Not Tested,Will test broadly that a data sender can return conformant PrimaryCancerDisorder resources
+hl7.fhir.us.mcode_3.0.0,15,Not Verifiable,"""would reasonably be expected to conform to this profile"" is too subjective"
+hl7.fhir.us.mcode_3.0.0,30,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,33,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,34,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,35,Not Verifiable,"Depending on the field (e.g. free text), it is difficult to check if a field's value is ""nonsense"""
+hl7.fhir.us.mcode_3.0.0,37,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,38,Not Tested,Focus on the profiles that are required
+hl7.fhir.us.mcode_3.0.0,51,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,55,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,67,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,69,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,70,Not Tested,Will test broadly that a data sender can return conformant SecondaryCancerDisorder resources
+hl7.fhir.us.mcode_3.0.0,71,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,72,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,74,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,76,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,78,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,80,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,84,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,85,Not Tested,Will test broadly that a data sender can return conformant RadioTherapyCourseSummary resources
+hl7.fhir.us.mcode_3.0.0,86,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,87,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,89,Not Verifiable,Can't tell if a resource is the initial diagnosis
+hl7.fhir.us.mcode_3.0.0,90,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,91,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,92,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,93,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,94,Not Verifiable,Difficult to programmatically check if these 3 values are self-consistent
+hl7.fhir.us.mcode_3.0.0,95,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,97,Not Tested,Focus on SHALL requirements
+hl7.fhir.us.mcode_3.0.0,98,Not Tested,Focus on SHALL requirements

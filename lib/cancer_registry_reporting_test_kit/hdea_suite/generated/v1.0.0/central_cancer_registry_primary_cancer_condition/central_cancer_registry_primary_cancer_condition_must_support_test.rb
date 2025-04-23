@@ -1,24 +1,23 @@
 # frozen_string_literal: true
 
 require_relative '../../../../must_support_test'
-require_relative '../../../../generator/group_metadata'
+require_relative '../../../../hdea_generator/group_metadata'
 
 module CancerRegistryReportingTestKit
   module HDEAV100
     class CentralCancerRegistryPrimaryCancerConditionMustSupportTest < Inferno::Test
       include CancerRegistryReportingTestKit::MustSupportTest
 
-      title 'All must support elements are provided in the Central Cancer Registry Primary Cancer Condition resources returned'
+      title 'Central Cancer Registry Reporting Primary Cancer Condition profile must support element coverage'
       description %(
-        US Core Responders SHALL be capable of populating all data elements as
-        part of the query results as specified by the US Core Server Capability
-        Statement. This test will look through the Condition resources
-        found previously for the following must support elements:
+        This test looks across all instances
+        associated with the [Central Cancer Registry Reporting Primary Cancer Condition profile](http://hl7.org/fhir/us/central-cancer-registry-reporting/StructureDefinition/central-cancer-registry-primary-cancer-condition|1.0.0)
+        found in the provided report Bundles and verifies that they
+        contain populated examples of the following must support elements
+        defined in the profile:
 
-        * Condition.Condition
         * Condition.abatementDateTime
         * Condition.bodySite
-        * Condition.bodySite.extension
         * Condition.bodySite.extension:data-absent-reason
         * Condition.bodySite.extension:lateralityQualifier
         * Condition.bodySite.extension:locationQualifier
@@ -27,7 +26,6 @@ module CancerRegistryReportingTestKit
         * Condition.category:us-core
         * Condition.clinicalStatus
         * Condition.code
-        * Condition.extension
         * Condition.extension:assertedDate
         * Condition.extension:histologyMorphologyBehavior
         * Condition.extension:mcode-cancer-disease-type-evidence-type
@@ -46,7 +44,7 @@ module CancerRegistryReportingTestKit
       end
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
+        @metadata ||= HdeaGenerator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
       end
 
       def scratch_resources

@@ -2,11 +2,12 @@
 # rubocop:disable Layout/HeredocIndentation
 module CancerRegistryReportingTestKit
   class MCodeCapabilityStatementProfileSupport < Inferno::Test
-    title 'Capability Statement lists support for required mCode Profiles'
+    title 'Capability Statement lists support for required mCODE Profiles'
     description <<~DESCRIPTION
-    This test verifies that the list of implemented profiles required by the Cancer Registry IG (link) SHALL be published in the returned CapbilityStatement.
+      This test verifies that the list of implemented profiles in the server's CapabilityStatement
+      includes the [required mCODE profiles](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/spec.html#mcode-fhir-ig-usage).
     DESCRIPTION
-    id :mcode_capability_statement_profile_support
+    id :ccrr_mcode_capability_statement_profile_support
 
     uses_request :capability_statement
     run do
