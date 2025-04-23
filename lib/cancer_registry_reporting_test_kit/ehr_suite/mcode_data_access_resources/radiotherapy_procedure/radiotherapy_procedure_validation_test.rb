@@ -4,7 +4,7 @@ module CancerRegistryReportingTestKit
   class RadiotherapyProcedureValidationTest < Inferno::Test
     include CancerRegistryReportingTestKit::ValidationTest
 
-    id :radiotherapy_procedure_validation_test
+    id :ccrr_radiotherapy_procedure_validation_test
     title 'Procedure resources returned during previous tests conform to the Radiotherapy Course Summary Profile profile'
     description "
         This test verifies resources returned from the first search conform to
@@ -17,7 +17,7 @@ module CancerRegistryReportingTestKit
         to the bound ValueSet. Quantity, Coding, and code element bindings will
         fail if their code/system are not found in the valueset."
 
-    output :dar_code_found, :dar_extension_found
+    verifies_requirements 'hl7.fhir.us.mcode_3.0.0@85'
 
     def resource_type
       'Procedure'

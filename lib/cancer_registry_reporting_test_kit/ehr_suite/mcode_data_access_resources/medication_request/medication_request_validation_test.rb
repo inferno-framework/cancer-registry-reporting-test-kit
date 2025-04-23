@@ -6,11 +6,11 @@ module CancerRegistryReportingTestKit
   class MedicationRequestValidationTest < Inferno::Test
     include CancerRegistryReportingTestKit::ValidationTest
 
-    id :medication_request_validation_test
-    title 'Medication request resources returned during previous tests conform to the Medication Request profile'
+    id :ccrr_medication_request_validation_test
+    title 'MedicationRequest resources returned during previous tests conform to the mCODE Cancer-Related Medication Request Profile'
     description %(
         This test verifies resources returned from the first search conform to
-        the [medication request](http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-request).
+        the [mCODE Cancer-Related Medication Request Profile](http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-related-medication-request).
         Systems must demonstrate at least one valid example in order to pass this test.
 
         It verifies the presence of mandatory elements and that elements with
@@ -18,9 +18,7 @@ module CancerRegistryReportingTestKit
         bindings will fail if none of their codings have a code/system belonging
         to the bound ValueSet. Quantity, Coding, and code element bindings will
         fail if their code/system are not found in the valueset.
-
       )
-    output :dar_code_found, :dar_extension_found
 
     def resource_type
       'MedicationRequest'

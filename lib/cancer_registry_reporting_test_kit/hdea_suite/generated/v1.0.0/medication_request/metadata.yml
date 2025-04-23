@@ -12,9 +12,6 @@
   Medication Request Profile.
 :must_supports:
   :extensions:
-  - :id: MedicationRequest.extension
-    :path: extension
-    :url: 
   - :id: MedicationRequest.extension:treatmentIntent
     :path: extension
     :url: http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-procedure-intent
@@ -87,4 +84,3 @@
 - :id: ccrr_v100_medication_request_validation_test
   :file_name: medication_request_validation_test.rb
 :id: ccrr_v100_medication_request
-:file_name: medication_request_group.rb

@@ -6,18 +6,31 @@ module CancerRegistryReportingTestKit
   class TNMDistantMetastasesCategoryMustSupportTest < Inferno::Test
     include CancerRegistryReportingTestKit::MustSupportTest
 
-    title 'All must support elements are provided in the TNM Distant Metastases Category resources returned'
+    title 'All must support elements are provided in the mCODE TNM Distant Metastases Category Observation resources returned'
     description %(
-      )
+      CCRR EHRs SHALL be capable of populating all data elements as
+      part of the query results. This test will look through the Observation resources
+      found previously for the following must support elements:
 
-    id :tnm_distant_metastases_category_must_support_test
+      * Observation.category
+      * Observation.code
+      * Observation.effective[x]
+      * Observation.focus
+      * Observation.method
+      * Observation.performer
+      * Observation.status
+      * Observation.subject
+      * Observation.value[x]
+    )
+
+    id :ccrr_tnm_distant_metastases_category_must_support_test
 
     def resource_type
       'Observation'
     end
 
     def self.metadata
-      @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
+      @metadata ||= HdeaGenerator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
     end
 
     def scratch_resources

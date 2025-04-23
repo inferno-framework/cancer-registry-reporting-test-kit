@@ -8,19 +8,13 @@ module CancerRegistryReportingTestKit
       include CancerRegistryReportingTestKit::ValidationTest
 
       id :ccrr_v100_medication_validation_test
-      title 'Medication resources returned during previous tests conform to the US Core Medication Profile profile'
+      title 'US Core Medication profile conformance'
       description %(
-This test verifies resources returned from previous tests conform to
-the [US Core Medication Profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication).
-
-It verifies the presence of mandatory elements and that elements with
-required bindings contain appropriate values. CodeableConcept element
-bindings will fail if none of their codings have a code/system belonging
-to the bound ValueSet. Quantity, Coding, and code element bindings will
-fail if their code/system are not found in the valueset.
-
+        This test verifies that Medication instances
+        found in the Medications and Medications Administered sections of the provided reports conform to the
+        [US Core Medication profile](http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication|5.0.1).
       )
-      output :dar_code_found, :dar_extension_found
+      
 
       def resource_type
         'Medication'
@@ -34,7 +28,7 @@ fail if their code/system are not found in the valueset.
         perform_validation_test(scratch_resources[:all] || [],
                                 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication',
                                 '5.0.1',
-                                skip_if_empty: true)
+                                skip_if_empty: false)
       end
     end
   end

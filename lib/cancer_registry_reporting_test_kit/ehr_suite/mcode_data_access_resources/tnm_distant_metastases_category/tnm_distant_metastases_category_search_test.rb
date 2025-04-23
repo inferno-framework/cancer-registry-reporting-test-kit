@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 require_relative '../../../search_test'
-require_relative '../../../generator/group_metadata'
+require_relative '../../../hdea_generator/group_metadata'
 
 module CancerRegistryReportingTestKit
   class TNMDistantMetastasesCategorySearchTest < Inferno::Test
     include CancerRegistryReportingTestKit::SearchTest
 
-    title 'Server returns valid results for TNM Distant Metastases Category search by patient + category'
+    title 'Server returns valid results for Observation search by patient + code'
     description %(
         A server SHALL support searching by
-        patient + category on the Observation resource. This test
+        patient + code on the Observation resource. This test
         will pass if resources are returned and match the search criteria. If
         none are returned, the test is skipped.
 
@@ -19,18 +19,21 @@ module CancerRegistryReportingTestKit
 
         Additionally, this test will check that GET and POST search methods
         return the same number of results.
-
-        [US Core Server CapabilityStatement](http://hl7.org/fhir/us/core/STU3.1.1/CapabilityStatement-us-core-server.html)
-
       )
 
-    id :tnm_distant_metastases_category_search_test
+    id :ccrr_tnm_distant_metastases_category_search_test
     input :patient_ids,
           title: 'Patient IDs',
           description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements'
 
     input :tnm_distant_metastases_category_code,
-          title: 'Code of TNM Distant Metastases Category'
+          title: 'TNM Distant Metastases Category code',
+          description: %(
+            `Observation.code` value that distinguishes TNM Distant Metastases Category instances from
+            other Observations. Used as a search parameter value when searching for Observation instances
+            to check for conformance to the TNM Distant Metastases Category Observation profile.
+          ),
+          optional: true
 
     def self.properties
       @properties ||= CancerRegistryReportingTestKit::SearchTestProperties.new(
@@ -46,7 +49,7 @@ module CancerRegistryReportingTestKit
     end
 
     def self.metadata
-      @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
+      @metadata ||= HdeaGenerator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
     end
 
     def scratch_resources
@@ -54,6 +57,10 @@ module CancerRegistryReportingTestKit
     end
 
     run do
+      skip_if tnm_distant_metastases_category_code.blank?,
+              'Provide a code search value for TNM Distant Metastases Categories in the ' \
+              '**TNM Distant Metastases Category code** input to run these tests.'
+
       # manual params must be in the same order as the param names
       @manual_search_params = [tnm_distant_metastases_category_code]
       run_search_test

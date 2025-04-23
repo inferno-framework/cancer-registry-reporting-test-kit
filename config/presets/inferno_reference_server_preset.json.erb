@@ -1,0 +1,84 @@
+{
+  "title": "Inferno Reference Server",
+  "id": "ccrr_server_inferno_reference",
+  "test_suite_id": "ccrr_ehr",
+  "inputs": [
+    {
+      "name": "url",
+      "type": "text",
+      "title": "FHIR Endpoint",
+      "description": "URL of the FHIR endpoint",
+      "value": "<%= Inferno::Application['base_url'].include?('localhost:4567') ? 'http://localhost:8080' : Inferno::Application['base_url'].include?('inferno-qa') ? 'https://inferno-qa.healthit.gov' : 'https://inferno.healthit.gov' %>/reference-server/r4"
+    },
+    {
+      "name": "smart_credentials",
+      "type": "auth_info",
+      "title": "OAuth Credentials",
+      "optional": true,
+      "value": "{\"access_token\":\"SAMPLE_TOKEN\"}"
+    },
+    {
+      "name": "patient_ids",
+      "type": "text",
+      "title": "Patient IDs",
+      "description": "Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements",
+      "value": "355,85"
+    },
+    {
+      "name": "implantable_device_codes",
+      "type": "text",
+      "title": "Implantable Device Type Code",
+      "description": "Enter the code for an Implantable Device type, or multiple codes separated by commas. If blank, Inferno will validate all Device resources against the Implantable Device profile",
+      "optional": true,
+      "value": null
+    },
+    {
+      "name": "primary_condition_category",
+      "type": "text",
+      "title": "Primary Condition Category",
+      "value": "problem-list-item"
+    },
+    {
+      "name": "secondary_condition_category",
+      "type": "text",
+      "title": "Secondary Condition Category",
+      "value": "problem-list-item"
+    },
+    {
+      "name": "tnm_distant_metastases_category_code",
+      "type": "text",
+      "title": "Code of TNM Distant Metastases Category",
+      "value": "399387003"
+    },
+    {
+      "name": "tnm_primary_tumor_category_code",
+      "type": "text",
+      "title": "Code of TNM Primary Tumor Category",
+      "value": "399504009"
+    },
+    {
+      "name": "tnm_regional_nodes_category_code",
+      "type": "text",
+      "title": "Code of TNM Regional Nodes Category",
+      "value": "399534004"
+    },
+    {
+      "name": "tnm_stage_group_code",
+      "type": "text",
+      "title": "Code of TNM Stage Group",
+      "value": "399537006"
+    },
+    {
+      "name": "medication_administration_effective_date",
+      "type": "text",
+      "title": "Effective Date Time of Medication Administration",
+      "value": "2018-04-22"
+    },
+    {
+      "name": "radiotherapy_procedure_performed_date",
+      "type": "text",
+      "title": "Date Time of Radiotherapy Procedure",
+      "value": "2018-08-15"
+    }
+  ]
+}

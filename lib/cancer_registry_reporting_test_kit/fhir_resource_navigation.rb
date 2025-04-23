@@ -39,9 +39,10 @@ module CancerRegistryReportingTestKit
 
       path_segments = path.split(/(?<!hl7)\./)
 
+      ## special case: .gsub(':odh-UsualIndustry', '') 
+      # accounts for path traversal for Usual Work ODH profile
       segment = path_segments.shift.delete_suffix('[x]').gsub(/^class$/, 'local_class').gsub(/^method$/, 'local_method').gsub(
-        '[x]:', ':'
-      ).to_sym
+        '[x]:', ':').gsub(':odh-UsualIndustry', '').to_sym
       no_elements_present =
         elements.none? do |element|
           child = get_next_value(element, segment)

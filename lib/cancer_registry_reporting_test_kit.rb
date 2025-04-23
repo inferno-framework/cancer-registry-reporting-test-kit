@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
 require_relative 'cancer_registry_reporting_test_kit/metadata'
+require_relative 'inferno_requirements_tools/ext/inferno_core/runnable'
 require_relative 'cancer_registry_reporting_test_kit/ehr_suite'
 require_relative 'cancer_registry_reporting_test_kit/hdea_suite'

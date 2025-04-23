@@ -6,18 +6,37 @@ module CancerRegistryReportingTestKit
   class SecondaryCancerConditionMustSupportTest < Inferno::Test
     include CancerRegistryReportingTestKit::MustSupportTest
 
-    title 'All must support elements are provided in the Secondary Cancer Condition resources returned'
+    title 'All must support elements are provided in the mCODE Secondary Cancer Condition resources returned'
     description %(
-      )
+      CCRR EHRs SHALL be capable of populating all data elements as
+      part of the query results. This test will look through the Condition resources
+      found previously for the following must support elements:
 
-    id :secondary_cancer_condition_must_support_test
+      * Condition.abatement[x]
+      * Condition.bodySite
+      * Condition.bodySite.extension:locationQualifier
+      * Condition.bodySite.extension:lateralityQualifier
+      * Condition.category
+      * Condition.code
+      * Condition.clinicalStatus
+      * Condition.extension:assertedDate
+      * Condition.extension:histologyMorphologyBehavior
+      * Condition.verificationStatus
+      * Condition.recordedDate
+      * Condition.onset[x]
+      * Condition.subject
+      * Condition.stage
+      * Condition.stage.assessment
+    )
+
+    id :ccrr_secondary_cancer_condition_must_support_test
 
     def resource_type
       'Condition'
     end
 
     def self.metadata
-      @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
+      @metadata ||= HdeaGenerator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
     end
 
     def scratch_resources

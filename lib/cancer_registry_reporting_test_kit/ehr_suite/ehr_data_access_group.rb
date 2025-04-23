@@ -1,47 +1,14 @@
 # frozen_string_literal: true
 
-require 'us_core_test_kit/version'
-require 'us_core_test_kit/custom_groups/v3.1.1/clinical_notes_guidance_group'
-require 'us_core_test_kit/custom_groups/v3.1.1/capability_statement_group'
-require 'us_core_test_kit/custom_groups/data_absent_reason_group'
-require 'us_core_test_kit/provenance_validator'
-require 'us_core_test_kit/us_core_options'
-
-require 'us_core_test_kit/generated/v3.1.1/patient_group'
-require 'us_core_test_kit/generated/v3.1.1/allergy_intolerance_group'
-require 'us_core_test_kit/generated/v3.1.1/care_plan_group'
-require 'us_core_test_kit/generated/v3.1.1/care_team_group'
-require 'us_core_test_kit/generated/v3.1.1/condition_group'
-require 'us_core_test_kit/generated/v3.1.1/device_group'
-require 'us_core_test_kit/generated/v3.1.1/diagnostic_report_note_group'
-require 'us_core_test_kit/generated/v3.1.1/diagnostic_report_lab_group'
-require 'us_core_test_kit/generated/v3.1.1/document_reference_group'
-require 'us_core_test_kit/generated/v3.1.1/goal_group'
-require 'us_core_test_kit/generated/v3.1.1/immunization_group'
-require 'us_core_test_kit/generated/v3.1.1/medication_request_group'
-require 'us_core_test_kit/generated/v3.1.1/smokingstatus_group'
-require 'us_core_test_kit/generated/v3.1.1/pediatric_weight_for_height_group'
-require 'us_core_test_kit/generated/v3.1.1/observation_lab_group'
-require 'us_core_test_kit/generated/v3.1.1/pediatric_bmi_for_age_group'
-require 'us_core_test_kit/generated/v3.1.1/pulse_oximetry_group'
-require 'us_core_test_kit/generated/v3.1.1/head_circumference_group'
-require 'us_core_test_kit/generated/v3.1.1/bodyheight_group'
-require 'us_core_test_kit/generated/v3.1.1/bodytemp_group'
-require 'us_core_test_kit/generated/v3.1.1/bp_group'
-require 'us_core_test_kit/generated/v3.1.1/bodyweight_group'
-require 'us_core_test_kit/generated/v3.1.1/heartrate_group'
-require 'us_core_test_kit/generated/v3.1.1/resprate_group'
-require 'us_core_test_kit/generated/v3.1.1/procedure_group'
-require 'us_core_test_kit/generated/v3.1.1/encounter_group'
-require 'us_core_test_kit/generated/v3.1.1/organization_group'
-require 'us_core_test_kit/generated/v3.1.1/practitioner_group'
-require 'us_core_test_kit/generated/v3.1.1/provenance_group'
+require 'inferno/dsl/oauth_credentials'
+require 'us_core_test_kit'
 
 require_relative 'ehr_capability_statement/mcode_capability_statement_profile_support'
 require_relative 'mcode_data_access_resources/primary_cancer_condition_group'
 require_relative 'mcode_data_access_resources/secondary_cancer_condition_group'
 require_relative 'mcode_data_access_resources/medication_request_group'
 require_relative 'mcode_data_access_resources/medication_administration_group'
+require_relative 'mcode_data_access_resources/medication_administration/medication_administration_must_support_test'
 require_relative 'mcode_data_access_resources/tnm_distant_metastases_category_group'
 require_relative 'mcode_data_access_resources/tnm_primary_tumor_category_group'
 require_relative 'mcode_data_access_resources/tnm_regional_nodes_category_group'
@@ -52,13 +19,12 @@ module CancerRegistryReportingTestKit
   class EHRDataAccessGroup < Inferno::TestGroup
     id :ccrr_ehr_data_access
     title 'EHR Data Access Group'
-    short_description 'Verify that cancer patient data are available via US Core API.'
+    short_description 'Verify that cancer patient data are available via US Core and mCODE APIs.'
     description %(
-        Tests verify that the EHR allows apps to access patient data via the [US Core API](http://hl7.org/fhir/us/core/STU3.1.1/index.html)
-        as well as mCode resources as specified by the
+        During these tests, Inferno will simulate a FHIR client and verify that it can use the EHR's FHIR APIs
+        to access patient data including both the [US Core](http://hl7.org/fhir/us/core/STU3.1.1/index.html)
+        as well as [mCODE](https://hl7.org/fhir/us/mcode/STU3/index.html) data as specified by the
         [Central Cancer Registry IG v1.0.0](https://hl7.org/fhir/us/central-cancer-registry-reporting/STU1/).
-
-
     )
 
     M_CODE_PROFILES = {
@@ -79,20 +45,28 @@ module CancerRegistryReportingTestKit
 
     input :url,
           title: 'FHIR Endpoint',
-          description: 'URL of the FHIR endpoint'
+          description: 'URL of the EHR\'s FHIR endpoint'
 
     input :smart_credentials,
           title: 'OAuth Credentials',
-          type: :auth_info,
-          optional: false
+          type: :oauth_credentials,
+          optional: true
 
     fhir_client do
       url :url
-      auth_info :smart_credentials
+      oauth_credentials :smart_credentials
     end
 
+    verifies_requirements 'hl7.fhir.us.central-cancer-registry-reporting_1.0.0@1',
+                          'hl7.fhir.us.central-cancer-registry-reporting_1.0.0@31',
+                          'hl7.fhir.us.central-cancer-registry-reporting_1.0.0@54',
+                          'hl7.fhir.us.mcode_3.0.0@107',
+                          'hl7.fhir.us.mcode_3.0.0@108',
+                          'hl7.fhir.us.mcode_3.0.0@109',
+                          'hl7.fhir.us.mcode_3.0.0@110'
+
     group from: :us_core_v311_capability_statement do
-      test from: :mcode_capability_statement_profile_support do
+      test from: :ccrr_mcode_capability_statement_profile_support do
         config(
           options: { required_profiles: [M_CODE_PROFILES.values].flatten }
         )
@@ -100,54 +74,58 @@ module CancerRegistryReportingTestKit
     end
 
     group do
-      title 'US Core FHIR API Tests'
-      id :us_core_fhir_api
-      group from: :us_core_v311_patient
-      group from: :us_core_v311_allergy_intolerance
-      group from: :us_core_v311_care_plan
-      group from: :us_core_v311_care_team
-      group from: :us_core_v311_condition
-      group from: :us_core_v311_device
-      group from: :us_core_v311_diagnostic_report_note
-      group from: :us_core_v311_diagnostic_report_lab
-      group from: :us_core_v311_document_reference
-      group from: :us_core_v311_goal
-      group from: :us_core_v311_immunization
-      group from: :us_core_v311_medication_request
-      group from: :us_core_v311_smokingstatus
-      group from: :us_core_v311_pediatric_weight_for_height
-      group from: :us_core_v311_observation_lab
-      group from: :us_core_v311_pediatric_bmi_for_age
-      group from: :us_core_v311_pulse_oximetry
-      group from: :us_core_v311_head_circumference
-      group from: :us_core_v311_bodyheight
-      group from: :us_core_v311_bodytemp
-      group from: :us_core_v311_bp
-      group from: :us_core_v311_bodyweight
-      group from: :us_core_v311_heartrate
-      group from: :us_core_v311_resprate
-      group from: :us_core_v311_procedure
-      group from: :us_core_v311_encounter
-      group from: :us_core_v311_organization
-      group from: :us_core_v311_practitioner
-      group from: :us_core_v311_provenance
-      group from: :us_core_v311_clinical_notes_guidance
-      group from: :us_core_311_data_absent_reason
+      title 'US Core FHIR API'
+      id :ccrr_us_core_fhir_api
+
+      verifies_requirements 'hl7.fhir.us.central-cancer-registry-reporting_1.0.0@34',
+                            'hl7.fhir.us.central-cancer-registry-reporting_1.0.0@43'
+      group from: :us_core_v311_patient, title: 'Patient'
+      group from: :us_core_v311_allergy_intolerance, title: 'AllergyIntolerance'
+      group from: :us_core_v311_care_plan, title: 'CarePlan'
+      group from: :us_core_v311_care_team, title: 'CareTeam'
+      group from: :us_core_v311_condition, title: 'Condition'
+      group from: :us_core_v311_device, title: 'Device'
+      group from: :us_core_v311_diagnostic_report_note, title: 'DiagnosticReport for Report and Note Exchange'
+      group from: :us_core_v311_diagnostic_report_lab, title: 'DiagnosticReport for Laboratory Results Reporting'
+      group from: :us_core_v311_document_reference, title: 'DocumentReference'
+      group from: :us_core_v311_goal, title: 'Goal'
+      group from: :us_core_v311_immunization, title: 'Immunization'
+      group from: :us_core_v311_medication_request, title: 'MedicationRequest'
+      group from: :us_core_v311_smokingstatus, title: 'Smoking Status Observation'
+      group from: :us_core_v311_pediatric_weight_for_height, title: 'Pediatric Weight for Height Observation'
+      group from: :us_core_v311_observation_lab, title: 'Laboratory Result Observation'
+      group from: :us_core_v311_pediatric_bmi_for_age, title: 'Pediatric BMI for Age Observation'
+      group from: :us_core_v311_pulse_oximetry, title: 'Pulse Oximetry Observation'
+      group from: :us_core_v311_head_circumference, title: 'Pediatric Head Occipital-frontal Circumference Percentile Observation'
+      group from: :us_core_v311_bodyheight, title: 'Body Height Observation'
+      group from: :us_core_v311_bodytemp, title: 'Body Temperature Observation'
+      group from: :us_core_v311_bp, title: 'Blood Pressure Observation'
+      group from: :us_core_v311_bodyweight, title: 'Body Weight Observation'
+      group from: :us_core_v311_heartrate, title: 'Heart Rate Observation'
+      group from: :us_core_v311_resprate, title: 'Respiratory Rate Observation'
+      group from: :us_core_v311_procedure, title: 'Procedure'
+      group from: :us_core_v311_encounter, title: 'Encounter'
+      group from: :us_core_v311_organization, title: 'Organization'
+      group from: :us_core_v311_practitioner, title: 'Practitioner'
+      group from: :us_core_v311_provenance, title: 'Provenance'
+      group from: :us_core_311_data_absent_reason, title: 'Missing Data'
     end
 
     group do
-      title 'mCode FHIR API tests'
-      id :mcode_fhir_api
-      group from: :ehr_primary_cancer_condition
-      group from: :ehr_secondary_cancer_condition
-      group from: :ehr_medication_request
-      group from: :ehr_medication_administration
-      group from: :ehr_tnm_distant_metastases_category
-      group from: :ehr_tnm_primary_tumor_category
-      group from: :ehr_tnm_regional_nodes_category
-      group from: :ehr_tnm_stage_group
-      group from: :ehr_radiotherapy_procedure
+      title 'mCODE FHIR API'
+      id :ccrr_mcode_fhir_api
+
+      verifies_requirements 'hl7.fhir.us.central-cancer-registry-reporting_1.0.0@35'
+
+      group from: :ccrr_ehr_primary_cancer_condition
+      group from: :ccrr_ehr_secondary_cancer_condition
+      group from: :ccrr_ehr_medication_request
+      group from: :ccrr_ehr_medication_administration
+      group from: :ccrr_ehr_tnm_distant_metastases_category
+      group from: :ccrr_ehr_tnm_primary_tumor_category
+      group from: :ccrr_ehr_tnm_regional_nodes_category
+      group from: :ccrr_ehr_tnm_stage_group
+      group from: :ccrr_ehr_radiotherapy_procedure
     end
-    # end
   end
 end

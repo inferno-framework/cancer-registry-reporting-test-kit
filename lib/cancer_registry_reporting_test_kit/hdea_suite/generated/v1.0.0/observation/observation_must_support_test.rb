@@ -1,19 +1,20 @@
 # frozen_string_literal: true
 
 require_relative '../../../../must_support_test'
-require_relative '../../../../generator/group_metadata'
+require_relative '../../../../hdea_generator/group_metadata'
 
 module CancerRegistryReportingTestKit
   module HDEAV100
     class ObservationMustSupportTest < Inferno::Test
       include CancerRegistryReportingTestKit::MustSupportTest
 
-      title 'All must support elements are provided in the Observation resources returned'
+      title 'Base Observation profile must support element coverage'
       description %(
-        US Core Responders SHALL be capable of populating all data elements as
-        part of the query results as specified by the US Core Server Capability
-        Statement. This test will look through the Observation resources
-        found previously for the following must support elements:
+        This test looks across all instances
+        associated with the [Base Observation profile](http://hl7.org/fhir/StructureDefinition/Observation|4.0.1)
+        found in the provided report Bundles and verifies that they
+        contain populated examples of the following must support elements
+        defined in the profile:
 
 
       )
@@ -25,7 +26,7 @@ module CancerRegistryReportingTestKit
       end
 
       def self.metadata
-        @metadata ||= Generator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
+        @metadata ||= HdeaGenerator::GroupMetadata.new(YAML.load_file(File.join(__dir__, 'metadata.yml'), aliases: true))
       end
 
       def scratch_resources

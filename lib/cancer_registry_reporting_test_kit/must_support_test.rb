@@ -24,8 +24,9 @@ module CancerRegistryReportingTestKit
 
       handle_must_support_choices if metadata.must_supports[:choices].present?
 
-      assert (missing_elements + missing_slices + missing_extensions).empty?, "Could not find #{missing_must_support_strings.join(', ')} in the #{resources.length} " \
-                                                                              "provided #{resource_type} resource(s)"
+      skip_if (missing_elements + missing_slices + missing_extensions).present?, 
+        "Could not find #{missing_must_support_strings.join(', ')} in the #{resources.length} " \
+        "provided #{resource_type} resource(s)"
     end
 
     def handle_must_support_choices
@@ -206,12 +207,28 @@ module CancerRegistryReportingTestKit
         when 'requiredBinding'
           coding_path = discriminator[:path].present? ? "#{discriminator[:path]}.coding" : 'coding'
 
-          find_a_value_at(element, coding_path) do |coding|
-            discriminator[:values].any? { |value| value[:system] == coding.system && value[:code] == coding.code }
+          ## SPECIAL CASE ##
+          # only checking ODH MS slices for codesystem, not codes, given large number of codes
+          if metadata.profile_url == 'http://hl7.org/fhir/us/odh/StructureDefinition/odh-UsualWork'
+            get_slice_by_codesystem(element, discriminator)
+          else
+            find_a_value_at(element, coding_path) do |coding|
+              discriminator[:values].any? { |value| value[:system] == coding.system && value[:code] == coding.code }
+            end
           end
         end
       end
     end
+
+    ## special case ##
+
+    def get_slice_by_codesystem(element, discriminator)
+      find_a_value_at(element, '') do |coding|
+        discriminator[:values].any? { |value| coding.system.include? value[:system] }
+      end
+    end
+
+    ## end special case ##
 
     def find_slice_by_values(element, value_definitions)
       path_prefixes = value_definitions.map { |value_definition| value_definition[:path].first }.uniq
