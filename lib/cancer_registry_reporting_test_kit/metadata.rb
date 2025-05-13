@@ -3,7 +3,7 @@ require_relative 'version'
 module CancerRegistryReportingTestKit
   class Metadata < Inferno::TestKit
     id :cancer_registry_reporting_test_kit
-    title 'Central Cancer Registry Reporting IG Test Kit'
+    title 'Central Cancer Registry Reporting Test Kit'
     description <<~DESCRIPTION
 
       The Central Cancer Registry Reporting (CCRR) Test Kit is a testing tool for Health IT systems
