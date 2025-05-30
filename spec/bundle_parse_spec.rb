@@ -10,7 +10,6 @@ RSpec.describe CancerRegistryReportingTestKit::MustSupportTest, :runnable do
   end
 
   let(:suite_id) { SUITE_ID }
-  let(:validator_url) { ENV.fetch('FHIR_RESOURCE_VALIDATOR_URL') }
   let(:test_scratch) { {} }
   let(:two_reports_second_no_composition) do
     File.read(File.join(__dir__, 'fixtures', 'two_reports_second_no_composition.txt'))
