@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
 require_relative 'fixtures/dummy_ms_test'
-RSpec.describe CancerRegistryReportingTestKit::MustSupportTest do
+RSpec.describe CancerRegistryReportingTestKit::MustSupportTest, :runnable do
   before(:all) do
-    @suite = Inferno::Repositories::TestSuites.new.find('ccrr_v100_report_generation')
-    @suite.test.repository.insert(CancerRegistryReportingTestKit::HDEAV100::DummyMustSupportTest)
-    @suite.groups.first.test(from: :ccrr_v100_dummy_must_support_test)
+    SUITE_ID = 'ccrr_v100_report_generation'
+    suite = Inferno::Repositories::TestSuites.new.find(SUITE_ID)
+    suite.test.repository.insert(CancerRegistryReportingTestKit::HDEAV100::DummyMustSupportTest)
+    suite.groups.first.test(from: :ccrr_v100_dummy_must_support_test)
   end
+
+  let(:suite_id) { SUITE_ID }
   let(:validator_url) { ENV.fetch('FHIR_RESOURCE_VALIDATOR_URL') }
-  let(:suite) { @suite }
-  let(:session_data_repo) { Inferno::Repositories::SessionData.new }
   let(:test_scratch) { {} }
-  let(:test_session) { repo_create(:test_session, test_suite_id: suite.id) }
   let(:two_reports_second_no_composition) do
     File.read(File.join(__dir__, 'fixtures', 'two_reports_second_no_composition.txt'))
   end
@@ -34,20 +34,6 @@ RSpec.describe CancerRegistryReportingTestKit::MustSupportTest do
       }],
       sessionId: 'b8cf5547-1dc7-4714-a797-dc2347b93fe2'
     }
-  end
-
-  def run(runnable, inputs = {})
-    test_run_params = { test_session_id: test_session.id }.merge(runnable.reference_hash)
-    test_run = Inferno::Repositories::TestRuns.new.create(test_run_params)
-    inputs.each do |name, value|
-      session_data_repo.save(
-        test_session_id: test_session.id,
-        name: name,
-        value: value,
-        type: runnable.config.input_type(name)
-      )
-    end
-    Inferno::TestRunner.new(test_session: test_session, test_run: test_run).run(runnable)
   end
 
   describe 'bundle_parse' do
