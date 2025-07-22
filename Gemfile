@@ -4,8 +4,6 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'smart_app_launch_test_kit'
-
 group :development, :test do
   gem 'debug'
   gem 'rspec_junit_formatter', require: false # required for gitlab CI
