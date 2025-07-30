@@ -9,7 +9,6 @@ AllCops:
     - Gemfile
     - inferno_template.gemspec
     - vendor/**/*
-    - lib/inferno_requirements_tools/**/*
     - lib/cancer_registry_reporting_test_kit/must_support_test.rb
     - lib/cancer_registry_reporting_test_kit/validation_test.rb
     - lib/cancer_registry_reporting_test_kit/search_test.rb
