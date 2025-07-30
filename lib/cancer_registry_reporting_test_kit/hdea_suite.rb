@@ -31,6 +31,14 @@ module CancerRegistryReportingTestKit
         }
       ]
 
+      requirement_sets(
+        {
+          identifier: 'hl7.fhir.us.central-cancer-registry-reporting_1.0.0',
+          title: 'Central Cancer Registry Reporting Content IG STU 1',
+          actor: 'HDEA'
+        }
+      )
+
       GENERAL_MESSAGE_FILTERS = [
         %r{Sub-extension url 'introspect' is not defined by the Extension http://fhir-registry\.smarthealthit\.org/StructureDefinition/oauth-uris},
         %r{Sub-extension url 'revoke' is not defined by the Extension http://fhir-registry\.smarthealthit\.org/StructureDefinition/oauth-uris},
