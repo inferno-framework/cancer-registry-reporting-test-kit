@@ -72,6 +72,10 @@ module CancerRegistryReportingTestKit
         perform_additional_validation do |resource, _profile_url|
           ProvenanceValidator.validate(resource) if resource.instance_of?(FHIR::Provenance)
         end
+
+        validation_context do
+          snomedCT '731000124108' # explicit snomedCT expansion parameter
+        end
       end
 
       input :reports,
