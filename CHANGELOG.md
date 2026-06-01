@@ -1,3 +1,6 @@
+# 0.10.2
+* Add snomedCT to FHIR validator context to support validator version 1.0.78
+
 # 0.10.1
 * FI-4161 Convert Requirements by @karlnaden in https://github.com/inferno-framework/cancer-registry-reporting-test-kit/pull/7
 
